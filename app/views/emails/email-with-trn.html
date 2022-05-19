@@ -1,0 +1,30 @@
+{% extends "layouts/email.html" %}
+{% set email_address = data['email-address'] or data.dqt_record['email-address'] %}
+{% set full_name = data['full-name'] or (data.dqt_record['first-name'] + ' ' + data.dqt_record['last-name']) %}
+
+{% set subject = "Your TRN is " +  data.dqt_record.trn %}
+{% set from = "Teacher Regulation Agency <qts.enquiries@education.gov.uk>" %}
+{% set to = full_name + ' <' + email_address + '>' %}
+
+{% block content %}
+  <p>Dear {{ full_name }},</p>
+
+  <h1 class="govuk-heading-m">Your TRN</h1>
+
+  <p class="govuk-inset-text">Teacher reference number (TRN):<br />{{ data.dqt_record.trn }}</p>
+
+  <p>We suggest you keep this email for future reference.</p>
+
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+  <h1 class="govuk-heading-m">What a TRN is for</h1>
+
+  <p>You need to know your TRN to:</p>
+
+  <ul class="govuk-list  govuk-list--bullet">
+    <li>view your record with the Teaching Regulation Agency (TRA), check your record is accurate and download professional certificates in the <a href="https://teacherservices.education.gov.uk/SelfService/Login?_ga=2.258696906.1389497950.1638636823-1609244267.1609598427">Teacher self service portal</a></li>
+    <li>give to employers so they can complete mandatory teacher status checks</li>
+    <li>to manage records of your contributions to the Teachers’ Pensions scheme</li>
+    <li>give to the Department for Education (DfE) when you have been awarded QTS so you can begin your early career teacher induction and access your early career framework induction training programme</li>
+  </ul>
+{% endblock %}
