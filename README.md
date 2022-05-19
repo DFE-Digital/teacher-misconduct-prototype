@@ -1,8 +1,4 @@
-# Find a lost TRN prototype
-
-Prototype: https://find-a-lost-trn.herokuapp.com/
-
-Design history: https://tra-digital-design-history.herokuapp.com/
+# TMS prototype
 
 Built using the [GOV.UK Prototype Rig](https://govuk-prototype-rig.herokuapp.com).
 
@@ -13,8 +9,7 @@ Built using the [GOV.UK Prototype Rig](https://govuk-prototype-rig.herokuapp.com
 
 ## Installation
 
-1. Clone this repository:\
-`git clone git@github.com:DFE-Digital/find-a-lost-trn-prototype.git`
+1. Clone this repository
 
 2. Use [NVM](https://github.com/nvm-sh/nvm) to run the correct Node version:\
 `nvm use`

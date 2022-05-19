@@ -1,4 +1,3 @@
-import providers from '../app/data/reference/itt-providers.js'
 
 /**
  * Prototype specific global functions for use in Nunjucks templates.
@@ -23,10 +22,6 @@ export default () => {
    *
    * {{ sayHello("World") }} => Hello, World!
    */
-
-  globals.ittProviderOptionNames = function () {
-    return providers.map(name => { return { text: name } })
-  }
 
   // Keep the following line to return your globals to the app
   return globals

@@ -9,50 +9,10 @@
 export default {
   // Set feature flags using the `features` key
   features: {
-    apiUnavailable: {
+    exampleFeature: {
       on: false,
-      name: 'API unavailable',
-      description: 'Disable any functionality that requires a backend data lookup'
-    },
-    ittAutocomplete: {
-      on: true,
-      name: 'ITT provider autocomplete',
-      description: 'Use an autocomplete for ITT providers, otherwise use a free text input'
-    },
-    fullName: {
-      on: false,
-      name: 'Use full name',
-      description: 'Use full name rather than first name, last name'
-    },
-    validation: {
-      on: false,
-      name: 'Use validation',
-      description: 'Show errors during journey'
-    },
-    sms: {
-      on: true,
-      name: 'TRNs by text message',
-      description: 'Ask users if they want their TRN by text message'
+      name: 'Example',
+      description: 'Example'
     }
-  },
-  dqt_record: {
-    'email-address': 'jsmith@example.com',
-    'first-name': 'Jane',
-    'last-name': 'Smith',
-    'date-of-birth': { day: 27, month: 3, year: 1987 },
-    'national-insurance-number': 'QQ 12 34 56 C',
-    'itt-provider': 'Gorse SCITT',
-    trn: '7651234'
   }
-  // 'email-address': 'jsmith@example.com',
-  // 'email-address': 'jsmith@myschool.gov.uk',
-  // 'full-name': 'Jane Smith',
-  // 'changed-name': 'changed-name',
-  // 'previous-name': 'Jane Doe',
-  // 'date-of-birth': { day: 27, month: 3, year: 1987 },
-  // 'have-nino': 'yes',
-  // 'national-insurance-number': 'QQ 12 34 56 C',
-  // 'itt-provider': 'Gorse SCITT',
-  // trn: '0000000',
-  // 'has-qts': 'yes'
 }

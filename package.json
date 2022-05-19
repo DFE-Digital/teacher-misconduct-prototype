@@ -1,6 +1,6 @@
 {
-  "name": "find-a-lost-trn-prototype",
-  "description": "Prototype for the Find a lost TRN service",
+  "name": "tms-prototype",
+  "description": "Prototype for TMS",
   "version": "0.3.0",
   "private": true,
   "type": "module",
@@ -8,7 +8,7 @@
     "node": ">=16.0.0"
   },
   "prototype": {
-    "serviceName": "Find a lost teacher reference number (TRN)"
+    "serviceName": "Teacher misconduct"
   },
   "stylelint": {
     "extends": "stylelint-config-gds/scss"
