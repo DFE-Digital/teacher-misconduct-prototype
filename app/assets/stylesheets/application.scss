@@ -37,3 +37,27 @@ $govuk-assets-path: "/govuk/assets/";
 .app-\!-no-wrap {
   white-space: nowrap !important;
 }
+
+.app-month {
+  .govuk-table {
+    border: 1px solid $govuk-border-colour;
+  }
+
+  .govuk-table__header {
+    text-align: center
+  }
+
+  .govuk-table__cell {
+    @include govuk-font($size: false, $tabular: true);
+    padding: govuk-spacing(1);
+    border: 1px solid $govuk-border-colour;
+    text-align: center;
+    width: 14.2%;
+    height: 4em;
+  }
+
+  .app-calendar-no-date-cell {
+    border: none;
+    background: govuk-colour("light-grey");
+  }
+}
