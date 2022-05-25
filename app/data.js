@@ -1,3 +1,5 @@
+import { Info } from 'luxon'
+
 /**
  * Default values for user session data
  *
@@ -14,5 +16,11 @@ export default {
       name: 'Example',
       description: 'Example'
     }
-  }
+  },
+  weekdays: Info.weekdays(),
+  months: Info.months(),
+  calendar: {},
+  unavailability: [
+
+  ]
 }

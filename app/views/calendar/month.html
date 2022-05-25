@@ -1,0 +1,83 @@
+{% extends "layouts/default.html" %}
+{% set title = month.name + ' ' + year %}
+{% block pageTitle %}{{ title }}{% endblock %}
+
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Home",
+      href: "#"
+    }, {
+      text: "Calendar",
+      href: "#"
+    }, {
+      text: year,
+      href: "/calendar/" + year
+    }, {
+      text: month.name
+    }]
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ title }}</h1>
+
+  <ul class="govuk-list app-list--inline app-calendar-nav govuk-!-margin-bottom-8">
+    <li class="app-calendar-nav-item--prev govuk-!-margin-right-3">
+      <a href="{{ prevMonth.href }}" class="app-calendar-nav-link">{{ prevMonth.text }}</a>
+    </li>
+    <!-- <li class="govuk-!-margin-left-3 govuk-!-margin-right-3">
+      <strong>{{ month.name }} {{ year }}</strong>
+    </li> -->
+    <li class="app-calendar-nav-item--next">
+      <a href="{{ nextMonth.href }}" class="app-calendar-nav-link">{{ nextMonth.text }}</a>
+    </li>
+  </ul>
+
+  <div class="app-month">
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          {% for day in data.weekdays %}
+            <th class="govuk-table__header">{{ day }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          {% for day in month.dates %}
+            {% if loop.first %}
+              {% for i in range(0, month.startOffset) %}
+                <td class="govuk-table__cell app-calendar-no-date-cell"></td>
+              {% endfor %}
+            {% endif %}
+
+            <td class="govuk-table__cell">
+              {{ day.day }}
+              <!-- {{ govukCheckboxes({
+                items: [
+                  {
+                    value: day.obj,
+                    text: day.day
+                  }
+                ],
+                decorate: ['calendar', day.day, month]
+              }) }} -->
+            </td>
+
+            {% if day.weekday == 'Sunday' %}
+              </tr>
+              <tr class="govuk-table__row">
+            {% endif %}
+
+            {% if loop.last %}
+              {% for i in range(0, month.endOffset) %}
+                <td class="govuk-table__cell app-calendar-no-date-cell"></td>
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
