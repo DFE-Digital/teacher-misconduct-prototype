@@ -21,39 +21,7 @@
 
 {% block content %}
   <h1 class="govuk-heading-xl">{{ title }}</h1>
-
-  <!-- <ul class="govuk-list app-list--inline app-calendar-nav govuk-!-text-align-right govuk-!-margin-bottom-8">
-    <li class="app-calendar-nav-item--prev">
-      <a href="{{ prevMonth.href }}" class="app-calendar-nav-link">{{ prevMonth.text }}</a>
-    </li>
-    <li class="govuk-!-margin-left-3 govuk-!-margin-right-3">
-      {{ month.name }}
-    </li>
-    <li class="app-calendar-nav-item--next">
-      <a href="{{ nextMonth.href }}" class="app-calendar-nav-link">{{ nextMonth.text }}</a>
-    </li>
-  </ul> -->
-
   <h2 class="govuk-heading-m">Tell us which days you are unavailable</h2>
-
-  <!-- {{ govukCheckboxes({
-    classes: "govuk-checkboxes--small",
-    formGroup: {
-      classes: "govuk-!-margin-bottom-0 govuk-!-margin-left-1"
-    },
-    items: [
-      {
-        text: 'All month'
-      },
-      {
-        text: 'Certain days each week'
-      },
-      {
-        text: 'Certain weeks'
-      }
-    ],
-    decorate: 'month-rules'
-  }) }} -->
 
   <form class="app-calendar-month" method="post" action="/calendar/{{ year }}">
     <table class="govuk-table">
@@ -111,6 +79,7 @@
 
             {% if day.weekday == 'Sunday' %}
               </tr>
+              {% if not loop.last %}
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell app-calendar-no-date-cell govuk-!-padding-top-2">
                   <a href="#week"
@@ -120,6 +89,7 @@
                       govuk-!-font-weight-regular
                     ">All week</a>
                 </td>
+              {% endif %}
             {% endif %}
 
             {% if loop.last %}
@@ -136,21 +106,4 @@
       text: 'Save unavailability'
     }) }}
   </form>
-
-  <!-- <h2 class="govuk-heading-m">Save your changes</h2> -->
-
-  <!-- {{ govukRadios({
-    fieldset: {
-      legend: {
-        classes: "govuk-fieldset__legend--s",
-        text: 'What do you want to do next?'
-      }
-    },
-    items: [{
-      text: "I’m finished recording my unavailability"
-    }, {
-      text: "Save these changes and continue to " + nextMonth.text
-    }],
-    decorate: "save-continue"
-  }) }} -->
 {% endblock %}
