@@ -43,6 +43,11 @@ export default (env) => {
     return string ? string.charAt(0).toUpperCase() + string.slice(1) : string
   }
 
+  // example: "Monday" returns "M"
+  filters.firstLetter = string => {
+    return string.charAt(0)
+  }
+
   // Keep the following line to return your filters to the app
   return filters
 }

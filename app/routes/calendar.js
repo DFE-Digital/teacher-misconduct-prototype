@@ -15,7 +15,8 @@ const getDaysOfYear = (year) => {
   return iterableDays(interval)
 }
 
-const setCalendarYear = (res, year) => {
+const setCalendarYear = (req, res, year) => {
+  const unavailability = req.session.data.unavailability
   const daysOfYear = getDaysOfYear(year)
   const months = Info.months().map((month) => {
     return { name: month, dates: [] }
@@ -26,7 +27,11 @@ const setCalendarYear = (res, year) => {
     const date = {
       day: d.day,
       weekday: Info.weekdays()[d.weekday - 1],
-      object: d
+      weekdayShort: Info.weekdays('short')[d.weekday - 1],
+      object: d,
+      iso: d.toISODate(),
+      unavailable: unavailability.includes(d.toISODate()),
+      weekend: [6, 7].includes(d.weekday)
     }
 
     // Week days before beginning of month
@@ -47,13 +52,16 @@ const setCalendarYear = (res, year) => {
 }
 
 export const calendarRoutes = router => {
+  router.all(['/calendar/:year', '/calendar/:year/*'], (req, res, next) => {
+    setCalendarYear(req, res, parseInt(req.params.year))
+    next()
+  })
+
   router.all('/calendar/:year', (req, res) => {
-    setCalendarYear(res, parseInt(req.params.year))
     res.render('calendar/year-overview')
   })
 
   router.all('/calendar/:year/:month', (req, res) => {
-    setCalendarYear(res, parseInt(req.params.year))
     res.locals.month = res.locals.months.find(m => m.name.toLowerCase() === req.params.month)
 
     const dates = res.locals.month.dates
@@ -61,20 +69,15 @@ export const calendarRoutes = router => {
     const nextMonthDate = dates[dates.length - 1].object.plus({ days: 1 })
 
     res.locals.prevMonth = {
-      text: prevMonthDate.toFormat('MMMM yyyy'),
+      text: prevMonthDate.toFormat('MMMM'),
       href: `/calendar/${prevMonthDate.toFormat('yyyy/MMMM/').toLowerCase()}`
     }
 
     res.locals.nextMonth = {
-      text: nextMonthDate.toFormat('MMMM yyyy'),
+      text: nextMonthDate.toFormat('MMMM'),
       href: `/calendar/${nextMonthDate.toFormat('yyyy/MMMM/').toLowerCase()}`
     }
 
     res.render('calendar/month')
   })
-
-  // router.all('/calendar/:year', (req, res) => {
-  //   setCalendarYear(res, parseInt(req.params.year))
-  //   res.render('calendar/year')
-  // })
 }

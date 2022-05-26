@@ -2,13 +2,16 @@
 import '../stylesheets/application.scss'
 
 // Import GOV.UK Frontend
-import GOVUKFrontend from 'govuk-frontend'
+import { initAll as govukFrontend } from 'govuk-frontend'
 
 // Import GOV.UK Prototype Rig
 import GOVUKPrototypeComponents from 'govuk-prototype-components'
 
+import { Calendar } from './calendar'
+
 // Initiate scripts on page load
 document.addEventListener('DOMContentLoaded', () => {
-  GOVUKFrontend.initAll()
+  govukFrontend()
   GOVUKPrototypeComponents.initAll()
+  Calendar()
 })

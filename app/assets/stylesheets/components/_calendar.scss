@@ -1,0 +1,60 @@
+.app-calendar-month {
+  .govuk-table {
+    border: 1px solid $govuk-border-colour;
+  }
+
+  .govuk-table__header {
+    border: 1px solid $govuk-border-colour;
+    border-bottom-width: 5px;
+    padding: govuk-spacing(1);
+  }
+
+  .govuk-table__cell {
+    @include govuk-font($size: false, $tabular: true);
+    padding: govuk-spacing(1);
+    border: 1px solid $govuk-border-colour;
+    width: 12.5%;
+    height: 4em;
+  }
+
+  .app-calendar-no-date-cell,
+  .app-calendar-weekend-cell  {
+    background: govuk-colour("light-grey");
+  }
+
+  .app-calendar-unavailable-cell {
+    color: govuk-shade(govuk-colour("orange"), 55);
+    background: govuk-tint(govuk-colour("orange"), 70);
+  }
+
+  // Hacky way to make whole calendar box clickable
+  // This does not scale well with browser resize
+
+  .govuk-checkboxes__label {
+    width: 1em;
+  }
+
+  .app-calendar-label-box {
+    position: absolute;
+    left: -10px;
+    right: -43px;
+    top: -2px;
+    bottom: -33px;
+  }
+}
+
+.app-calendar-month--small {
+  .govuk-table__header,
+  .govuk-table__cell {
+    text-align: center;
+    @include govuk-font($size: 16, $tabular: true);
+    width: 20px;
+    height: auto;
+    border: none;
+    width: 14.2%;
+  }
+
+  .govuk-table__header {
+    background: govuk-colour("light-grey");
+  }
+}

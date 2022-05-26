@@ -20,31 +20,63 @@
 {% endblock %}
 
 {% block content %}
-  <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ title }}</h1>
+  <h1 class="govuk-heading-xl">{{ title }}</h1>
 
-  <ul class="govuk-list app-list--inline app-calendar-nav govuk-!-margin-bottom-8">
-    <li class="app-calendar-nav-item--prev govuk-!-margin-right-3">
+  <!-- <ul class="govuk-list app-list--inline app-calendar-nav govuk-!-text-align-right govuk-!-margin-bottom-8">
+    <li class="app-calendar-nav-item--prev">
       <a href="{{ prevMonth.href }}" class="app-calendar-nav-link">{{ prevMonth.text }}</a>
     </li>
-    <!-- <li class="govuk-!-margin-left-3 govuk-!-margin-right-3">
-      <strong>{{ month.name }} {{ year }}</strong>
-    </li> -->
+    <li class="govuk-!-margin-left-3 govuk-!-margin-right-3">
+      {{ month.name }}
+    </li>
     <li class="app-calendar-nav-item--next">
       <a href="{{ nextMonth.href }}" class="app-calendar-nav-link">{{ nextMonth.text }}</a>
     </li>
-  </ul>
+  </ul> -->
 
-  <div class="app-month">
+  <h2 class="govuk-heading-m">Tell us which days you are unavailable</h2>
+
+  <!-- {{ govukCheckboxes({
+    classes: "govuk-checkboxes--small",
+    formGroup: {
+      classes: "govuk-!-margin-bottom-0 govuk-!-margin-left-1"
+    },
+    items: [
+      {
+        text: 'All month'
+      },
+      {
+        text: 'Certain days each week'
+      },
+      {
+        text: 'Certain weeks'
+      }
+    ],
+    decorate: 'month-rules'
+  }) }} -->
+
+  <div class="app-calendar-month">
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          {% for day in data.weekdays %}
-            <th class="govuk-table__header">{{ day }}</th>
+          <th class="govuk-table__header">
+            <a href="#all" data-month class="js-calendar-link govuk-!-font-weight-regular">All month</a>
+          </th>
+          {% for day in data.weekdays.short %}
+            <th class="govuk-table__header">
+              {{ day }}<br />
+              {% if day not in ['Sat', 'Sun'] %}
+                <a href="#day" data-day="{{ day }}" class="js-calendar-link govuk-!-font-weight-regular">Every {{ day }}</a>
+              {% endif %}
+            </th>
           {% endfor %}
         </tr>
       </thead>
       <tbody class="govuk-table__body">
         <tr class="govuk-table__row">
+          <td class="govuk-table__cell app-calendar-no-date-cell govuk-!-padding-top-1">
+            <a href="#week" data-week class="js-calendar-link govuk-!-font-weight-regular">All week</a>
+          </td>
           {% for day in month.dates %}
             {% if loop.first %}
               {% for i in range(0, month.startOffset) %}
@@ -52,22 +84,44 @@
               {% endfor %}
             {% endif %}
 
-            <td class="govuk-table__cell">
-              {{ day.day }}
-              <!-- {{ govukCheckboxes({
+            <td data-day="{{ day.weekdayShort }}" class="
+              govuk-table__cell
+              {{ 'app-calendar-unavailable-cell' if day.unavailable }}
+              {{ 'app-calendar-weekend-cell' if day.weekend }}
+            ">
+              {% set checkboxHtml %}
+                {{ day.day }}
+                <div class="app-calendar-label-box"></div>
+              {% endset %}
+
+              {{ govukCheckboxes({
+                classes: "govuk-checkboxes--small",
+                formGroup: {
+                  classes: "govuk-!-margin-bottom-0 govuk-!-margin-left-1"
+                },
+                name: day.iso,
+                id: day.iso,
                 items: [
                   {
-                    value: day.obj,
-                    text: day.day
+                    value: day.iso,
+                    html: checkboxHtml
                   }
                 ],
-                decorate: ['calendar', day.day, month]
-              }) }} -->
+                decorate: 'unavailability'
+              }) }}
             </td>
 
             {% if day.weekday == 'Sunday' %}
               </tr>
               <tr class="govuk-table__row">
+                <td class="govuk-table__cell app-calendar-no-date-cell govuk-!-padding-top-2">
+                  <a href="#week"
+                    data-week
+                    class="
+                      js-calendar-link
+                      govuk-!-font-weight-regular
+                    ">All week</a>
+                </td>
             {% endif %}
 
             {% if loop.last %}
@@ -80,4 +134,25 @@
       </tbody>
     </table>
   </div>
+
+  <!-- <h2 class="govuk-heading-m">Save your changes</h2> -->
+
+  <!-- {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--s",
+        text: 'What do you want to do next?'
+      }
+    },
+    items: [{
+      text: "I’m finished recording my unavailability"
+    }, {
+      text: "Save these changes and continue to " + nextMonth.text
+    }],
+    decorate: "save-continue"
+  }) }} -->
+
+  {{ govukButton({
+    text: 'Save unavailability'
+  }) }}
 {% endblock %}

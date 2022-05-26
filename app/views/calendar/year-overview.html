@@ -17,16 +17,16 @@
 {% endblock %}
 
 {% block content %}
-  <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+  <h1 class="govuk-heading-xl govuk-!-margin-bottom-0">
     {{ title }}
   </h1>
 
-  <ul class="govuk-list app-list--inline app-calendar-nav govuk-!-margin-bottom-8">
+  <ul class="govuk-list app-list--inline app-calendar-nav govuk-!-margin-bottom-8 govuk-!-text-align-right">
     <li class="app-calendar-nav-item--prev">
       <a href="/calendar/{{ year - 1 }}" class="app-calendar-nav-link">{{ year - 1 }}</a>
     </li>
     <li class="govuk-!-margin-left-3 govuk-!-margin-right-3">
-      <strong>{{ year }}</strong>
+      {{ year }}
     </li>
     <li class="app-calendar-nav-item--next">
       <a href="/calendar/{{ year + 1 }}" class="app-calendar-nav-link">{{ year + 1 }}</a>
@@ -41,12 +41,12 @@
       <h2 class="govuk-heading-m">
         <a href="/calendar/{{ year }}/{{ month.name | slugify }}">{{ month.name }}</a>
       </h2>
-      <div class="app-month app-month--small">
+      <div class="app-calendar-month app-calendar-month--small">
         <table class="govuk-table">
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
-              {% for day in weekdays %}
-                <th class="govuk-table__header">{{ day }}</th>
+              {% for day in data.weekdays.short %}
+                <th class="govuk-table__header">{{ day | firstLetter }}</th>
               {% endfor %}
             </tr>
           </thead>
@@ -59,7 +59,11 @@
                   {% endfor %}
                 {% endif %}
 
-                <td class="govuk-table__cell">
+                <td class="
+                  govuk-table__cell
+                  {{ 'app-calendar-unavailable-cell' if day.unavailable }}
+                  {{ 'app-calendar-weekend-cell' if day.weekend }}
+                ">
                   {{ day.day }}
                 </td>
 
