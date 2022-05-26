@@ -30,7 +30,7 @@ const setCalendarYear = (req, res, year) => {
       weekdayShort: Info.weekdays('short')[d.weekday - 1],
       object: d,
       iso: d.toISODate(),
-      unavailable: unavailability.includes(d.toISODate()),
+      unavailable: unavailability[d.toISODate()],
       weekend: [6, 7].includes(d.weekday)
     }
 

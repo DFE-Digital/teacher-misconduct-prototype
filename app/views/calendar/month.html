@@ -55,7 +55,7 @@
     decorate: 'month-rules'
   }) }} -->
 
-  <div class="app-calendar-month">
+  <form class="app-calendar-month" method="post" action="/calendar/{{ year }}">
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
@@ -99,15 +99,13 @@
                 formGroup: {
                   classes: "govuk-!-margin-bottom-0 govuk-!-margin-left-1"
                 },
-                name: day.iso,
-                id: day.iso,
                 items: [
                   {
                     value: day.iso,
                     html: checkboxHtml
                   }
                 ],
-                decorate: 'unavailability'
+                decorate: 'unavailability.' + day.iso
               }) }}
             </td>
 
@@ -133,7 +131,11 @@
         </tr>
       </tbody>
     </table>
-  </div>
+
+    {{ govukButton({
+      text: 'Save unavailability'
+    }) }}
+  </form>
 
   <!-- <h2 class="govuk-heading-m">Save your changes</h2> -->
 
@@ -151,8 +153,4 @@
     }],
     decorate: "save-continue"
   }) }} -->
-
-  {{ govukButton({
-    text: 'Save unavailability'
-  }) }}
 {% endblock %}
