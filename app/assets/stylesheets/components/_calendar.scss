@@ -32,7 +32,7 @@
 
   .app-calendar-unavailable-cell {
     color: govuk-shade(govuk-colour("orange"), 55);
-    background: govuk-tint(govuk-colour("orange"), 70);
+    background: govuk-tint(govuk-colour("orange"), 70) !important;
   }
 
   // Hacky way to make whole calendar box clickable
@@ -75,6 +75,10 @@
   }
 
   .govuk-table__header {
+    background: govuk-colour("light-grey");
+  }
+
+  .app-calendar-weekend-cell {
     background: govuk-colour("light-grey");
   }
 }
