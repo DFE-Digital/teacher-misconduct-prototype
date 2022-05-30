@@ -71,6 +71,11 @@ const setCalendarForYear = (req, res, year) => {
 }
 
 export const calendarRoutes = router => {
+  router.post('/calendar', (req, res, next) => {
+    res.locals.success = { heading: 'Your calendar has been updated' }
+    next()
+  })
+
   router.all(['/calendar', '/calendar/:year', '/calendar/:year/*'], (req, res, next) => {
     const now = DateTime.now()
     setCalendarForYear(req, res, now.year)
