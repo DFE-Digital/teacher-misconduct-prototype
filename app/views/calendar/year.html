@@ -1,5 +1,5 @@
 {% extends "layouts/default.html" %}
-{% set title = 'Manage your unavailability for Teacher Misconduct hearings' %}
+{% set title = 'Tell us when you’re unavailable for Teacher Misconduct hearings' %}
 {% block pageTitle %}{{ title }}{% endblock %}
 
 {% block content %}
@@ -10,8 +10,6 @@
       </h1>
     </div>
   </div>
-
-  <p class="govuk-body-l">Tell us which days you cannot attend a hearing.</p>
 
   {% for year in years %}
     <h2 class="govuk-heading-l {% if not loop.first %}govuk-!-margin-top-8{% endif %}">
