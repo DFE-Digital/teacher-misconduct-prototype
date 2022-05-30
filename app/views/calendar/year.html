@@ -24,39 +24,41 @@
         <h2 class="govuk-heading-m">
           <a href="/calendar/{{ year.name }}/{{ month.name | slugify }}">{{ month.name }} {{ year.name }}</a>
         </h2>
-        <div class="app-calendar-month app-calendar-month--small">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                {% for day in data.weekdays.short %}
-                  <th class="govuk-table__header">{{ day | firstLetter }}</th>
-                {% endfor %}
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                {% for day in month.dates %}
-                  {% if day.isOffsetDate %}
-                    <td class="govuk-table__cell app-calendar-no-date-cell"></td>
-                  {% else %}
-                    <td class="
-                      govuk-table__cell
-                      {{ 'app-calendar-unavailable-cell' if day.unavailable }}
-                      {{ 'app-calendar-weekend-cell' if day.weekend }}
-                    ">
-                      {{ day.day }}
-                    </td>
-                  {% endif %}
+        <a href="/calendar/{{ year.name }}/{{ month.name | slugify }}" class="app-calendar-month-link">
+          <div class="app-calendar-month app-calendar-month--small">
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  {% for day in data.weekdays.short %}
+                    <th class="govuk-table__header">{{ day | firstLetter }}</th>
+                  {% endfor %}
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  {% for day in month.dates %}
+                    {% if day.isOffsetDate %}
+                      <td class="govuk-table__cell app-calendar-no-date-cell"></td>
+                    {% else %}
+                      <td class="
+                        govuk-table__cell
+                        {{ 'app-calendar-unavailable-cell' if day.unavailable }}
+                        {{ 'app-calendar-weekend-cell' if day.weekend }}
+                      ">
+                        {{ day.day }}
+                      </td>
+                    {% endif %}
 
-                  {% if day.weekday == 'Sunday' %}
-                    </tr>
-                    <tr class="govuk-table__row">
-                  {% endif %}
-                {% endfor %}
-              </tr>
-            </tbody>
-          </table>
-        </div>
+                    {% if day.weekday == 'Sunday' %}
+                      </tr>
+                      <tr class="govuk-table__row">
+                    {% endif %}
+                  {% endfor %}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </a>
       </div>
       {% if loop.last %}
         </div>

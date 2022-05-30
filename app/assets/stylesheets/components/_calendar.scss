@@ -43,7 +43,7 @@
   }
 
   .govuk-table__cell[data-day]:hover {
-    box-shadow: inset 0 0 0 5px govuk-colour('black');
+    box-shadow: inset 0 0 0 5px $govuk-border-colour;
   }
 
   .govuk-checkboxes--small .govuk-checkboxes__item:hover .govuk-checkboxes__input:not(:disabled) + .govuk-checkboxes__label:before{
@@ -56,6 +56,19 @@
     right: -43px;
     top: -2px;
     bottom: -33px;
+  }
+}
+
+.app-calendar-month-link {
+  text-decoration: none;
+
+  &:hover .govuk-table {
+    box-shadow: 0 0 0 5px $govuk-border-colour;
+  }
+
+  &:active .govuk-table,
+  &:focus .govuk-table {
+    box-shadow: 0 0 0 10px $govuk-focus-colour, 0 6px 0 10px govuk-colour('black');
   }
 }
 
