@@ -5,14 +5,8 @@
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
     items: [{
-      text: "Home",
-      href: "#"
-    }, {
-      text: "Calendar",
-      href: "#"
-    }, {
-      text: year,
-      href: "/calendar/" + year
+      text: "Manage your unavailability",
+      href: "/calendar"
     }, {
       text: month.name
     }]
@@ -23,7 +17,7 @@
   <h1 class="govuk-heading-xl">{{ title }}</h1>
   <h2 class="govuk-heading-m">Tell us which days you are unavailable</h2>
 
-  <form class="app-calendar-month" method="post" action="/calendar/{{ year }}">
+  <form class="app-calendar-month" method="post" action="/calendar">
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
@@ -42,7 +36,7 @@
       </thead>
       <tbody class="govuk-table__body">
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell app-calendar-no-date-cell govuk-!-padding-top-1">
+          <td class="govuk-table__cell app-calendar-control-cell govuk-!-padding-top-1">
             <a href="#week" data-week class="js-calendar-link govuk-!-font-weight-regular">All week</a>
           </td>
           {% for day in month.dates %}
@@ -81,7 +75,7 @@
               </tr>
               {% if not loop.last %}
               <tr class="govuk-table__row">
-                <td class="govuk-table__cell app-calendar-no-date-cell govuk-!-padding-top-2">
+                <td class="govuk-table__cell app-calendar-control-cell govuk-!-padding-top-2">
                   <a href="#week"
                     data-week
                     class="

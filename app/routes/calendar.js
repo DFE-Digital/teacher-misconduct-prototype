@@ -9,13 +9,17 @@ function * iterableDays (interval) {
 }
 
 const getDaysOfYear = (year) => {
-  const start = DateTime.local(year, 1, 1)
+  const now = DateTime.now()
+  const startingMonth = year === now.year ? now.month : 1
+  const start = DateTime.local(year, startingMonth, 1)
   const end = DateTime.local(year + 1, 1, 1)
   const interval = Interval.fromDateTimes(start, end)
   return iterableDays(interval)
 }
 
-const setCalendarYear = (req, res, year) => {
+const setCalendarForYear = (req, res, year) => {
+  res.locals.years = res.locals.years || []
+
   const unavailability = req.session.data.unavailability
   const daysOfYear = getDaysOfYear(year)
   const months = Info.months().map((month) => {
@@ -47,22 +51,28 @@ const setCalendarYear = (req, res, year) => {
     month.dates.push(date)
   }
 
-  res.locals.year = year
-  res.locals.months = months
+  res.locals.years.push({
+    name: year,
+    months: months.filter(m => m.dates.length > 0)
+  })
 }
 
 export const calendarRoutes = router => {
-  router.all(['/calendar/:year', '/calendar/:year/*'], (req, res, next) => {
-    setCalendarYear(req, res, parseInt(req.params.year))
+  router.all(['/calendar', '/calendar/:year', '/calendar/:year/*'], (req, res, next) => {
+    const now = DateTime.now()
+    setCalendarForYear(req, res, now.year)
+    setCalendarForYear(req, res, now.year + 1)
     next()
   })
 
-  router.all('/calendar/:year', (req, res) => {
-    res.render('calendar/year-overview')
+  router.all('/calendar', (req, res) => {
+    res.render('calendar/year')
   })
 
   router.all('/calendar/:year/:month', (req, res) => {
-    res.locals.month = res.locals.months.find(m => m.name.toLowerCase() === req.params.month)
+    const year = res.locals.years.find(y => y.name === parseInt(req.params.year))
+    res.locals.year = year.name
+    res.locals.month = year.months.find(m => m.name.toLowerCase() === req.params.month)
 
     const dates = res.locals.month.dates
     const prevMonthDate = dates[0].object.minus({ days: 1 })

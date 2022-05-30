@@ -19,7 +19,13 @@
     productName: productName,
     serviceName: serviceName if not productName,
     serviceUrl: "/start",
-    containerClasses: "govuk-width-container"
+    containerClasses: "govuk-width-container",
+    navigation: [
+      {
+        href: "#",
+        text: "Return to the panellist portal"
+      }
+    ]
   }) }}
 {% endblock %}
 
