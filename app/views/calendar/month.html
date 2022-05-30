@@ -46,10 +46,11 @@
               {% endfor %}
             {% endif %}
 
-            <td data-day="{{ day.weekdayShort }}" class="
+            <td data-day="{{ day.weekdayShort }}" data-date="{{ day.iso }}" class="
               govuk-table__cell
               {{ 'app-calendar-unavailable-cell' if day.unavailable }}
               {{ 'app-calendar-weekend-cell' if day.weekend }}
+              {{ 'app-calendar-offset-cell' if day.isOffsetDate }}
             ">
               {% set checkboxHtml %}
                 {{ day.day }}

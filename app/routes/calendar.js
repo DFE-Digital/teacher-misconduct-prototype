@@ -17,38 +17,51 @@ const getDaysOfYear = (year) => {
   return iterableDays(interval)
 }
 
+const decorateDate = (date, unavailability, isOffsetDate) => {
+  return {
+    day: date.day,
+    weekday: Info.weekdays()[date.weekday - 1],
+    weekdayShort: Info.weekdays('short')[date.weekday - 1],
+    object: date,
+    iso: date.toISODate(),
+    unavailable: unavailability[date.toISODate()],
+    weekend: [6, 7].includes(date.weekday),
+    isOffsetDate
+  }
+}
+
 const setCalendarForYear = (req, res, year) => {
   res.locals.years = res.locals.years || []
-
   const unavailability = req.session.data.unavailability
   const daysOfYear = getDaysOfYear(year)
-  const months = Info.months().map((month) => {
+  const months = Info.months().map(month => {
     return { name: month, dates: [] }
   })
 
   for (const d of daysOfYear) {
     const month = months[d.month - 1]
-    const date = {
-      day: d.day,
-      weekday: Info.weekdays()[d.weekday - 1],
-      weekdayShort: Info.weekdays('short')[d.weekday - 1],
-      object: d,
-      iso: d.toISODate(),
-      unavailable: unavailability[d.toISODate()],
-      weekend: [6, 7].includes(d.weekday)
-    }
 
     // Week days before beginning of month
     if (d.day === 1) {
-      month.startOffset = d.weekday - 1
+      const startOffset = d.weekday - 1;
+
+      // loop X times
+      [...Array(startOffset)].forEach((_, i) => {
+        month.dates.push(decorateDate(d.minus({ days: startOffset - i }), unavailability, true))
+      })
     }
+
+    month.dates.push(decorateDate(d, unavailability))
 
     // Week days after end of month
     if (d.month !== d.plus({ days: 1 }).month) {
-      month.endOffset = 7 - d.weekday
-    }
+      const endOffset = 7 - d.weekday;
 
-    month.dates.push(date)
+      // loop X times
+      [...Array(endOffset)].forEach((_, i) => {
+        month.dates.push(decorateDate(d.plus({ days: i + 1 }), unavailability, true))
+      })
+    }
   }
 
   res.locals.years.push({
