@@ -18,6 +18,8 @@ $govuk-assets-path: "/govuk/assets/";
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 @import "govuk-page-masthead";
 @import "components/button";
+@import "components/calendar";
+@import "components/calendar-nav";
 @import "components/hidden-link";
 
 // Additional style helpers
@@ -36,4 +38,8 @@ $govuk-assets-path: "/govuk/assets/";
 
 .app-\!-no-wrap {
   white-space: nowrap !important;
+}
+
+.app-list--inline li {
+  display: inline;
 }

@@ -1,0 +1,104 @@
+{% extends "layouts/default.html" %}
+{% set title = month.name + ' ' + year %}
+{% block pageTitle %}{{ title }}{% endblock %}
+
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+    items: [{
+      text: "Your unavailability",
+      href: "/calendar"
+    }, {
+      text: month.name
+    }]
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">{{ title }}</h1>
+  <h2 class="govuk-heading-m">Tell us which days you are unavailable</h2>
+
+  <form class="app-calendar-month" method="post" action="/calendar">
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header">
+            <a href="#all" data-month class="js-calendar-link govuk-!-font-weight-regular">Every day</a>
+          </th>
+          {% for day in data.weekdays.short %}
+            <th class="govuk-table__header">
+              {{ day }}<br />
+              {% if day not in ['Sat', 'Sun'] %}
+                <a href="#day" data-day="{{ day }}" class="js-calendar-link govuk-!-font-weight-regular">Every {{ day }}</a>
+              {% endif %}
+            </th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell app-calendar-control-cell govuk-!-padding-top-1">
+            <a href="#week" data-week class="js-calendar-link govuk-!-font-weight-regular">All week</a>
+          </td>
+          {% for day in month.dates %}
+            {% if loop.first %}
+              {% for i in range(0, month.startOffset) %}
+                <td class="govuk-table__cell app-calendar-no-date-cell"></td>
+              {% endfor %}
+            {% endif %}
+
+            <td data-day="{{ day.weekdayShort }}" data-date="{{ day.iso }}" class="
+              govuk-table__cell
+              {{ 'app-calendar-unavailable-cell' if day.unavailable }}
+              {{ 'app-calendar-weekend-cell' if day.weekend }}
+              {{ 'app-calendar-offset-cell' if day.isOffsetDate }}
+            ">
+              {% set checkboxHtml %}
+                <span class="govuk-body-s app-calendar-label-text">{{ day.dayAndMonth | noOrphans | safe }}</span>
+                <div class="app-calendar-label-box"></div>
+              {% endset %}
+
+              {{ govukCheckboxes({
+                classes: "govuk-checkboxes--small",
+                formGroup: {
+                  classes: "govuk-!-margin-bottom-0 govuk-!-margin-left-1"
+                },
+                items: [
+                  {
+                    value: day.iso,
+                    html: checkboxHtml
+                  }
+                ],
+                decorate: 'unavailability.' + day.iso
+              }) }}
+            </td>
+
+            {% if day.weekday == 'Sunday' %}
+              </tr>
+              {% if not loop.last %}
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell app-calendar-control-cell govuk-!-padding-top-2">
+                  <a href="#week"
+                    data-week
+                    class="
+                      js-calendar-link
+                      govuk-!-font-weight-regular
+                    ">All week</a>
+                </td>
+              {% endif %}
+            {% endif %}
+
+            {% if loop.last %}
+              {% for i in range(0, month.endOffset) %}
+                <td class="govuk-table__cell app-calendar-no-date-cell"></td>
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+
+    {{ govukButton({
+      text: 'Save unavailability'
+    }) }}
+  </form>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "layouts/default.html" %}
+{% set title = 'Tell us when you’re unavailable for Teacher Misconduct hearings' %}
+{% block pageTitle %}{{ title }}{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        {{ title }}
+      </h1>
+    </div>
+  </div>
+
+  {% for year in years %}
+    <h2 class="govuk-heading-l {% if not loop.first %}govuk-!-margin-top-8{% endif %}">
+      {{ year.name }}
+    </h2>
+
+    {% for month in year.months %}
+      {% if loop.first %}
+        <div class="govuk-grid-row">
+      {% endif %}
+      <div class="govuk-grid-column-one-quarter">
+        <h2 class="govuk-heading-m">
+          <a href="/calendar/{{ year.name }}/{{ month.name | slugify }}">{{ month.name }} {{ year.name }}</a>
+        </h2>
+        <a href="/calendar/{{ year.name }}/{{ month.name | slugify }}" class="app-calendar-month-link">
+          <div class="app-calendar-month app-calendar-month--small">
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  {% for day in data.weekdays.short %}
+                    <th class="govuk-table__header">{{ day | firstLetter }}</th>
+                  {% endfor %}
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  {% for day in month.dates %}
+                    {% if day.isOffsetDate %}
+                      <td class="govuk-table__cell app-calendar-no-date-cell"></td>
+                    {% else %}
+                      <td class="
+                        govuk-table__cell
+                        {{ 'app-calendar-unavailable-cell' if day.unavailable }}
+                        {{ 'app-calendar-weekend-cell' if day.weekend }}
+                      ">
+                        {{ day.day }}
+                      </td>
+                    {% endif %}
+
+                    {% if day.weekday == 'Sunday' %}
+                      </tr>
+                      <tr class="govuk-table__row">
+                    {% endif %}
+                  {% endfor %}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </a>
+      </div>
+      {% if loop.last %}
+        </div>
+      {% elseif loop.index % 4 == 0 %}
+        </div>
+        <div class="govuk-grid-row">
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+{% endblock %}

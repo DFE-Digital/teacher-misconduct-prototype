@@ -1,0 +1,16 @@
+{% extends "layouts/default.html" %}
+{% set title = 'Sign in with Azure' %}
+{% block pageTitle %}{{ title }}{% endblock %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">{{ title }}</h1>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukButton({
+        text: 'Sign in',
+        href: '/calendar/2022'
+      }) }}
+    </div>
+  </div>
+{% endblock %}
