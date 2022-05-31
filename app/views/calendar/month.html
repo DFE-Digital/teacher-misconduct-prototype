@@ -53,7 +53,7 @@
               {{ 'app-calendar-offset-cell' if day.isOffsetDate }}
             ">
               {% set checkboxHtml %}
-                {{ day.day }}
+                <span class="govuk-body-s app-calendar-label-text">{{ day.dayAndMonth | noOrphans | safe }}</span>
                 <div class="app-calendar-label-box"></div>
               {% endset %}
 

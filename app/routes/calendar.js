@@ -20,6 +20,7 @@ const getDaysOfYear = (year) => {
 const decorateDate = (date, unavailability, isOffsetDate) => {
   return {
     day: date.day,
+    dayAndMonth: date.toFormat('d MMM'),
     weekday: Info.weekdays()[date.weekday - 1],
     weekdayShort: Info.weekdays('short')[date.weekday - 1],
     object: date,
