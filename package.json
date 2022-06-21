@@ -8,7 +8,8 @@
     "node": ">=16.0.0"
   },
   "prototype": {
-    "serviceName": "Teacher misconduct"
+    "serviceName": "Teacher misconduct",
+    "defaultRigLayout": "layouts/default.html"
   },
   "stylelint": {
     "extends": "stylelint-config-gds/scss"
