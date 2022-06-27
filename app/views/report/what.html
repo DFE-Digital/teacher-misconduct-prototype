@@ -1,4 +1,4 @@
-{% extends "layouts/refer.html" %}
+{% extends "layouts/report.html" %}
 {% set title = "Tell us about their role" %}
 
 {% block form %}
@@ -11,7 +11,7 @@
     hint: {
       text: 'For example, ‘Head of year’'
     },
-    decorate: 'refer.teacher-role'
+    decorate: 'report.teacher-role'
   }) }}
 
   {{ govukTextarea({
@@ -19,6 +19,6 @@
       text: 'Describe the main duties of their role (as far as known)',
       classes: "govuk-label--m"
     },
-    decorate: 'refer.teacher-role-duties'
+    decorate: 'report.teacher-role-duties'
   }) }}
 {% endblock %}

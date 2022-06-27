@@ -1,4 +1,4 @@
-{% extends "layouts/refer.html" %}
+{% extends "layouts/report.html" %}
 {% set title = "Tell us about where they teach" %}
 
 {% block form %}
@@ -8,7 +8,7 @@
       text: 'School name',
       classes: "govuk-label--m"
     },
-    decorate: 'refer.school-name'
+    decorate: 'report.school-name'
   }) }}
 
   {{ govukTextarea({
@@ -16,6 +16,6 @@
       text: 'School address',
       classes: "govuk-label--m"
     },
-    decorate: 'refer.school-address'
+    decorate: 'report.school-address'
   }) }}
 {% endblock %}

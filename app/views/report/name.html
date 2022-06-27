@@ -1,4 +1,4 @@
-{% extends "layouts/refer.html" %}
+{% extends "layouts/report.html" %}
 {% set title = "What is the teacher’s name?" %}
 
 {% block form %}
@@ -11,6 +11,6 @@
     hint: {
       html: 'If you do not know their full name, tell us what you know.<br />For example ‘Jane Doe’ or ‘Miss Doe’' | noOrphans
     },
-    decorate: 'refer.teacher-name'
+    decorate: 'report.teacher-name'
   }) }}
 {% endblock %}
