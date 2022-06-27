@@ -1,11 +1,11 @@
-import { wizard } from '../wizards/refer-wizard.js'
+import { referWizard } from '../wizards/refer-wizard.js'
 
 export const referRoutes = router => {
   router.all([
     '/refer',
     '/refer/:view'
   ], (req, res, next) => {
-    res.locals.paths = wizard(req)
+    res.locals.paths = referWizard(req)
     next()
   })
 

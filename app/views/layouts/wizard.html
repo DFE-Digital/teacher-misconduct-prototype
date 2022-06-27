@@ -2,7 +2,7 @@
 {% block pageNavigation %}
   {{ govukBackLink({
     href: paths.back
-  }) }}
+  }) if paths.back }}
 {% endblock %}
 
 {% block content %}

@@ -1,0 +1,21 @@
+{% extends "layouts/refer.html" %}
+{% set title = "Tell us about where they teach" %}
+
+{% block form %}
+  <h1 class="govuk-heading-xl">{{ title | noOrphans | safe }}</h1>
+  {{ govukInput({
+    label: {
+      text: 'School name',
+      classes: "govuk-label--m"
+    },
+    decorate: 'refer.school-name'
+  }) }}
+
+  {{ govukTextarea({
+    label: {
+      text: 'School address',
+      classes: "govuk-label--m"
+    },
+    decorate: 'refer.school-address'
+  }) }}
+{% endblock %}
