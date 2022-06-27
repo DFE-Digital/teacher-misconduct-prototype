@@ -1,0 +1,71 @@
+{% extends "layouts/report.html" %}
+{% set title = "Do you know the teacher’s age or date of birth?" %}
+
+{% block form %}
+  {% set dob %}
+    {{ govukDateInput({
+      fieldset: {
+        legend: {
+          classes: "govuk-fieldset__legend--m",
+          text: "Date of birth"
+        }
+      },
+      hint: {
+        text: "For example, 27 3 1987"
+      },
+      decorate: "report.teacher-details.date-of-birth",
+      validate: {
+        date: {
+          message: "Date of birth should be a valid date"
+        }
+      } if data.features.validation.on
+    }) }}
+  {% endset %}
+
+  {% set age %}
+    {{ govukInput({
+      label: {
+        text: "Age",
+        classes: "govuk-label--m"
+      },
+      classes: "govuk-input--width-4",
+      decorate: 'report.teacher-details.age'
+    }) }}
+  {% endset %}
+
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "I know their date of birth",
+        value: "knows-dob",
+        conditional: {
+          html: dob
+        }
+      },
+      {
+        text: "I only know their age",
+        value: "knows-age",
+        conditional: {
+          html: age
+        }
+      },
+      {
+        text: "No, I don’t know their age or date of birth",
+        value: "knows-neither"
+      }
+    ],
+    decorate: 'report.teacher-details.know-age',
+    validate: {
+      presence: {
+        message: "Tell us if you know the teacher’s age or date of birth"
+      }
+    } if data.features.validation.on
+  }) }}
+{% endblock %}

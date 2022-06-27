@@ -43,7 +43,63 @@
           href: "/report/teacher/name"
         }]
       }
-    } if data.report['teacher-details']['have-previous-name'] == 'Yes' ]
+    } if data.report['teacher-details']['have-previous-name'] == 'Yes', {
+      key: {
+        text: "Date of birth"
+      },
+      value: {
+        text: (data.report['teacher-details']['date-of-birth'] | isoDateFromDateInput | govukDate) if data.report['teacher-details']['date-of-birth'].day else 'Not known'
+      },
+      actions: {
+        items: [{
+          text: "Change",
+          visuallyHiddenText: "date of birth",
+          href: "/report/teacher/age"
+        }]
+      }
+    } if data.report['teacher-details']['know-age'] != 'knows-age', {
+      key: {
+        text: "Age"
+      },
+      value: {
+        text: data.report['teacher-details']['age'] + ' years'
+      },
+      actions: {
+        items: [{
+          text: "Change",
+          visuallyHiddenText: "age",
+          href: "/report/teacher/age"
+        }]
+      }
+    } if data.report['teacher-details']['know-age'] == 'knows-age', {
+      key: {
+        text: "National Insurance number"
+      },
+      value: {
+        text: 'Not known' if data.report['teacher-details']['know-nino'] == 'No' else data.report['teacher-details'].nino
+      },
+      actions: {
+        items: [{
+          text: "Change",
+          visuallyHiddenText: "National Insurance number",
+          href: "/report/teacher/nino"
+        }]
+      }
+    }, {
+      key: {
+        text: "Teacher reference number (TRN)"
+      },
+      value: {
+        text: 'Not known' if data.report['teacher-details']['know-trn'] == 'No' else data.report['teacher-details'].trn
+      },
+      actions: {
+        items: [{
+          text: "Change",
+          visuallyHiddenText: "teacher reference number",
+          href: "/report/teacher/trn"
+        }]
+      }
+    } ]
   }) }}
 {% endblock %}
 
