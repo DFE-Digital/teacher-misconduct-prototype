@@ -1,0 +1,84 @@
+{% extends "layouts/report.html" %}
+{% set title = "Teacher misconduct referral" %}
+{% set buttonText = "Review and submit" %}
+
+{% set notStartedYet = {
+  colour: "grey",
+  text: "Not started yet"
+} %}
+
+{% set completed = {
+  text: "Completed"
+} %}
+
+{% block form %}
+  <h1 class="govuk-heading-xl">{{ title }}</h1>
+
+  {{ xGovukTaskList({
+    sections: [{
+      titleText: "Check before you start",
+      items: [{
+        text: "Check eligibility",
+        href: "#",
+        tag: {
+          text: "Completed"
+        }
+      }, {
+        text: "Read declaration",
+        href: "#",
+        tag: {
+          text: "Completed"
+        }
+      }]
+    }, {
+      titleText: "About you and your organisation",
+      items: [{
+        text: "Your details",
+        href: "#",
+        tag: notStartedYet
+      }, {
+        text: "Referring organisation",
+        href: "#",
+        tag: notStartedYet
+      }, {
+        text: "Contact details",
+        href: "#",
+        tag: notStartedYet
+      }]
+    }, {
+      titleText: "About the teacher",
+      items: [{
+        text: "Personal details",
+        href: "/report/teacher/name",
+        tag: notStartedYet
+      }, {
+        text: "Contact details",
+        href: "#",
+        tag: notStartedYet
+      }, {
+        text: "Details of the work they carried out",
+        href: "#",
+        tag: notStartedYet
+      }, {
+        text: "Previous misconduct or complaints",
+        href: "#",
+        tag: notStartedYet
+      }]
+    }, {
+      titleText: "The allegation",
+      items: [{
+        text: "Describe what has happened",
+        href: "#",
+        tag: notStartedYet
+      }, {
+        text: "Chronology of events",
+        href: "#",
+        tag: notStartedYet
+      }, {
+        text: "Documentation",
+        href: "#",
+        tag: notStartedYet
+      }]
+    }]
+  }) }}
+{% endblock %}

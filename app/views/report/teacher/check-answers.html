@@ -1,0 +1,75 @@
+{% extends "layouts/report.html" %}
+{% set title = "Teacher’s personal details" %}
+{% set gridClass = "govuk-grid-column-full" %}
+
+{% block beforeForm %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        <span class="govuk-caption-xl">About the teacher</span>
+        {{ title }}
+      </h1>
+    </div>
+  </div>
+
+  {{ xGovukSummaryCard({
+    classes: "govuk-!-margin-bottom-9",
+    titleText: "Personal details",
+    rows: [{
+      key: {
+        text: "Name"
+      },
+      value: {
+        text: data.report['teacher-details'].name
+      },
+      actions: {
+        items: [{
+          text: "Change",
+          visuallyHiddenText: "teacher’s name",
+          href: "/report/teacher/name"
+        }]
+      }
+    }, {
+      key: {
+        text: "Previous name"
+      },
+      value: {
+        text: data.report['teacher-details']['previous-name']
+      },
+      actions: {
+        items: [{
+          text: "Change",
+          visuallyHiddenText: "teacher’s previous name",
+          href: "/report/teacher/name"
+        }]
+      }
+    } if data.report['teacher-details']['have-previous-name'] == 'Yes' ]
+  }) }}
+{% endblock %}
+
+{% block form %}
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--m",
+        text: "Have you completed this section?"
+      }
+    },
+    items: [
+      {
+        text: "Yes, I’ve completed this section",
+        value: "yes"
+      },
+      {
+        text: "No, I’ll come back to it later",
+        value: "no"
+      }
+    ],
+    decorate: 'report.teacher-details.section-completed',
+    validate: {
+      presence: {
+        message: "Tell us if you have completed this section"
+      }
+    } if data.features.validation.on
+  }) }}
+{% endblock %}
