@@ -1,5 +1,5 @@
 {% extends "layouts/report.html" %}
-{% set title = "Teacher misconduct referral" %}
+{% set title = "Your allegation of serious misconduct" %}
 {% set buttonText = "Review and submit" %}
 
 {% set notStartedYet = {
@@ -16,21 +16,6 @@
 
   {{ xGovukTaskList({
     sections: [{
-      titleText: "Check before you start",
-      items: [{
-        text: "Check eligibility",
-        href: "#",
-        tag: {
-          text: "Completed"
-        }
-      }, {
-        text: "Read declaration",
-        href: "#",
-        tag: {
-          text: "Completed"
-        }
-      }]
-    }, {
       titleText: "About you and your organisation",
       items: [{
         text: "Your details",

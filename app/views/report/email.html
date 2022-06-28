@@ -1,0 +1,24 @@
+{% extends "layouts/report.html" %}
+{% set title = "What is your email address?" %}
+
+{% block form %}
+  {{ govukInput({
+    label: {
+      text: title,
+      classes: "govuk-label--xl",
+      isPageHeading: true
+    },
+    hint: {
+      html: 'Use your email address to save and return to your allegation before submitting it.'
+    },
+    decorate: 'report.email',
+    validate: {
+      presence: {
+        message: "Enter your email address"
+      },
+      email: {
+        message: "Enter an email address in the correct format, like name@example.com"
+      }
+    } if data.features.validation.on
+  }) }}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "layouts/report.html" %}
+{% set title = "Are you reporting as an employer or member of the public?" %}
+
+{% block form %}
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "I’m reporting as an employer",
+        value: "employer"
+      },
+      {
+        text: "I’m reporting as a member of the public",
+        value: "public"
+      }
+    ],
+    decorate: 'report.teacher-details.who',
+    validate: {
+      presence: {
+        message: "Tell us if you know the teacher’s National Insurance number"
+      }
+    } if data.features.validation.on
+  }) }}
+{% endblock %}

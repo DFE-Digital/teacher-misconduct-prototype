@@ -25,10 +25,12 @@
   {% set age %}
     {{ govukInput({
       label: {
-        text: "Age",
-        classes: "govuk-label--m"
+        text: "Approximate age",
+        classes: "govuk-label--s"
       },
-      classes: "govuk-input--width-4",
+      hint: {
+        text: "For example, ‘They’re in their 20s’"
+      },
       decorate: 'report.teacher-details.age'
     }) }}
   {% endset %}
@@ -50,7 +52,7 @@
         }
       },
       {
-        text: "I only know their age",
+        text: "I know their approximate age",
         value: "knows-age",
         conditional: {
           html: age
