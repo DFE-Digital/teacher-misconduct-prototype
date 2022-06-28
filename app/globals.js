@@ -1,3 +1,4 @@
+import _ from 'lodash'
 
 /**
  * Prototype specific global functions for use in Nunjucks templates.
@@ -22,6 +23,11 @@ export default () => {
    *
    * {{ sayHello("World") }} => Hello, World!
    */
+
+  globals.d = function (keyPath) {
+    const data = this.ctx.data
+    return _.get(data, _.toPath(keyPath))
+  }
 
   // Keep the following line to return your globals to the app
   return globals
