@@ -1,5 +1,5 @@
 {% extends "layouts/report.html" %}
-{% set title = "Serious misconduct" %}
+{% set title = "Does the allegation involve serious misconduct?" %}
 
 {% block form %}
   <h1 class="govuk-heading-xl">{{ title }}</h1>
@@ -54,6 +54,12 @@
       },
       {
         text: "No"
+      },
+      {
+        text: "I’m not sure",
+        conditional: {
+          html: "<p>If you’re not sure, please continue to report your allegation and the Teaching Regulation Agency will assess it.</p>"
+        }
       }
     ],
     decorate: 'report.eligibility.serious',

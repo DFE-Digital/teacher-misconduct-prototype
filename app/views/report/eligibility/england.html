@@ -1,12 +1,12 @@
 {% extends "layouts/report.html" %}
-{% set title = "Is the allegation about a teacher?" %}
+{% set areTheyTeacher = data.report.eligibility['are-they-teacher'] == 'Yes' %}
+{% set title = "Do they teach in England?" if areTheyTeacher else "Is their teaching work in England?" %}
 
 {% block form %}
   {{ govukRadios({
     fieldset: {
       legend: {
-        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
-        isPageHeading: true,
+        classes: "govuk-fieldset__legend--xl",
         text: title
       }
     },
@@ -16,12 +16,9 @@
       },
       {
         text: "No"
-      },
-      {
-        text: "I’m not sure"
       }
     ],
-    decorate: 'report.eligibility.are-they-teacher',
+    decorate: 'report.eligibility.teacher-in-england',
     validate: {
       presence: {
         message: "Tell us if the allegation is about a teacher in England"

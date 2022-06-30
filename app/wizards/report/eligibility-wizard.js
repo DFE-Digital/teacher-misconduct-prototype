@@ -7,8 +7,21 @@ export function eligibilityWizard (req) {
     '/report/email': {},
     '/report/email-code': {},
     '/report/eligibility/jurisdiction': {
-      '/report/eligibility/no-jurisdiction': {
-        data: 'report.eligibility.teacher-england',
+      '/report/eligibility/possible-jurisdiction': {
+        data: 'report.eligibility.are-they-teacher',
+        excludedValue: 'Yes'
+      },
+      '/report/eligibility/england': true
+    },
+    '/report/eligibility/possible-jurisdiction': {
+      '/report/eligibility/no-jurisdiction-unsupervised': {
+        data: 'report.eligibility.teacher-unsupervised',
+        value: 'No'
+      }
+    },
+    '/report/eligibility/england': {
+      '/report/eligibility/no-jurisdiction-england': {
+        data: 'report.eligibility.teacher-in-england',
         value: 'No'
       }
     },
