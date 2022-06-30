@@ -1,0 +1,41 @@
+{% extends "layouts/report.html" %}
+{% set title = "Do you know the teacher’s email address?" %}
+
+{% block form %}
+  {% set email %}
+    {{ govukInput({
+      label: {
+        text: "Email address",
+        classes: "govuk-label--s"
+      },
+      decorate: 'report.teacher-contact-details.email'
+    }) }}
+  {% endset %}
+
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "Yes",
+        conditional: {
+          html: email
+        }
+      },
+      {
+        text: "No"
+      }
+    ],
+    decorate: 'report.teacher-contact-details.know-email',
+    validate: {
+      presence: {
+        message: "Tell us if you know the teacher’s email address"
+      }
+    } if data.features.validation.on
+  }) }}
+{% endblock %}

@@ -34,6 +34,10 @@ export default () => {
       return true
     }
 
+    if (typeof condition === 'string') {
+      return !!_.get(data, _.toPath(condition))
+    }
+
     if (typeof condition === 'object' && condition.data) {
       const sessionData = _.toPath(_.get(data, condition.data))
 

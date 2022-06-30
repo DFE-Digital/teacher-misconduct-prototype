@@ -1,0 +1,98 @@
+{% extends "layouts/report.html" %}
+{% set title = "Teacher’s contact details" %}
+{% set gridClass = "govuk-grid-column-full" %}
+
+{% block beforeForm %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        <span class="govuk-caption-xl">About the teacher</span>
+        {{ title }}
+      </h1>
+    </div>
+  </div>
+
+  {% set address %}
+    {{ data.report['teacher-contact-details'].address['line-1'] }}<br />
+    {{ (data.report['teacher-contact-details'].address['line-2'] + '<br>') | safe if data.report['teacher-contact-details'].address['line-2'] }}
+    {{ (data.report['teacher-contact-details'].address.town + '<br>') | safe if data.report['teacher-contact-details'].address.town }}
+    {{ (data.report['teacher-contact-details'].address.postcode + '<br>') | safe if data.report['teacher-contact-details'].address.postcode }}
+  {% endset %}
+
+  {{ xGovukSummaryCard({
+    classes: "govuk-!-margin-bottom-9",
+    titleText: "Contact details",
+    rows: decorateRows([
+      {
+        key: "Email address",
+        data: "report.teacher-contact-details.email",
+        href: "/report/teacher-contact-details/email"
+      },
+      {
+        key: "Home telephone number",
+        data: "report.teacher-contact-details.home-number",
+        href: "/report/teacher-contact-details/telephone",
+        condition: "report.teacher-contact-details.home-number"
+      },
+      {
+        key: "Mobile telephone number",
+        data: "report.teacher-contact-details.mobile-number",
+        href: "/report/teacher-contact-details/telephone",
+        condition: "report.teacher-contact-details.mobile-number"
+      },
+      {
+        key: "Work telephone number",
+        data: "report.teacher-contact-details.work-number",
+        href: "/report/teacher-contact-details/telephone",
+        condition: "report.teacher-contact-details.work-number"
+      },
+      {
+        key: "Telephone number",
+        value: "Not known",
+        href: "/report/teacher-contact-details/telephone",
+        conditional: {
+          data: "report.teacher-contact-details.telephone",
+          value: "none"
+        }
+      },
+      {
+        key: "Address",
+        value: {
+          html: address
+        },
+        href: "/report/teacher-contact-details/address",
+        conditional: {
+          data: "report.teacher-contact-details.know-address",
+          value: "Yes"
+        }
+      }
+    ])
+  }) }}
+{% endblock %}
+
+{% block form %}
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--m",
+        text: "Have you completed this section?"
+      }
+    },
+    items: [
+      {
+        text: "Yes, I’ve completed this section",
+        value: "completed"
+      },
+      {
+        text: "No, I’ll come back to it later",
+        value: "incomplete"
+      }
+    ],
+    decorate: 'report.teacher-contact-details.section-completed',
+    validate: {
+      presence: {
+        message: "Tell us if you have completed this section"
+      }
+    } if data.features.validation.on
+  }) }}
+{% endblock %}
