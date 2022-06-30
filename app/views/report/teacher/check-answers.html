@@ -15,91 +15,50 @@
   {{ xGovukSummaryCard({
     classes: "govuk-!-margin-bottom-9",
     titleText: "Personal details",
-    rows: [{
-      key: {
-        text: "Name"
+    rows: decorateRows([
+      {
+        key: 'Name',
+        data: 'report.teacher-details.name',
+        href: '/report/teacher/name'
       },
-      value: {
-        text: data.report['teacher-details'].name
+      {
+        key: 'Previous name',
+        data: 'report.teacher-details.name',
+        href: '/report/teacher/name',
+        condition: {
+          data: 'report.teacher-details.have-previous-name',
+          value: 'Yes'
+        }
       },
-      actions: {
-        items: [{
-          text: "Change",
-          visuallyHiddenText: "teacher’s name",
-          href: "/report/teacher/name"
-        }]
+      {
+        key: 'Date of birth',
+        value: (d('report.teacher-details.date-of-birth') | isoDateFromDateInput | govukDate) if d('report.teacher-details.date-of-birth.day') else 'Not known',
+        href: '/report/teacher/age',
+        condition: {
+          data: 'report.teacher-details.know-age',
+          excludedValue: 'knows-age'
+        }
+      },
+      {
+        key: 'Approximate age',
+        data: 'report.teacher-details.age',
+        href: '/report/teacher/age',
+        condition: {
+          data: 'report.teacher-details.know-age',
+          value: 'knows-age'
+        }
+      },
+      {
+        key: 'National Insurance number',
+        value: 'Not known' if d('report.teacher-details.know-nino') == 'No' else d('report.teacher-details.nino'),
+        href: '/report/teacher/nino'
+      },
+      {
+        key: 'Teacher reference number (TRN)',
+        value: 'Not known' if d('report.teacher-details.know-trn') == 'No' else d('report.teacher-details.trn'),
+        href: '/report/teacher/trn'
       }
-    }, {
-      key: {
-        text: "Previous name"
-      },
-      value: {
-        text: data.report['teacher-details']['previous-name']
-      },
-      actions: {
-        items: [{
-          text: "Change",
-          visuallyHiddenText: "teacher’s previous name",
-          href: "/report/teacher/name"
-        }]
-      }
-    } if data.report['teacher-details']['have-previous-name'] == 'Yes', {
-      key: {
-        text: "Date of birth"
-      },
-      value: {
-        text: (data.report['teacher-details']['date-of-birth'] | isoDateFromDateInput | govukDate) if data.report['teacher-details']['date-of-birth'].day else 'Not known'
-      },
-      actions: {
-        items: [{
-          text: "Change",
-          visuallyHiddenText: "date of birth",
-          href: "/report/teacher/age"
-        }]
-      }
-    } if data.report['teacher-details']['know-age'] != 'knows-age', {
-      key: {
-        text: "Approximate age"
-      },
-      value: {
-        text: data.report['teacher-details']['age']
-      },
-      actions: {
-        items: [{
-          text: "Change",
-          visuallyHiddenText: "age",
-          href: "/report/teacher/age"
-        }]
-      }
-    } if data.report['teacher-details']['know-age'] == 'knows-age', {
-      key: {
-        text: "National Insurance number"
-      },
-      value: {
-        text: 'Not known' if data.report['teacher-details']['know-nino'] == 'No' else data.report['teacher-details'].nino
-      },
-      actions: {
-        items: [{
-          text: "Change",
-          visuallyHiddenText: "National Insurance number",
-          href: "/report/teacher/nino"
-        }]
-      }
-    }, {
-      key: {
-        text: "Teacher reference number (TRN)"
-      },
-      value: {
-        text: 'Not known' if data.report['teacher-details']['know-trn'] == 'No' else data.report['teacher-details'].trn
-      },
-      actions: {
-        items: [{
-          text: "Change",
-          visuallyHiddenText: "teacher reference number",
-          href: "/report/teacher/trn"
-        }]
-      }
-    } ]
+    ])
   }) }}
 {% endblock %}
 
@@ -114,11 +73,11 @@
     items: [
       {
         text: "Yes, I’ve completed this section",
-        value: "yes"
+        value: "complete"
       },
       {
         text: "No, I’ll come back to it later",
-        value: "no"
+        value: "incomplete"
       }
     ],
     decorate: 'report.teacher-details.section-completed',
