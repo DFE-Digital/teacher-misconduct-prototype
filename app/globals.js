@@ -105,6 +105,27 @@ export default () => {
     return rows
   }
 
+  globals.taskTag = function (path) {
+    const data = this.ctx.data
+    const sectionData = _.get(data, _.toPath(path))
+
+    if (_.isEmpty(sectionData)) {
+      return { colour: 'grey', text: 'Not started yet' }
+    }
+
+    if (sectionData['section-completed'] === 'completed') {
+      return { text: 'Completed' }
+    }
+
+    return { colour: 'grey', text: 'Incomplete' }
+  }
+
+  globals.taskHref = function (path, startHref, checkAnswersHref) {
+    const data = this.ctx.data
+    const sectionData = _.get(data, _.toPath(path))
+    return sectionData && sectionData['section-completed'] ? checkAnswersHref : startHref
+  }
+
   // Keep the following line to return your globals to the app
   return globals
 }

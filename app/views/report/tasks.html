@@ -2,15 +2,6 @@
 {% set title = "Your allegation of serious misconduct" %}
 {% set buttonText = "Review and submit" %}
 
-{% set notStartedYet = {
-  colour: "grey",
-  text: "Not started yet"
-} %}
-
-{% set completed = {
-  text: "Completed"
-} %}
-
 {% block form %}
   <h1 class="govuk-heading-xl">{{ title }}</h1>
 
@@ -19,50 +10,46 @@
       titleText: "About you and your organisation",
       items: [{
         text: "Your details",
-        href: "#",
-        tag: notStartedYet
+        href: taskHref('report.your-details', '/report/your-details/name', '/report/your-details/check-answers'),
+        tag: taskTag('report.your-details')
       }, {
         text: "Referring organisation",
-        href: "#",
-        tag: notStartedYet
+        href: taskHref('report.your-organisation', '/report/your-organisation/name', '/report/your-organisation/check-answers'),
+        tag: taskTag('report.your-organisation')
       }, {
         text: "Contact details",
-        href: "#",
-        tag: notStartedYet
+        href: taskHref('report.your-contact-details', '/report/your-contact-details/name', '/report/your-contact-details/check-answers'),
+        tag: taskTag('report.your-contact-details')
       }]
     }, {
       titleText: "About the teacher",
       items: [{
         text: "Personal details",
-        href: "/report/teacher/name",
-        tag: notStartedYet
+        href: taskHref('report.teacher-details', '/report/teacher/name', '/report/teacher/check-answers'),
+        tag: taskTag('report.teacher-details')
       }, {
         text: "Contact details",
-        href: "/report/teacher-contact-details/email",
-        tag: notStartedYet
+        href: taskHref('report.teacher-contact-details', '/report/teacher-contact-details/email', '/report/teacher-contact-details/check-answers'),
+        tag: taskTag('report.teacher-contact-details')
       }, {
         text: "Details of the work they carried out",
-        href: "#",
-        tag: notStartedYet
+        href: taskHref('report.teacher-work-carried-out', '/report/teacher-work-carried-out/email', '/report/teacher-work-carried-out/check-answers'),
+        tag: taskTag('report.teacher-work-carried-out')
       }, {
         text: "Previous misconduct or complaints",
-        href: "#",
-        tag: notStartedYet
+        href: taskHref('report.teacher-previous-misconduct', '/report/teacher-previous-misconduct/email', '/report/teacher-previous-misconduct/check-answers'),
+        tag: taskTag('report.teacher-previous-misconduct')
       }]
     }, {
       titleText: "The allegation",
       items: [{
         text: "Describe what has happened",
-        href: "#",
-        tag: notStartedYet
-      }, {
-        text: "Chronology of events",
-        href: "#",
-        tag: notStartedYet
+        href: taskHref('report.allegation', '/report/allegation/email', '/report/allegation/check-answers'),
+        tag: taskTag('report.allegation')
       }, {
         text: "Documentation",
-        href: "#",
-        tag: notStartedYet
+        href: taskHref('report.documentation', '/report/documentation/email', '/report/documentation/check-answers'),
+        tag: taskTag('report.documentation')
       }]
     }]
   }) }}
