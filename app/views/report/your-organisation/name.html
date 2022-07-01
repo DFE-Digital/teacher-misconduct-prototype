@@ -1,0 +1,13 @@
+{% extends "layouts/report.html" %}
+{% set title = "What’s the name of your organisation?" %}
+
+{% block form %}
+  {{ govukInput({
+    label: {
+      text: title,
+      isPageHeading: true,
+      classes: "govuk-label--xl"
+    },
+    decorate: 'report.your-organisation.name'
+  }) }}
+{% endblock %}

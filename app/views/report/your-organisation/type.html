@@ -1,0 +1,16 @@
+{% extends "layouts/report.html" %}
+{% set title = "Type of organisation" %}
+
+{% block form %}
+  {{ govukInput({
+    label: {
+      text: title,
+      isPageHeading: true,
+      classes: "govuk-label--xl"
+    },
+    hint: {
+      text: 'For example, primary school or sixth form college'
+    },
+    decorate: 'report.your-organisation.type'
+  }) }}
+{% endblock %}

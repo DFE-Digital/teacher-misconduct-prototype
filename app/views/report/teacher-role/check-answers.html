@@ -1,0 +1,97 @@
+{% extends "layouts/report.html" %}
+{% set title = "About their role" %}
+{% set gridClass = "govuk-grid-column-full" %}
+
+{% block beforeForm %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        <span class="govuk-caption-xl">About the person you are reporting</span>
+        {{ title }}
+      </h1>
+    </div>
+  </div>
+
+  {% set address %}
+    {% set addressPath = 'report.teacher-role.school.address' %}
+    {% include '../shared/_formatted-address.html' %}
+  {% endset %}
+
+  {{ xGovukSummaryCard({
+    classes: "govuk-!-margin-bottom-9",
+    titleText: title,
+    rows: decorateRows([
+      {
+        key: "Start date",
+        value: d('report.teacher-role.start-date') | isoDateFromDateInput | govukDate,
+        href: "/report/teacher-role/start-date"
+      },
+      {
+        key: "End date",
+        value: d('report.teacher-role.end-date') | isoDateFromDateInput | govukDate,
+        href: "/report/teacher-role/end-date",
+        condition: {
+          data: 'report.teacher-role.has-left-job',
+          value: 'Yes'
+        }
+      },
+      {
+        key: "How did they leave this job?",
+        data: 'report.teacher-role.how-end-job',
+        href: "/report/teacher-role/end-date",
+        condition: {
+          data: 'report.teacher-role.has-left-job',
+          value: 'Yes'
+        }
+      },
+      {
+        key: "End date",
+        value: "They are still working in this job",
+        href: "/report/teacher-role/end-date",
+        condition: {
+          data: 'report.teacher-role.has-left-job',
+          value: 'No'
+        }
+      },
+      {
+        key: "Job title",
+        data: "report.teacher-role.job-title",
+        href: "/report/teacher-role/job-title"
+      },
+      {
+        key: "Organisation",
+        value: d("report.your-organisation.name") or "The same organisation as me",
+        href: "/report/teacher-role/school",
+        condition: {
+          data: "report.teacher-role.same-organisation",
+          value: "same"
+        }
+      },
+      {
+        key: "School name",
+        data: "report.teacher-role.school-name",
+        href: "/report/teacher-role/school",
+        condition: {
+          data: "report.teacher-role.same-organisation",
+          value: "different"
+        }
+      },
+      {
+        key: "School address",
+        value: {
+          html: address
+        },
+        href: "/report/teacher-role/school",
+        condition: {
+          data: "report.teacher-role.same-organisation",
+          value: "different"
+        }
+      }
+    ])
+  }) }}
+{% endblock %}
+
+{% block form %}
+  {% set section = 'report.your-details' %}
+  {% include '../shared/_have-you-completed-section.html' %}
+{% endblock %}

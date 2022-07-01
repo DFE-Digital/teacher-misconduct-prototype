@@ -1,0 +1,13 @@
+{% set line1 = d(addressPath + '.line-1') %}
+{% set line2 = d(addressPath + '.line-2') %}
+{% set town = d(addressPath + '.town') %}
+{% set postcode = d(addressPath + '.postcode') %}
+
+{{ line1 }}<br />
+{% if line2 %}
+  {{ line2 }}<br />
+{% endif %}
+{% if town %}
+  {{ town }}<br />
+{% endif %}
+{{ postcode }}

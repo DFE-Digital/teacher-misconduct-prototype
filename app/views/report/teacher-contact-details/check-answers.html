@@ -13,10 +13,8 @@
   </div>
 
   {% set address %}
-    {{ data.report['teacher-contact-details'].address['line-1'] }}<br />
-    {{ (data.report['teacher-contact-details'].address['line-2'] + '<br>') | safe if data.report['teacher-contact-details'].address['line-2'] }}
-    {{ (data.report['teacher-contact-details'].address.town + '<br>') | safe if data.report['teacher-contact-details'].address.town }}
-    {{ (data.report['teacher-contact-details'].address.postcode + '<br>') | safe if data.report['teacher-contact-details'].address.postcode }}
+    {% set addressPath = 'report.teacher-contact-details.address' %}
+    {% include '../shared/_formatted-address.html' %}
   {% endset %}
 
   {{ xGovukSummaryCard({

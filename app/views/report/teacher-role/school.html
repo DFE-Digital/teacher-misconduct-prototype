@@ -1,0 +1,98 @@
+{% extends "layouts/report.html" %}
+{% set title = ("Did they" if hasLeftJob else "Do they") + " work in the same organisation as you?" %}
+
+{% if d('report.your-organisation.name') %}
+  {% set organisationName = "(" + d('report.your-organisation.name') + ")" %}
+{% else %}
+  {% set organisationName = "" %}
+{% endif %}
+
+{% block form %}
+  {% set where %}
+    <h2 class="govuk-heading-m">{{ "Where did they work?" if hasLeftJob else "Where do they work?" }}</h2>
+
+    {{ govukInput({
+      label: {
+        text: "School name",
+        classes: "govuk-label--s"
+      },
+      classes: "govuk-!-margin-bottom-6",
+      decorate: 'report.teacher-role.school-name',
+      validate: {
+        presence: {
+          message: "Enter a school name"
+        }
+      } if data.features.validation.on
+    }) }}
+
+    {% call govukFieldset({
+      legend: {
+        text: "School address",
+        classes: "govuk-fieldset__legend--s"
+      }
+    }) %}
+      {{ govukInput({
+        label: {
+          text: 'Address line 1'
+        },
+        decorate: 'report.teacher-role.school.address.line-1',
+        autocomplete: "address-line1"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: 'Address line 2 (optional)'
+        },
+        decorate: 'report.teacher-role.school.address.line-2',
+        autocomplete: "address-line2"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Town or city"
+        },
+        classes: "govuk-!-width-two-thirds",
+        decorate: 'report.teacher-role.school.address.town',
+        autocomplete: "address-level2"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Postcode"
+        },
+        classes: "govuk-input--width-10",
+        decorate: 'report.teacher-role.school.address.postcode',
+        autocomplete: "postal-code"
+      }) }}
+    {% endcall %}
+  {% endset %}
+
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "Yes, in the same organisation as me " + organisationName,
+        value: "same"
+      },
+      {
+        text: "No, in a different organisation",
+        value: "different",
+        conditional: {
+          html: where
+        }
+      }
+    ],
+    decorate: 'report.teacher-role.same-organisation',
+    validate: {
+      presence: {
+        message: "Tell us if they " + ("worked" if hasLeftJob else "work") + " in a different organisation to you"
+      }
+    } if data.features.validation.on
+  }) }}
+{% endblock %}

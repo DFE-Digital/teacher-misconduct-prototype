@@ -1,0 +1,23 @@
+{% extends "layouts/report.html" %}
+{% set title = "When did they start the job?" %}
+
+{% block form %}
+  {{ govukDateInput({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl",
+        text: title,
+        isPageHeading: true
+      }
+    },
+    hint: {
+      text: "For example, 27 3 2021"
+    },
+    decorate: "report.teacher-role.start-date",
+    validate: {
+      date: {
+        message: "Start date should be a valid date"
+      }
+    } if data.features.validation.on
+  }) }}
+{% endblock %}

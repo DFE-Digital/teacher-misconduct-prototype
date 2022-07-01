@@ -1,0 +1,43 @@
+{% extends "layouts/report.html" %}
+{% set title = "Your organisation" %}
+{% set gridClass = "govuk-grid-column-full" %}
+
+{% block beforeForm %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        <span class="govuk-caption-xl">About you</span>
+        {{ title }}
+      </h1>
+    </div>
+  </div>
+
+  {% set address %}
+    {% set addressPath = 'report.your-organisation.address' %}
+    {% include '../shared/_formatted-address.html' %}
+  {% endset %}
+
+  {{ xGovukSummaryCard({
+    classes: "govuk-!-margin-bottom-9",
+    titleText: "Your organisation",
+    rows: decorateRows([
+      {
+        key: "Organisation",
+        data: "report.your-organisation.name",
+        href: "/report/your-organisation/name"
+      },
+      {
+        key: "Address",
+        value: {
+          html: address
+        },
+        href: "/report/your-organisation/address"
+      }
+    ])
+  }) }}
+{% endblock %}
+
+{% block form %}
+  {% set section = 'report.your-organisation' %}
+  {% include '../shared/_have-you-completed-section.html' %}
+{% endblock %}
