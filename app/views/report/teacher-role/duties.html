@@ -1,0 +1,22 @@
+{% extends "layouts/report.html" %}
+{% set title = "Describe their main duties" %}
+
+{% block form %}
+  {{ govukTextarea({
+    label: {
+      text: title,
+      classes: "govuk-label--xl",
+      isPageHeading: true
+    },
+    hint: {
+      text: 'Give details of the work carried out by the person you are referring'
+    },
+    decorate: 'report.teacher-role.duties',
+    rows: 20,
+    validate: {
+      presence: {
+        message: "Tell us about their main duties"
+      }
+    } if data.features.validation.on
+  }) }}
+{% endblock %}

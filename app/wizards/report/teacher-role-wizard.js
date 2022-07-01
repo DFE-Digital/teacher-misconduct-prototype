@@ -7,6 +7,7 @@ export function teacherRoleWizard (req) {
     '/report/teacher-role/end-date': {},
     '/report/teacher-role/job-title': {},
     '/report/teacher-role/school': {},
+    '/report/teacher-role/duties': {},
     '/report/teacher-role/check-answers': {
       '/report/tasks': true
     }
