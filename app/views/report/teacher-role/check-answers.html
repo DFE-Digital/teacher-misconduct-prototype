@@ -1,6 +1,19 @@
 {% extends "layouts/report.html" %}
 {% set title = "About their role" %}
 {% set gridClass = "govuk-grid-column-full" %}
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Your allegation of serious misconduct",
+      href: "/report/tasks"
+    },
+    {
+      text: title
+    }
+  ]
+  }) }}
+{% endblock %}
 
 {% block beforeForm %}
   <div class="govuk-grid-row">
@@ -92,6 +105,6 @@
 {% endblock %}
 
 {% block form %}
-  {% set section = 'report.your-details' %}
+  {% set section = 'report.teacher-role' %}
   {% include '../shared/_have-you-completed-section.html' %}
 {% endblock %}

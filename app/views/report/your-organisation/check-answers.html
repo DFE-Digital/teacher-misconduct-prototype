@@ -1,6 +1,19 @@
 {% extends "layouts/report.html" %}
 {% set title = "Your organisation" %}
 {% set gridClass = "govuk-grid-column-full" %}
+{% block pageNavigation %}
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Your allegation of serious misconduct",
+      href: "/report/tasks"
+    },
+    {
+      text: title
+    }
+  ]
+  }) }}
+{% endblock %}
 
 {% block beforeForm %}
   <div class="govuk-grid-row">
