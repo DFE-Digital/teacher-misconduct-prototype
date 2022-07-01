@@ -1,35 +1,36 @@
 {% extends "layouts/report.html" %}
 {% set title = "Your allegation of serious misconduct" %}
 {% set buttonText = "Review and submit" %}
+{% block pageNavigation %}{% endblock %}
 
 {% block form %}
   <h1 class="govuk-heading-xl">{{ title }}</h1>
 
   {{ xGovukTaskList({
     sections: [{
-      titleText: "About you and your organisation",
+      titleText: "About you",
       items: [{
         text: "Your details",
         href: taskHref('report.your-details', '/report/your-details/name', '/report/your-details/check-answers'),
         tag: taskTag('report.your-details')
       }, {
-        text: "Referring organisation",
+        text: "Your organisation",
         href: taskHref('report.your-organisation', '/report/your-organisation/name', '/report/your-organisation/check-answers'),
         tag: taskTag('report.your-organisation')
       }]
     }, {
-      titleText: "About the teacher",
+      titleText: "About the person you are reporting",
       items: [{
-        text: "Teacher personal details",
+        text: "Personal details",
         href: taskHref('report.teacher-details', '/report/teacher/name', '/report/teacher/check-answers'),
         tag: taskTag('report.teacher-details')
       }, {
-        text: "Teacher contact details",
+        text: "Contact details",
         href: taskHref('report.teacher-contact-details', '/report/teacher-contact-details/email', '/report/teacher-contact-details/check-answers'),
         tag: taskTag('report.teacher-contact-details')
       }, {
         text: "About their role",
-        href: taskHref('report.teacher-role', '/report/teacher-role/email', '/report/teacher-role/check-answers'),
+        href: taskHref('report.teacher-role', '/report/teacher-role/start-date', '/report/teacher-role/check-answers'),
         tag: taskTag('report.teacher-role')
       }]
     }, {

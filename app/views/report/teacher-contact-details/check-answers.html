@@ -1,12 +1,12 @@
 {% extends "layouts/report.html" %}
-{% set title = "Teacher’s contact details" %}
+{% set title = "Contact details" %}
 {% set gridClass = "govuk-grid-column-full" %}
 
 {% block beforeForm %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">
-        <span class="govuk-caption-xl">About the teacher</span>
+        <span class="govuk-caption-xl">About the person you are reporting</span>
         {{ title }}
       </h1>
     </div>
@@ -25,7 +25,7 @@
     rows: decorateRows([
       {
         key: "Email address",
-        data: "report.teacher-contact-details.email",
+        value: d("report.teacher-contact-details.email") if d("report.teacher-contact-details.know-email") === "Yes" else "Not known",
         href: "/report/teacher-contact-details/email"
       },
       {
@@ -58,7 +58,7 @@
       {
         key: "Address",
         value: {
-          html: address
+          html: address if d('report.teacher-contact-details.know-address') === 'Yes' else 'Not known'
         },
         href: "/report/teacher-contact-details/address",
         conditional: {

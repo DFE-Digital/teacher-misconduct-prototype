@@ -1,5 +1,5 @@
 {% extends "layouts/report.html" %}
-{% set title = "Do you know the teacher’s email address?" %}
+{% set title = "Do you know the email address of the person you are reporting?" %}
 
 {% block form %}
   {% set email %}
@@ -15,7 +15,7 @@
   {{ govukRadios({
     fieldset: {
       legend: {
-        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        classes: "govuk-fieldset__legend--l govuk-!-margin-bottom-6",
         isPageHeading: true,
         text: title
       }
