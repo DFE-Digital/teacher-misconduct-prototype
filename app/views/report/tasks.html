@@ -16,29 +16,21 @@
         text: "Referring organisation",
         href: taskHref('report.your-organisation', '/report/your-organisation/name', '/report/your-organisation/check-answers'),
         tag: taskTag('report.your-organisation')
-      }, {
-        text: "Contact details",
-        href: taskHref('report.your-contact-details', '/report/your-contact-details/name', '/report/your-contact-details/check-answers'),
-        tag: taskTag('report.your-contact-details')
       }]
     }, {
       titleText: "About the teacher",
       items: [{
-        text: "Personal details",
+        text: "Teacher personal details",
         href: taskHref('report.teacher-details', '/report/teacher/name', '/report/teacher/check-answers'),
         tag: taskTag('report.teacher-details')
       }, {
-        text: "Contact details",
+        text: "Teacher contact details",
         href: taskHref('report.teacher-contact-details', '/report/teacher-contact-details/email', '/report/teacher-contact-details/check-answers'),
         tag: taskTag('report.teacher-contact-details')
       }, {
-        text: "Details of the work they carried out",
-        href: taskHref('report.teacher-work-carried-out', '/report/teacher-work-carried-out/email', '/report/teacher-work-carried-out/check-answers'),
-        tag: taskTag('report.teacher-work-carried-out')
-      }, {
-        text: "Previous misconduct or complaints",
-        href: taskHref('report.teacher-previous-misconduct', '/report/teacher-previous-misconduct/email', '/report/teacher-previous-misconduct/check-answers'),
-        tag: taskTag('report.teacher-previous-misconduct')
+        text: "About their role",
+        href: taskHref('report.teacher-role', '/report/teacher-role/email', '/report/teacher-role/check-answers'),
+        tag: taskTag('report.teacher-role')
       }]
     }, {
       titleText: "The allegation",
@@ -46,6 +38,10 @@
         text: "Describe what has happened",
         href: taskHref('report.allegation', '/report/allegation/email', '/report/allegation/check-answers'),
         tag: taskTag('report.allegation')
+      }, {
+        text: "Previous misconduct or complaints",
+        href: taskHref('report.teacher-previous-misconduct', '/report/teacher-previous-misconduct/email', '/report/teacher-previous-misconduct/check-answers'),
+        tag: taskTag('report.teacher-previous-misconduct')
       }, {
         text: "Documentation",
         href: taskHref('report.documentation', '/report/documentation/email', '/report/documentation/check-answers'),

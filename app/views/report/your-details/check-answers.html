@@ -1,0 +1,45 @@
+{% extends "layouts/report.html" %}
+{% set title = "Your details" %}
+{% set gridClass = "govuk-grid-column-full" %}
+
+{% block beforeForm %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        <span class="govuk-caption-xl">About you and your organisation</span>
+        {{ title }}
+      </h1>
+    </div>
+  </div>
+
+  {{ xGovukSummaryCard({
+    classes: "govuk-!-margin-bottom-9",
+    titleText: "Your details",
+    rows: decorateRows([
+      {
+        key: "Your name",
+        data: "report.your-details.name",
+        href: "/report/your-details/name"
+      },
+      {
+        key: "Email address",
+        data: "report.email"
+      },
+      {
+        key: "Telephone number",
+        data: "report.your-details.telephone",
+        href: "/report/your-details/telephone"
+      },
+      {
+        key: "Your job title",
+        data: "report.your-details.job-title",
+        href: "/report/your-details/job-title"
+      }
+    ])
+  }) }}
+{% endblock %}
+
+{% block form %}
+  {% set section = 'report.your-details' %}
+  {% include '../shared/_have-you-completed-section.html' %}
+{% endblock %}
