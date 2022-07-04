@@ -24,18 +24,7 @@
     </div>
   </div>
 
-  {{ xGovukSummaryCard({
-    classes: "govuk-!-margin-bottom-9",
-    rows: decorateRows([
-      {
-        key: "What happened",
-        value: {
-          html: d('report.allegation.allegation') | nl2br
-        },
-        href: "/report/allegation/allegation"
-      }
-    ])
-  }) }}
+  {% include '../allegation/_summary-card.html' %}
 {% endblock %}
 
 {% block form %}

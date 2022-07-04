@@ -24,28 +24,7 @@
     </div>
   </div>
 
-  {{ xGovukSummaryCard({
-    classes: "govuk-!-margin-bottom-9",
-    titleText: title,
-    rows: decorateRows([
-      {
-        key: "Has there been any previous misconduct, disciplinary action or complaints?",
-        data: "report.previous-misconduct.any-previous",
-        href: "/report/previous-misconduct/any-previous"
-      },
-      {
-        key: "Details of previous allegations",
-        value: {
-          html: d('report.previous-misconduct.previous-misconduct') | nl2br
-        },
-        href: "/report/previous-misconduct/previous-misconduct",
-        condition: {
-          data: "report.previous-misconduct.any-previous",
-          value: "Yes"
-        }
-      }
-    ])
-  }) }}
+  {% include '../previous-misconduct/_summary-card.html' %}
 {% endblock %}
 
 {% block form %}

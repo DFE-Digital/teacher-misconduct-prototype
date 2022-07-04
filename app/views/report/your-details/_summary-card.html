@@ -1,0 +1,25 @@
+{{ xGovukSummaryCard({
+  classes: "govuk-!-margin-bottom-9",
+  titleText: "Your details",
+  rows: decorateRows([
+    {
+      key: "Your name",
+      data: "report.your-details.name",
+      href: "/report/your-details/name"
+    },
+    {
+      key: "Email address",
+      data: "report.email"
+    },
+    {
+      key: "Telephone number",
+      data: "report.your-details.telephone",
+      href: "/report/your-details/telephone"
+    },
+    {
+      key: "Your job title",
+      data: "report.your-details.job-title",
+      href: "/report/your-details/job-title"
+    }
+  ])
+}) }}

@@ -24,35 +24,7 @@
     </div>
   </div>
 
-  {% set documentList %}
-  <ul class="govuk-list">
-    <li>
-      <a href="#">jane-doe-cv.pdf</a><br>CV
-    </li>
-    <li>
-      <a href="#">jane-doe-cv.pdf</a><br>CV
-    </li>
-    <li>
-      <a href="#">jane-doe-cv.pdf</a><br>CV
-    </li>
-    <li>
-      <a href="#">jane-doe-cv.pdf</a><br>CV
-    </li>
-  </ul>
-  {% endset %}
-
-  {{ xGovukSummaryCard({
-    classes: "govuk-!-margin-bottom-9",
-    rows: decorateRows([
-      {
-        key: "Uploaded documents",
-        value: {
-          html: documentList
-        },
-        href: "/report/allegation/allegation"
-      }
-    ])
-  }) }}
+  {% include '../documentation/_summary-card.html' %}
 {% endblock %}
 
 {% block form %}
