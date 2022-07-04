@@ -1,0 +1,17 @@
+{% extends "layouts/report.html" %}
+{% set title = "Add evidence and supporting information to your report" %}
+
+{% block beforeForm %}
+  <h1 class="govuk-heading-xl">
+    {{ title }}
+  </h1>
+
+  <p>Upload all relevant correspondence and supporting information.</p>
+
+  <p>Examples might include:</p>
+
+  {% include "../shared/_examples.html" %}
+{% endblock %}
+
+{% block form %}
+{% endblock %}

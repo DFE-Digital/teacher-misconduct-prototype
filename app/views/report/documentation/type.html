@@ -1,0 +1,52 @@
+{% extends "layouts/report.html" %}
+{% set title = "What type of document is this?" %}
+
+{% block form %}
+  {% set other %}
+    {{ govukInput({
+      label: {
+        text: "Explain what this document is",
+        classes: "govuk-label--s"
+      },
+      decorate: 'report.documentation.other-type'
+    }) }}
+  {% endset %}
+
+  {{ govukCheckboxes({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl",
+        isPageHeading: true,
+        text: title | noOrphans | safe
+      }
+    },
+    hint: {
+      text: "Pick any that apply"
+    },
+    items: [
+      { text: "CV" },
+      { text: "References" },
+      { text: "Job application" },
+      { text: "Job offer" },
+      { text: "Job description, role requirement or person specification" },
+      { text: "File notes concerning conduct, behaviour, attitude" },
+      { text: "Statements made by the person you’re reporting" },
+      { text: "Documents of internal investigations and outcomes" },
+      { text: "Documentation of any past disciplinary action and complaints" },
+      { text: "Police investigation and reports" },
+      { text: "Local authority investigation reports or documents" },
+      { text: "Reports from other bodies or agencies" },
+      { text: "Signed witness statements" },
+      { text: "Dismissal, resignation or redeployment letters" },
+      { text: "Interview reports relating to the allegation" },
+      { text: "Minutes of strategy meetings" },
+      {
+        text: "Other",
+        conditional: {
+          html: other
+        }
+      }
+    ],
+    decorate: 'report.documentation.type'
+  }) }}
+{% endblock %}

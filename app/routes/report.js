@@ -6,6 +6,7 @@ import { teacherContactDetailsWizard } from '../wizards/report/teacher-contact-d
 import { teacherRoleWizard } from '../wizards/report/teacher-role-wizard.js'
 import { allegationWizard } from '../wizards/report/allegation-wizard.js'
 import { previousMisconductWizard } from '../wizards/report/previous-misconduct-wizard.js'
+import { documentationWizard } from '../wizards/report/documentation-wizard.js'
 import { eligibilityWizard } from '../wizards/report/eligibility-wizard.js'
 
 export const reportRoutes = router => {
@@ -67,6 +68,14 @@ export const reportRoutes = router => {
   })
 
   router.all([
+    '/report/documentation/',
+    '/report/documentation/:view'
+  ], (req, res, next) => {
+    res.locals.paths = documentationWizard(req)
+    next()
+  })
+
+  router.all([
     '/report',
     '/report/eligibility/:view',
     '/report/:view'
@@ -84,6 +93,7 @@ export const reportRoutes = router => {
     '/report/teacher-role/:view',
     '/report/allegation/:view',
     '/report/previous-misconduct/:view',
+    '/report/documentation/:view',
     '/report/teacher/:view'
   ], (req, res) => {
     res.redirect(res.locals.paths.next)

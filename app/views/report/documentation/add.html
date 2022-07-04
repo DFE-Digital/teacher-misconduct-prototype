@@ -1,0 +1,51 @@
+{% extends "layouts/report.html" %}
+{% set title = "Do you want to upload a document?" %}
+
+{% block form %}
+  {% set upload %}
+    {{ govukFileUpload({
+      label: {
+        text: "Upload document",
+        classes: "govuk-label--s"
+      },
+      decorate: 'report.documentation.file'
+    }) }}
+  {% endset %}
+
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "Yes",
+        conditional: {
+          html: upload
+        }
+      },
+      {
+        text: "No"
+      }
+    ],
+    decorate: 'report.teacher-details.know-nino',
+    validate: {
+      presence: {
+        message: "Tell us if you know the teacher’s National Insurance number"
+      }
+    } if data.features.validation.on
+  }) }}
+
+  {% set examples %}
+    <p>Examples might include:</p>
+    {% include "../shared/_examples.html" %}
+  {% endset %}
+
+  {{ govukDetails({
+    summaryText: "Examples of evidence and supporting information",
+    html: examples
+  }) }}
+{% endblock %}
