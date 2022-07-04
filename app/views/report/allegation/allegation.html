@@ -1,0 +1,22 @@
+{% extends "layouts/report.html" %}
+{% set title = "Details of the allegation of serious misconduct" %}
+
+{% block form %}
+  {{ govukTextarea({
+    label: {
+      text: title,
+      classes: "govuk-label--xl",
+      isPageHeading: true
+    },
+    hint: {
+      text: 'Describe the incidents that lead you to believe that the teacher is guilty of serious misconduct'
+    },
+    decorate: 'report.allegation.allegation',
+    rows: 30,
+    validate: {
+      presence: {
+        message: "Tell us about the allegation"
+      }
+    } if data.features.validation.on
+  }) }}
+{% endblock %}
