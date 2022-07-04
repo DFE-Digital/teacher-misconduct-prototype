@@ -5,6 +5,7 @@ export function documentationWizard (req) {
     '/report/tasks': {},
     '/report/documentation/guidance': {},
     '/report/documentation/add': {},
+    '/report/documentation/type': {},
     '/report/documentation/check-answers': {
       '/report/tasks': true
     }
