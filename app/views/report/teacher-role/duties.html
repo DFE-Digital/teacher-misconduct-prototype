@@ -5,11 +5,11 @@
   {{ govukTextarea({
     label: {
       text: title,
-      classes: "govuk-label--xl",
+      classes: "govuk-label--xl govuk-!-margin-bottom-6",
       isPageHeading: true
     },
     hint: {
-      text: 'Give details of the work carried out by the person you are reporting'
+      html: '<p>Give details of the work carried out by the person you are reporting.</p><p>Alternatively, you can upload a job description in the documentation section.</p>'
     },
     decorate: 'report.teacher-role.duties',
     rows: 20,

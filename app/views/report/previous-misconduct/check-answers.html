@@ -1,5 +1,5 @@
 {% extends "layouts/report.html" %}
-{% set title = "Previous misconduct or complaints" %}
+{% set title = "Previous allegations" %}
 {% set gridClass = "govuk-grid-column-full" %}
 {% block pageNavigation %}
   {{ govukBreadcrumbs({
@@ -19,7 +19,6 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">
-        <span class="govuk-caption-xl">The allegation</span>
         {{ title }}
       </h1>
     </div>
@@ -30,12 +29,12 @@
     titleText: title,
     rows: decorateRows([
       {
-        key: "Has there been any previous misconduct or complaints?",
+        key: "Has there been any previous misconduct, disciplinary action or complaints?",
         data: "report.previous-misconduct.any-previous",
         href: "/report/previous-misconduct/any-previous"
       },
       {
-        key: "Previous misconduct",
+        key: "Details of previous allegations",
         value: {
           html: d('report.previous-misconduct.previous-misconduct') | nl2br
         },

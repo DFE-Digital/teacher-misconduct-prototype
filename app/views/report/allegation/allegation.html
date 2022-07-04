@@ -1,18 +1,22 @@
 {% extends "layouts/report.html" %}
-{% set title = "Details of the allegation of serious misconduct" %}
+{% set title = "Tell us what happened" %}
 
 {% block form %}
+  <h1 class="govuk-heading-xl">
+    {{ title }}
+  </h1>
+
+  <p>Tell us what happened and why you believe the person is guilty of serious misconduct.</p>
+  <p>Give dates and locations in your description.</p>
+  <p>If you have this information in a document, you can upload it in the <a href="#">documentation section</a>.</p>
+
   {{ govukTextarea({
     label: {
-      text: title,
-      classes: "govuk-label--xl",
-      isPageHeading: true
-    },
-    hint: {
-      text: 'Describe the incidents that lead you to believe that the teacher is guilty of serious misconduct'
+      text: "Details of the allegation of serious misconduct",
+      classes: "govuk-label--m govuk-!-margin-top-6"
     },
     decorate: 'report.allegation.allegation',
-    rows: 30,
+    rows: 20,
     validate: {
       presence: {
         message: "Tell us about the allegation"
