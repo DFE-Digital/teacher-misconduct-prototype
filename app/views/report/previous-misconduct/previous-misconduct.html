@@ -1,0 +1,22 @@
+{% extends "layouts/report.html" %}
+{% set title = "Details of previous misconduct" %}
+
+{% block form %}
+  {{ govukTextarea({
+    label: {
+      text: title,
+      classes: "govuk-label--xl",
+      isPageHeading: true
+    },
+    hint: {
+      text: 'Give details of any previous misconduct, disciplinary action or complaints (including any previous referrals to TRA, NCTL, Teaching Agency or the General Teaching Council for England)'
+    },
+    decorate: 'report.previous-misconduct.previous-misconduct',
+    rows: 30,
+    validate: {
+      presence: {
+        message: "Tell us about the previous misconduct"
+      }
+    } if data.features.validation.on
+  }) }}
+{% endblock %}

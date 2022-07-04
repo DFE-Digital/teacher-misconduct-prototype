@@ -1,0 +1,31 @@
+{% extends "layouts/report.html" %}
+{% set title = "Has there been any previous misconduct, disciplinary action or complaints?" %}
+
+{% block form %}
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    hint: {
+      text: 'This includes any previous referrals to TRA, NCTL, Teaching Agency or the General Teaching Council for England'
+    },
+    items: [
+      {
+        text: "Yes"
+      },
+      {
+        text: "No"
+      }
+    ],
+    decorate: 'report.previous-misconduct.any-previous',
+    validate: {
+      presence: {
+        message: "Tell us if there has been any previous misconduct"
+      }
+    } if data.features.validation.on
+  }) }}
+{% endblock %}
