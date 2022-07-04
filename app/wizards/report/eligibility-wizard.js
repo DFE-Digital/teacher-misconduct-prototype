@@ -31,7 +31,8 @@ export function eligibilityWizard (req) {
         value: 'No'
       }
     },
-    '/report/tasks': {}
+    '/report/tasks': {},
+    '/report/submit/review': {}
   }
 
   return wizard(journey, req)

@@ -1,0 +1,44 @@
+{% extends "layouts/report.html" %}
+{% set title = "Before you send your report" %}
+{% set buttonText = "Send report" %}
+
+{% block beforeForm %}
+  <h1 class="govuk-heading-xl">
+    {{ title }}
+  </h1>
+
+  <h2 class="govuk-heading-l">Declaration</h2>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>I wish TRA to investigate this allegation of serious misconduct potentially leading to the imposition of a prohibition order.</li>
+    <li>I confirm that the contents of this form are true to the best of my knowledge and belief.</li>
+    <li>I understand that a copy of this form and any enclosures may be disclosed to the teacher and any employer in accordance with TRA’s procedures and give my consent to this.</li>
+    <li>I confirm that I have obtained any necessary permission from third parties for the documents to be so disclosed.</li>
+    <li>I understand that I may be required to attend a hearing of a professional conduct panel to give evidence should this allegation reach that stage.</li>
+  </ul>
+
+  {{ govukCheckboxes({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--m",
+        isPageHeading: true,
+        text: "Do you agree to this declaration?"
+      }
+    },
+    items: [
+      {
+        text: "Yes, I agree"
+      }
+    ],
+    decorate: 'report.submit.declaration',
+    validate: {
+      presence: {
+        message: "You must agree to this declaration before continuing"
+      }
+    } if data.features.validation.on
+  }) }}
+
+{% endblock %}
+
+{% block form %}
+{% endblock %}
