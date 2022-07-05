@@ -7,17 +7,20 @@
     {{ title }}
   </h1>
 
-  <h2 class="govuk-heading-l">Declaration</h2>
+  <p>You need to confirm that:</p>
 
   <ul class="govuk-list govuk-list--bullet">
-    <li>I wish TRA to investigate this allegation of serious misconduct potentially leading to the imposition of a prohibition order.</li>
-    <li>I confirm that the contents of this form are true to the best of my knowledge and belief.</li>
-    <li>I understand that a copy of this form and any enclosures may be disclosed to the teacher and any employer in accordance with TRA’s procedures and give my consent to this.</li>
-    <li>I confirm that I have obtained any necessary permission from third parties for the documents to be so disclosed.</li>
-    <li>I understand that I may be required to attend a hearing of a professional conduct panel to give evidence should this allegation reach that stage.</li>
+    <li>you want TRA to investigate this allegation. This could result in the person you’re reporting being banned from teaching</li>
+    <li>the contents of this form are true to the best of your knowledge and belief</li>
+    <li>you give consent for this form and any supporting documents to be shared with the person you’re reporting, and any employer (your personal details and contact details will not be shared)</li>
+    <li>you have permission from third parties for the documents to be shared</li>
+    <li>you understand that you might need to attend a hearing of a professional conduct panel to give evidence should this allegation reach that stage</li>
   </ul>
 
   {{ govukCheckboxes({
+    formGroup: {
+      classes: "govuk-!-margin-top-7"
+    },
     fieldset: {
       legend: {
         classes: "govuk-fieldset__legend--m",
