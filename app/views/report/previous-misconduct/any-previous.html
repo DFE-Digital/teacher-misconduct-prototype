@@ -2,6 +2,17 @@
 {% set title = "Has there been any previous misconduct, disciplinary action or complaints?" %}
 
 {% block form %}
+  {% set hint %}
+    <p>This includes reports to:</p>
+
+    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+      <li>the Teaching Regulation Agency</li>
+      <li>National College for Teaching and Leadership</li>
+      <li>Teaching Agency</li>
+      <li>the General Teaching Council for England</li>
+    </ul>
+  {% endset %}
+
   {{ govukRadios({
     fieldset: {
       legend: {
@@ -11,7 +22,7 @@
       }
     },
     hint: {
-      text: 'This includes any previous reports to TRA, NCTL, Teaching Agency or the General Teaching Council for England'
+      html: hint
     },
     items: [
       {

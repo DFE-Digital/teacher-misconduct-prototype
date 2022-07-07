@@ -2,16 +2,22 @@
 {% set title = "What is the name of the person you’re reporting?" %}
 
 {% block form %}
+  <h1 class="govuk-heading-xl">{{ title }}</h1>
+
   {{ govukInput({
     label: {
-      text: title,
-      isPageHeading: true,
-      classes: "govuk-label--xl"
+      text: "First name",
+      classes: "govuk-label--m"
     },
-    hint: {
-      html: 'For example ‘Miss Jane Doe’ or ‘Mr John Smith’' | noOrphans
+    decorate: 'report.teacher-details.first-name'
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Last name",
+      classes: "govuk-label--m"
     },
-    decorate: 'report.teacher-details.name'
+    decorate: 'report.teacher-details.last-name'
   }) }}
 
   {% set previousNameHtml %}

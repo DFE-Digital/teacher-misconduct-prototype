@@ -9,8 +9,9 @@
     <li>falls significantly short of the standards expected of a teacher </li>
     <li>brings the teaching profession into disrepute</li>
     <li>affects the way someone performs their teaching role</li>
-    <li>potentially harms pupils</li>
   </ul>
+
+  <p>If the person is convicted of a relevant offence at any time, this is also serious misconduct.</p>
 
   {% set examples %}
     <p>Examples might include:</p>
@@ -37,15 +38,15 @@
   {% endset %}
 
   {{ govukDetails({
-    summaryText: "Show examples of serious misconduct",
+    summaryText: "Show examples of serious misconduct and relevant offences",
     html: examples
   }) }}
 
   {{ govukRadios({
     fieldset: {
       legend: {
-        classes: "govuk-fieldset__legend--m govuk-!-margin-bottom-6",
-        text: "Is the allegation against the teacher serious enough that they should be prevented from teaching?"
+        classes: "govuk-fieldset__legend--m",
+        text: "Is the allegation about serious misconduct?"
       }
     },
     items: [
