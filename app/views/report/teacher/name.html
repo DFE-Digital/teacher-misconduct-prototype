@@ -1,0 +1,60 @@
+{% extends "layouts/report.html" %}
+{% set title = "What is the name of the person you’re reporting?" %}
+
+{% block form %}
+  <h1 class="govuk-heading-xl">{{ title }}</h1>
+
+  {{ govukInput({
+    label: {
+      text: "First name",
+      classes: "govuk-label--m"
+    },
+    decorate: 'report.teacher-details.first-name'
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Last name",
+      classes: "govuk-label--m"
+    },
+    decorate: 'report.teacher-details.last-name'
+  }) }}
+
+  {% set previousNameHtml %}
+    {{ govukInput({
+      label: {
+        text: "Previous name"
+      },
+      decorate: 'report.teacher-details.previous-name'
+    }) }}
+  {% endset %}
+
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--m",
+        text: "Have they changed their name?"
+      }
+    },
+    items: [
+      {
+        text: "Yes",
+        conditional: {
+          html: previousNameHtml
+        }
+      },
+      {
+        text: "No"
+      },
+      {
+        text: "I don’t know"
+      }
+    ],
+    decorate: 'report.teacher-details.have-previous-name',
+    validate: {
+      presence: {
+        message: "Tell us if you have a National Insurance number"
+      }
+    } if data.features.validation.on
+  }) }}
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "layouts/default.html" %}
+{% set serviceUrl = '/report/start' %}
+{% set serviceName = 'Report serious misconduct by a teacher' %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <h1 class="govuk-heading-xl">{{ serviceName }} in England</h1>
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      {{ govukWarningText({
+        html: '<a href="#">Contact the police</a> if you think a child is in immediate danger.'
+      }) }}
+
+      <p>The Teaching Regulation Agency (TRA) will only investigate cases where the misconduct is serious enough to potentially result in a prohibition order, meaning the person can no longer teach.</p>
+
+      <p>You’ll need proof to support your allegation.</p>
+
+      <p>Cases of less serious misconduct, and all cases of incompetence, should be dealt with by employers.</p>
+
+      {{ govukButton({
+        classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-9",
+        text: "Start now",
+        href: paths.next,
+        isStartButton: true
+      }) }}
+
+      <h2 class="govuk-heading-m">When to use a different form</h2>
+
+      <p>If you want to make an anonymous report, or report multiple teachers at once, you need to <a href="#">complete a different form</a>.</p>
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      {{ xGovukRelatedNavigation({
+        sections: [{
+          items: [{
+            text: "Teacher misconduct: information for teachers",
+            href: "https://www.gov.uk/government/publications/teacher-misconduct-information-for-teachers"
+          }, {
+            text: "Teacher misconduct: referring a case",
+            href: "https://www.gov.uk/guidance/teacher-misconduct-referring-a-case"
+          },
+          {
+            text: "Teacher misconduct: disciplinary procedures",
+            href: "https://www.gov.uk/government/publications/teacher-misconduct-disciplinary-procedures"
+          },
+          {
+            text: "Teacher misconduct: regulating the teaching profession",
+            href: "https://www.gov.uk/guidance/teacher-misconduct-regulating-the-teaching-profession"
+          },
+          {
+            text: "Teacher misconduct hearings: information for observers",
+            href: "https://www.gov.uk/government/publications/teacher-misconduct-information-for-observers"
+          }],
+          subsections: [{
+            title: "Collection",
+            items: [{
+              text: "Teacher misconduct",
+              href: "https://www.gov.uk/government/collections/teacher-misconduct"
+            }]
+          }]
+        }]
+      }) }}
+    </div>
+  </div>
+{% endblock %}

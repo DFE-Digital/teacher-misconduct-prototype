@@ -1,0 +1,17 @@
+{% extends "layouts/default.html" %}
+
+{% block header %}
+  {{ govukHeader({
+    homepageUrl: "/",
+    productName: productName,
+    serviceName: serviceName if not productName,
+    serviceUrl: "/start",
+    containerClasses: "govuk-width-container",
+    navigation: [
+      {
+        href: "#",
+        text: "Return to the panellist portal"
+      }
+    ]
+  }) }}
+{% endblock %}

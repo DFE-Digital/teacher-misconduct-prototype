@@ -1,0 +1,84 @@
+{% set address %}
+  {% set addressPath = 'report.teacher-role.school.address' %}
+  {% include '../shared/_formatted-address.html' %}
+{% endset %}
+
+{{ xGovukSummaryCard({
+  classes: "govuk-!-margin-bottom-9",
+  titleText: "About their role",
+  rows: decorateRows([
+    {
+      key: "Start date",
+      value: d('report.teacher-role.start-date') | isoDateFromDateInput | govukDate,
+      href: "/report/teacher-role/start-date"
+    },
+    {
+      key: "End date",
+      value: d('report.teacher-role.end-date') | isoDateFromDateInput | govukDate,
+      href: "/report/teacher-role/end-date",
+      condition: {
+        data: 'report.teacher-role.has-left-job',
+        value: 'Yes'
+      }
+    },
+    {
+      key: "How did they leave this job?",
+      data: 'report.teacher-role.how-end-job',
+      href: "/report/teacher-role/end-date",
+      condition: {
+        data: 'report.teacher-role.has-left-job',
+        value: 'Yes'
+      }
+    },
+    {
+      key: "End date",
+      value: "They are still working in this job",
+      href: "/report/teacher-role/end-date",
+      condition: {
+        data: 'report.teacher-role.has-left-job',
+        value: 'No'
+      }
+    },
+    {
+      key: "Job title",
+      data: "report.teacher-role.job-title",
+      href: "/report/teacher-role/job-title"
+    },
+    {
+      key: "Organisation",
+      value: d("report.your-organisation.name") or "The same organisation as me",
+      href: "/report/teacher-role/school",
+      condition: {
+        data: "report.teacher-role.same-organisation",
+        value: "same"
+      }
+    },
+    {
+      key: "School name",
+      data: "report.teacher-role.school-name",
+      href: "/report/teacher-role/school",
+      condition: {
+        data: "report.teacher-role.same-organisation",
+        value: "different"
+      }
+    },
+    {
+      key: "School address",
+      value: {
+        html: address
+      },
+      href: "/report/teacher-role/school",
+      condition: {
+        data: "report.teacher-role.same-organisation",
+        value: "different"
+      }
+    },
+    {
+      key: "Main duties",
+      value: {
+        html: d('report.teacher-role.duties') | nl2br
+      },
+      href: "/report/teacher-role/duties"
+    }
+  ])
+}) }}

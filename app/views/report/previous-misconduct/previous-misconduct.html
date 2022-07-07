@@ -1,0 +1,43 @@
+{% extends "layouts/report.html" %}
+{% set title = "Tell us about previous allegations and what actions were taken" %}
+
+{% block form %}
+  <h1 class="govuk-heading-xl">
+    {{ title }}
+  </h1>
+
+  <p>Give details of any previous:
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>misconduct</li>
+    <li>disciplinary actions</li>
+    <li>complaints</li>
+    <li>referrals to TRA, NCTL, Teaching Agency or the General Teaching Council for England</li>
+  </ul>
+
+  <p>Tell us:
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>what happened and when</li>
+    <li>what action was taken</li>
+  </ul>
+
+  <p>If you have this information in a document, you can upload it in the documentation section.</p>
+
+  {{ govukTextarea({
+    label: {
+      text: "Details of previous allegations",
+      classes: "govuk-label--m govuk-!-margin-top-6"
+    },
+    hint: {
+      text: ''
+    },
+    decorate: 'report.previous-misconduct.previous-misconduct',
+    rows: 20,
+    validate: {
+      presence: {
+        message: "Tell us about the previous misconduct"
+      }
+    } if data.features.validation.on
+  }) }}
+{% endblock %}

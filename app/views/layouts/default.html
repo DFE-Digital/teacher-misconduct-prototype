@@ -18,14 +18,8 @@
     homepageUrl: "/",
     productName: productName,
     serviceName: serviceName if not productName,
-    serviceUrl: "/start",
-    containerClasses: "govuk-width-container",
-    navigation: [
-      {
-        href: "#",
-        text: "Return to the panellist portal"
-      }
-    ]
+    serviceUrl: serviceUrl or "/start",
+    containerClasses: "govuk-width-container"
   }) }}
 {% endblock %}
 

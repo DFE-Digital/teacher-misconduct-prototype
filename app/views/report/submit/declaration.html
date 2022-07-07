@@ -1,0 +1,49 @@
+{% extends "layouts/report.html" %}
+{% set title = "Before you send your report" %}
+{% set buttonText = "Send report" %}
+
+{% block beforeForm %}
+  <h1 class="govuk-heading-xl">
+    {{ title }}
+  </h1>
+
+  <p>You need to confirm that:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>you want TRA to investigate this allegation. This could result in the person you’re reporting being banned from teaching</li>
+    <li>the contents of this form are true to the best of your knowledge and belief</li>
+    <li>you give consent for this form and any supporting documents to be shared with the person you’re reporting, and any employer (your personal details and contact details will not be shared)</li>
+    <li>you have permission from third parties for the documents to be shared</li>
+    <li>you understand that you might need to attend a hearing of a professional conduct panel to give evidence should this allegation reach that stage</li>
+  </ul>
+
+  <p>Your submitted report will be kept for 50 years.</p>
+
+  {{ govukCheckboxes({
+    formGroup: {
+      classes: "govuk-!-margin-top-7"
+    },
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--m",
+        isPageHeading: true,
+        text: "Do you agree to this declaration?"
+      }
+    },
+    items: [
+      {
+        text: "Yes, I agree"
+      }
+    ],
+    decorate: 'report.submit.declaration',
+    validate: {
+      presence: {
+        message: "You must agree to this declaration before continuing"
+      }
+    } if data.features.validation.on
+  }) }}
+
+{% endblock %}
+
+{% block form %}
+{% endblock %}

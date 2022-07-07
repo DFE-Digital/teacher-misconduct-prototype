@@ -1,0 +1,27 @@
+{% extends "layouts/report.html" %}
+{% set title = "We have received your report of serious misconduct" %}
+{% block pageNavigation %}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukPanel({
+      titleHtml: title,
+      classes: 'govuk-!-margin-bottom-8'
+    }) }}
+
+    <p>We’ve sent you a confirmation by email. Your confirmation includes a link to view your report.</p>
+
+    <h2 class="govuk-heading-m">What happens next</h2>
+
+    <p>TRA aims to get back to you within 3 working days about whether your report will be investigated.</p>
+
+    <p>TRA may contact you for further information.</p>
+
+    <h2 class="govuk-heading-m">Contacting TRA about this report</h2>
+
+    <p>You can contact <a href="#">email@email.com</a>.</p>
+  </div>
+</div>
+
+{% endblock %}
