@@ -1,23 +1,26 @@
 {% extends "layouts/report.html" %}
-{% set title = "Pick the categories that match this document" %}
+{% set title = file.filename %}
 
 {% block form %}
+  <h1 class="govuk-heading-l">
+    <span class="govuk-caption-l">Your uploaded file</span>
+    {{ title }}
+  </h1>
   {% set other %}
     {{ govukInput({
       label: {
         text: "Explain what this document is",
         classes: "govuk-label--s"
       },
-      decorate: 'report.documentation.other-type'
+      decorate: 'report.documentation.uploaded-files.' + fileId + '.other-type'
     }) }}
   {% endset %}
 
   {{ govukCheckboxes({
     fieldset: {
       legend: {
-        classes: "govuk-fieldset__legend--xl",
-        isPageHeading: true,
-        text: title | noOrphans | safe
+        classes: "govuk-fieldset__legend--m",
+        text: "Pick the categories that describe this file" | noOrphans | safe
       }
     },
     items: [
@@ -44,6 +47,6 @@
         }
       }
     ],
-    decorate: 'report.documentation.type'
+    decorate: 'report.documentation.uploaded-files.' + fileId + '.type'
   }) }}
 {% endblock %}

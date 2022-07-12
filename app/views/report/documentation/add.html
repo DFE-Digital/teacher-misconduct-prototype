@@ -1,46 +1,10 @@
 {% extends "layouts/report.html" %}
-{% set title = "Do you want to upload a document?" %}
+{% set title = "Upload evidence and supporting information" %}
 
 {% block form %}
-  {% set upload %}
-    {{ govukFileUpload({
-      label: {
-        text: "Upload document",
-        classes: "govuk-label--s"
-      },
-      decorate: 'report.documentation.file'
-    }) }}
-  {% endset %}
-
-  {{ govukRadios({
-    fieldset: {
-      legend: {
-        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
-        isPageHeading: true,
-        text: title
-      }
-    },
-    items: [
-      {
-        text: "Yes",
-        conditional: {
-          html: upload
-        }
-      },
-      {
-        text: "No"
-      }
-    ],
-    decorate: 'report.documentation.add-file',
-    validate: {
-      presence: {
-        message: "Tell us if you know the teacher’s National Insurance number"
-      }
-    } if data.features.validation.on
-  }) }}
+  <h1 class="govuk-heading-xl">{{ title }}</h1>
 
   {% set examples %}
-    <p>Examples might include:</p>
     {% include "../shared/_examples.html" %}
   {% endset %}
 
@@ -48,4 +12,22 @@
     summaryText: "Examples of evidence and supporting information",
     html: examples
   }) }}
+
+  {{ govukFileUpload({
+    label: {
+      text: "Upload files",
+      classes: "govuk-label--m"
+    },
+    attributes: {
+      multiple: true
+    },
+    decorate: 'report.documentation.files'
+  }) }}
+
+  <h2 class="govuk-heading-s">Upload multiple files</h2>
+  <p>You can upload multiple files at once. Upload any files larger than 20mb one at a time.</p>
+
+  <h2 class="govuk-heading-s">Do not upload explicit content</h2>
+  <p class="govuk-!-margin-bottom-6">Do not upload explicit files if they are part of the evidence you’ve collected. If your report mentions explicit files, TRA will ask for them when they are needed.</p>
+
 {% endblock %}

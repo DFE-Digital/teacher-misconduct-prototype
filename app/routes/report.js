@@ -68,11 +68,69 @@ export const reportRoutes = router => {
     next()
   })
 
+  router.post('/report/documentation/add/', (req, res, next) => {
+    req.session.data.report.documentation['uploaded-files'] = {
+      '001': { filename: 'main-investigation.pdf' },
+      '002': { filename: 'police-investigation.docx' },
+      '003': { filename: 'signed-witness-statements.pdf' },
+      '004': { filename: 'cctv-footage.mp4' }
+    }
+    next()
+  })
+
   router.all([
     '/report/documentation/',
-    '/report/documentation/:view'
+    '/report/documentation/:view',
+    '/report/documentation/type/:id'
   ], (req, res, next) => {
     res.locals.paths = documentationWizard(req)
+    next()
+  })
+
+  router.get('/report/documentation/type/:id', (req, res) => {
+    const file = req.session.data.report.documentation['uploaded-files'][req.params.id]
+    res.locals.file = file
+    res.locals.fileId = req.params.id
+    res.render('report/documentation/type.html')
+  })
+
+  router.all([
+    '/report/documentation/check-answers',
+    '/report/submit/review'
+  ], (req, res, next) => {
+    const data = req.session.data
+    const files = _.get(data, _.toPath('report.documentation.uploaded-files')) || {}
+    const fileRows = []
+
+    // file.type ? file.type.join(' ') : 'No type',
+
+    for (const [fileId, file] of Object.entries(files)) {
+      let fileTypes = file.type ? file.type.join(', ') : 'No type'
+      fileTypes = 'Type:<br />' + fileTypes.replace('Other', `Other: ${file['other-type']}`)
+
+      fileRows.push({
+        key: {
+          html: `<a href="#">${file.filename}</a>`
+        },
+        value: {
+          html: fileTypes
+        },
+        actions: {
+          items: [
+            {
+              text: 'Change',
+              href: `/report/documentation/edit-file/${fileId}`
+            },
+            {
+              text: 'Delete',
+              href: '#'
+            }
+          ]
+        }
+      })
+    }
+
+    res.locals.fileRows = fileRows
     next()
   })
 
@@ -103,6 +161,7 @@ export const reportRoutes = router => {
     '/report/allegation/:view',
     '/report/previous-misconduct/:view',
     '/report/documentation/:view',
+    '/report/documentation/type/:id',
     '/report/submit/:view',
     '/report/teacher/:view'
   ], (req, res) => {
