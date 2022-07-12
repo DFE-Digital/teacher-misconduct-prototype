@@ -1,0 +1,36 @@
+{% extends "layouts/report.html" %}
+{% set title = "Give a summary of previous allegations" %}
+
+{% block form %}
+  <h1 class="govuk-heading-xl">
+    {{ title }}
+  </h1>
+
+  <p>This includes previous:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>misconduct</li>
+    <li>disciplinary actions</li>
+    <li>complaints</li>
+    <li>referrals to TRA, National College for Teaching and Leadership, Teaching Agency or the General Teaching Council for England</li>
+  </ul>
+
+  <p>We’ll ask for a detailed report next.</p>
+
+  {{ govukTextarea({
+    label: {
+      text: "Summary of previous allegations",
+      classes: "govuk-label--m govuk-!-margin-top-6"
+    },
+    hint: {
+      text: ''
+    },
+    decorate: 'report.previous-misconduct.previous-misconduct-summary',
+    rows: 5,
+    validate: {
+      presence: {
+        message: "Tell us about the previous misconduct"
+      }
+    } if data.features.validation.on
+  }) }}
+{% endblock %}

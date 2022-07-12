@@ -9,6 +9,7 @@ export function previousMisconductWizard (req) {
         value: 'No'
       }
     },
+    '/report/previous-misconduct/previous-misconduct-summary': {},
     '/report/previous-misconduct/previous-misconduct': {},
     '/report/previous-misconduct/check-answers': {
       '/report/tasks': true
