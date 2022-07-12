@@ -1,21 +1,20 @@
 {% extends "layouts/report.html" %}
-{% set title = "Give a detailed account of what happened" %}
+{% set title = "Tell us briefly what happened" %}
 
 {% block form %}
   <h1 class="govuk-heading-xl">
     {{ title }}
   </h1>
 
-  <p>Include dates and locations.</p>
-  <p>If you have this information in a document, you can upload it in the <a href="#">documentation section</a>.</p>
+  <p>We’ll ask for a detailed report next.</p>
 
   {{ govukTextarea({
     label: {
-      text: "Details of the allegation",
+      text: "A summary of the allegation",
       classes: "govuk-label--m govuk-!-margin-top-6"
     },
-    decorate: 'report.allegation.allegation',
-    rows: 20,
+    decorate: 'report.allegation.allegation-summary',
+    rows: 5,
     validate: {
       presence: {
         message: "Tell us about the allegation"

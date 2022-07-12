@@ -3,12 +3,23 @@
   titleText: "Previous allegations",
   rows: decorateRows([
     {
-      key: "Has there been any previous misconduct, disciplinary action or complaints?",
+      key: "Has there been any previous misconduct?",
       data: "report.previous-misconduct.any-previous",
       href: "/report/previous-misconduct/any-previous"
     },
     {
-      key: "Details of previous allegations",
+      key: "Summary",
+      value: {
+        html: d('report.previous-misconduct.previous-misconduct-summary') | nl2br
+      },
+      href: "/report/previous-misconduct/previous-misconduct-summary",
+      condition: {
+        data: "report.previous-misconduct.any-previous",
+        value: "Yes"
+      }
+    },
+    {
+      key: "Detailed report",
       value: {
         html: d('report.previous-misconduct.previous-misconduct') | nl2br
       },

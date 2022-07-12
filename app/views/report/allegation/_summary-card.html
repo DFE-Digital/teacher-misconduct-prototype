@@ -1,12 +1,25 @@
 {{ xGovukSummaryCard({
   classes: "govuk-!-margin-bottom-9",
+  titleText: "What happened",
   rows: decorateRows([
     {
-      key: "What happened",
+      key: "Summary",
+      value: {
+        html: d('report.allegation.allegation-summary') | nl2br
+      },
+      href: "/report/allegation/allegation-summary"
+    },
+    {
+      key: "Detailed account",
       value: {
         html: d('report.allegation.allegation') | nl2br
       },
       href: "/report/allegation/allegation"
+    },
+    {
+      key: "Have you told DBS?",
+      data: 'report.allegation.dbs',
+      href: "/report/allegation/dbs"
     }
   ])
 }) }}
