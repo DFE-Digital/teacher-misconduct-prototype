@@ -3,9 +3,9 @@ import { wizard } from 'govuk-prototype-rig'
 export function eligibilityWizard (req) {
   const journey = {
     '/report/start': {},
-    '/report/who': {},
     '/report/email': {},
     '/report/email-code': {},
+    '/report/who': {},
     '/report/eligibility/jurisdiction': {
       '/report/eligibility/possible-jurisdiction': {
         data: 'report.eligibility.are-they-teacher',
