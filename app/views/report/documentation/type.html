@@ -1,5 +1,5 @@
 {% extends "layouts/report.html" %}
-{% set title = "What type of document is this?" %}
+{% set title = "Which of these types is this document?" %}
 
 {% block form %}
   {% set other %}
@@ -21,7 +21,7 @@
       }
     },
     hint: {
-      text: "Pick any that apply"
+      text: "Pick all that apply"
     },
     items: [
       { text: "CV" },
