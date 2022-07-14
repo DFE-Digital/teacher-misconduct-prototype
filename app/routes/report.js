@@ -47,7 +47,7 @@ export const reportRoutes = router => {
     '/report/teacher-role/',
     '/report/teacher-role/:view'
   ], (req, res, next) => {
-    res.locals.hasLeftJob = _.get(req.session.data, _.toPath('report.teacher-role.has-left-job')) === 'Yes'
+    res.locals.hasLeftJob = _.get(req.session.data, _.toPath('report.teacher-role.still-employed')) === 'No'
     res.locals.paths = teacherRoleWizard(req)
     next()
   })

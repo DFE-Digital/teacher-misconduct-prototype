@@ -1,5 +1,5 @@
 {% extends "layouts/report.html" %}
-{% set title = "Have they left this job?" %}
+{% set title = "Are they still employed?" %}
 
 {% block form %}
   {% set endDate %}
@@ -58,16 +58,16 @@
     },
     items: [
       {
-        text: "Yes",
+        text: "Yes"
+      },
+      {
+        text: "No",
         conditional: {
           html: endDate
         }
-      },
-      {
-        text: "No"
       }
     ],
-    decorate: 'report.teacher-role.has-left-job',
+    decorate: 'report.teacher-role.still-employed',
     validate: {
       presence: {
         message: "Tell us if you know the teacher’s National Insurance number"
