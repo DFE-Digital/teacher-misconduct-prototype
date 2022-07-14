@@ -17,8 +17,8 @@
       value: d('report.teacher-role.end-date') | isoDateFromDateInput | govukDate,
       href: "/report/teacher-role/end-date",
       condition: {
-        data: 'report.teacher-role.has-left-job',
-        value: 'Yes'
+        data: 'report.teacher-role.still-employed',
+        value: 'No'
       }
     },
     {
@@ -26,17 +26,17 @@
       data: 'report.teacher-role.how-end-job',
       href: "/report/teacher-role/end-date",
       condition: {
-        data: 'report.teacher-role.has-left-job',
-        value: 'Yes'
+        data: 'report.teacher-role.still-employed',
+        value: 'No'
       }
     },
     {
-      key: "End date",
-      value: "They are still working in this job",
+      key: "Are they still employed?",
+      data: "report.teacher-role.still-employed",
       href: "/report/teacher-role/end-date",
       condition: {
-        data: 'report.teacher-role.has-left-job',
-        value: 'No'
+        data: 'report.teacher-role.still-employed',
+        excludedValue: 'No'
       }
     },
     {
