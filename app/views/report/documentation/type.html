@@ -1,5 +1,5 @@
 {% extends "layouts/report.html" %}
-{% set title = "Which of these types is this document?" %}
+{% set title = "Pick the categories that match this document" %}
 
 {% block form %}
   {% set other %}
@@ -19,9 +19,6 @@
         isPageHeading: true,
         text: title | noOrphans | safe
       }
-    },
-    hint: {
-      text: "Pick all that apply"
     },
     items: [
       { text: "CV" },
