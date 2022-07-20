@@ -3,6 +3,11 @@
   {% include '../shared/_formatted-address.html' %}
 {% endset %}
 
+{% set newOrgAddress %}
+  {% set addressPath = 'report.teacher-role.other-employer.address' %}
+  {% include '../shared/_formatted-address.html' %}
+{% endset %}
+
 {{ xGovukSummaryCard({
   classes: "govuk-!-margin-bottom-9",
   titleText: "About their role",
@@ -31,7 +36,7 @@
       }
     },
     {
-      key: "Are they still employed?",
+      key: "Are they still employed in this job?",
       data: "report.teacher-role.still-employed",
       href: "/report/teacher-role/end-date",
       condition: {
@@ -54,16 +59,7 @@
       }
     },
     {
-      key: "School name",
-      data: "report.teacher-role.school-name",
-      href: "/report/teacher-role/school",
-      condition: {
-        data: "report.teacher-role.same-organisation",
-        value: "different"
-      }
-    },
-    {
-      key: "School address",
+      key: "School",
       value: {
         html: address
       },
@@ -78,7 +74,58 @@
       value: {
         html: d('report.teacher-role.duties') | nl2br
       },
-      href: "/report/teacher-role/duties"
-    }
+      href: "/report/teacher-role/duties",
+      condition: {
+        data: "report.teacher-details.how-tell-job",
+        value: "describe"
+      }
+    },
+    {
+      key: "Main duties",
+      value: {
+        html: '<a href="#">job-description.pdf</a>'
+      },
+      href: "/report/teacher-role/duties",
+      condition: {
+        data: "report.teacher-details.how-tell-job",
+        value: "upload"
+      }
+    },
+    {
+      key: "Main duties",
+      value: {
+        html: '<span class="govuk-tag govuk-tag--grey">Incomplete</span>'
+      },
+      href: "/report/teacher-role/duties",
+      condition: {
+        data: "report.teacher-details.how-tell-job",
+        value: "later"
+      }
+    },
+    {
+      key: "Are they teaching somewhere else?",
+      data: "report.teacher-role.teaching-elsewhere",
+      href: "/report/teacher-role/teaching-somewhere-else"
+    } if hasLeftJob,
+    {
+      key: "Do you know where they are teaching?",
+      data: "report.teacher-role.know-other-employer",
+      href: "/report/teacher-role/teaching-where-now",
+      condition: {
+        data: "report.teacher-role.know-other-employer",
+        value: "No"
+      }
+    } if hasLeftJob and d("report.teacher-role.teaching-elsewhere") == "Yes",
+    {
+      key: "New employer",
+      value: {
+        html: newOrgAddress
+      },
+      href: "/report/teacher-role/teaching-where-now",
+      condition: {
+        data: "report.teacher-role.know-other-employer",
+        value: "Yes"
+      }
+    } if hasLeftJob and d("report.teacher-role.teaching-elsewhere") == "Yes"
   ])
 }) }}

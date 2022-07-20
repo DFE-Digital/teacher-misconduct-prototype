@@ -1,5 +1,5 @@
 {% extends "layouts/report.html" %}
-{% set title = "Are they still employed?" %}
+{% set title = "Are they still employed in that job?" %}
 
 {% block form %}
   {% set endDate %}
@@ -42,7 +42,7 @@
       decorate: 'report.teacher-role.how-end-job',
       validate: {
         presence: {
-          message: "Tell us they left this job"
+          message: "Tell us why they left this job"
         }
       } if data.features.validation.on
     }) }}
@@ -65,7 +65,7 @@
         value: "Yes, but they’ve been suspended"
       },
       {
-        text: "No, they are no longer employed",
+        text: "No, they have left the organisation",
         value: "No",
         conditional: {
           html: endDate
@@ -75,7 +75,7 @@
     decorate: 'report.teacher-role.still-employed',
     validate: {
       presence: {
-        message: "Tell us if you know the teacher’s National Insurance number"
+        message: "Tell us if they are still employed"
       }
     } if data.features.validation.on
   }) }}

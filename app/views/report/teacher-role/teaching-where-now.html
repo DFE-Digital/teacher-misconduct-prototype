@@ -1,33 +1,25 @@
 {% extends "layouts/report.html" %}
-{% set title = ("Did they" if hasLeftJob else "Do they") + " work in the same organisation as you?" %}
-
-{% if d('report.your-organisation.name') %}
-  {% set organisationName = "(" + d('report.your-organisation.name') + ")" %}
-{% else %}
-  {% set organisationName = "" %}
-{% endif %}
+{% set title = "Do you know where they are teaching?" %}
 
 {% block form %}
-  {% set where %}
-    <h2 class="govuk-heading-m">{{ "Where did they work?" if hasLeftJob else "Where do they work?" }}</h2>
-
+  {% set otherEmployer %}
     {{ govukInput({
       label: {
-        text: "School name",
+        text: "Organisation name",
         classes: "govuk-label--s"
       },
       classes: "govuk-!-margin-bottom-6",
-      decorate: 'report.teacher-role.school.address.name',
+      decorate: 'report.teacher-role.other-employer.address.name',
       validate: {
         presence: {
-          message: "Enter a school name"
+          message: "Enter an organisation name"
         }
       } if data.features.validation.on
     }) }}
 
     {% call govukFieldset({
       legend: {
-        text: "School address",
+        text: "Organisation address",
         classes: "govuk-fieldset__legend--s"
       }
     }) %}
@@ -35,7 +27,7 @@
         label: {
           text: 'Address line 1'
         },
-        decorate: 'report.teacher-role.school.address.line-1',
+        decorate: 'report.teacher-role.other-employer.address.line-1',
         autocomplete: "address-line1"
       }) }}
 
@@ -43,7 +35,7 @@
         label: {
           text: 'Address line 2 (optional)'
         },
-        decorate: 'report.teacher-role.school.address.line-2',
+        decorate: 'report.teacher-role.other-employer.address.line-2',
         autocomplete: "address-line2"
       }) }}
 
@@ -52,7 +44,7 @@
           text: "Town or city"
         },
         classes: "govuk-!-width-two-thirds",
-        decorate: 'report.teacher-role.school.address.town',
+        decorate: 'report.teacher-role.other-employer.address.town',
         autocomplete: "address-level2"
       }) }}
 
@@ -61,7 +53,7 @@
           text: "Postcode"
         },
         classes: "govuk-input--width-10",
-        decorate: 'report.teacher-role.school.address.postcode',
+        decorate: 'report.teacher-role.other-employer.address.postcode',
         autocomplete: "postal-code"
       }) }}
     {% endcall %}
@@ -77,22 +69,20 @@
     },
     items: [
       {
-        text: "Yes, in the same organisation as me " + organisationName,
-        value: "same"
+        text: "Yes",
+        conditional: {
+          html: otherEmployer
+        }
       },
       {
-        text: "No, in a different organisation",
-        value: "different",
-        conditional: {
-          html: where
-        }
+        text: "No"
       }
     ],
-    decorate: 'report.teacher-role.same-organisation',
+    decorate: 'report.teacher-role.know-other-employer',
     validate: {
       presence: {
-        message: "Tell us if they " + ("worked" if hasLeftJob else "work") + " in a different organisation to you"
+        message: "Tell us if you know where they are teaching"
       }
-    } if data.features.validation.on
+    }
   }) }}
 {% endblock %}

@@ -31,6 +31,7 @@ export function eligibilityWizard (req) {
         value: 'No'
       }
     },
+    '/report/eligibility/save-as-you-go': {},
     '/report/tasks': {},
     '/report/submit/review': {}
   }
