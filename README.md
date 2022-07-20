@@ -1,4 +1,4 @@
-# TMS prototype
+# Teacher misconduct prototype
 
 https://teacher-misconduct.herokuapp.com/
 
