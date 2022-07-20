@@ -1,5 +1,5 @@
 {% extends "layouts/report.html" %}
-{% set title = "Are they still employed at the organisation they were working for when the alleged misconduct took place?" %}
+{% set title = "Are they still employed in that job?" %}
 
 {% block form %}
   {% set endDate %}
@@ -42,7 +42,7 @@
       decorate: 'report.teacher-role.how-end-job',
       validate: {
         presence: {
-          message: "Tell us they left this job"
+          message: "Tell us why they left this job"
         }
       } if data.features.validation.on
     }) }}
@@ -51,7 +51,7 @@
   {{ govukRadios({
     fieldset: {
       legend: {
-        classes: "govuk-fieldset__legend--l govuk-!-margin-bottom-6",
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
         isPageHeading: true,
         text: title
       }
@@ -75,7 +75,7 @@
     decorate: 'report.teacher-role.still-employed',
     validate: {
       presence: {
-        message: "Tell us if you know the teacher’s National Insurance number"
+        message: "Tell us if they are still employed"
       }
     } if data.features.validation.on
   }) }}
