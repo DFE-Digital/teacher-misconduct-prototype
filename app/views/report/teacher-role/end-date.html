@@ -1,5 +1,5 @@
 {% extends "layouts/report.html" %}
-{% set title = "Are they still employed?" %}
+{% set title = "Are they still employed at the organisation they were working for when the alleged misconduct took place?" %}
 
 {% block form %}
   {% set endDate %}
@@ -51,7 +51,7 @@
   {{ govukRadios({
     fieldset: {
       legend: {
-        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        classes: "govuk-fieldset__legend--l govuk-!-margin-bottom-6",
         isPageHeading: true,
         text: title
       }
@@ -65,7 +65,7 @@
         value: "Yes, but they’ve been suspended"
       },
       {
-        text: "No, they are no longer employed",
+        text: "No, they have left the organisation",
         value: "No",
         conditional: {
           html: endDate
