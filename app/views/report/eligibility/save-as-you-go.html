@@ -1,0 +1,8 @@
+{% extends "layouts/report.html" %}
+{% set title = "Your progress is saved as you go" %}
+
+{% block form %}
+  <h1 class="govuk-heading-xl">{{ title | noOrphans | safe }}</h1>
+
+  <p class="govuk-!-margin-bottom-6">It could take some time to complete your report. You can complete it in stages. It will save automatically, and you can return to it at any time.</p>
+{% endblock %}
