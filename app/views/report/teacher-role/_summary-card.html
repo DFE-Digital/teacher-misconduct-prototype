@@ -74,7 +74,33 @@
       value: {
         html: d('report.teacher-role.duties') | nl2br
       },
-      href: "/report/teacher-role/duties"
+      href: "/report/teacher-role/duties",
+      condition: {
+        data: "report.teacher-details.how-tell-job",
+        value: "describe"
+      }
+    },
+    {
+      key: "Main duties",
+      value: {
+        html: '<a href="#">job-description.pdf</a>'
+      },
+      href: "/report/teacher-role/duties",
+      condition: {
+        data: "report.teacher-details.how-tell-job",
+        value: "upload"
+      }
+    },
+    {
+      key: "Main duties",
+      value: {
+        html: '<span class="govuk-tag govuk-tag--grey">Incomplete</span>'
+      },
+      href: "/report/teacher-role/duties",
+      condition: {
+        data: "report.teacher-details.how-tell-job",
+        value: "later"
+      }
     },
     {
       key: "Are they teaching somewhere else?",

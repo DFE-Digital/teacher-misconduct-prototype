@@ -1,18 +1,62 @@
 {% extends "layouts/report.html" %}
-{% set title = "Describe their main duties" %}
+{% set title = "How do you want to tell us about their main duties?" %}
 
 {% block form %}
-  {{ govukTextarea({
-    label: {
-      text: title,
-      classes: "govuk-label--xl govuk-!-margin-bottom-6",
-      isPageHeading: true
+  {% set duties %}
+    {{ govukTextarea({
+      label: {
+        text: "Describe their main duties",
+        classes: "govuk-label--m"
+      },
+      decorate: 'report.teacher-role.duties',
+      rows: 20,
+      validate: {
+        presence: {
+          message: "Tell us about their main duties"
+        }
+      } if data.features.validation.on
+    }) }}
+  {% endset %}
+
+  {% set jobDescription %}
+    {{ govukFileUpload({
+      label: {
+        text: "Upload job description",
+        classes: "govuk-label--s"
+      },
+      decorate: 'report.teacher-details.job-description-file'
+    }) }}
+  {% endset %}
+
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
     },
-    hint: {
-      html: '<p>Give details of the work carried out by the person you are reporting.</p><p>Alternatively, you can upload a job description in the documentation section.</p>'
-    },
-    decorate: 'report.teacher-role.duties',
-    rows: 20,
+    items: [
+      {
+        text: "I’ll upload a job description",
+        value: "upload",
+        conditional: {
+          html: jobDescription
+        }
+      },
+      {
+        text: "I’ll describe their main duties",
+        value: "describe",
+        conditional: {
+          html: duties
+        }
+      },
+      {
+        text: "I’ll do this later",
+        value: "later"
+      }
+    ],
+    decorate: 'report.teacher-details.how-tell-job',
     validate: {
       presence: {
         message: "Tell us about their main duties"
