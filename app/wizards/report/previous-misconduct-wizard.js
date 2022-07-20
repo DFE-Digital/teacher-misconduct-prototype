@@ -6,7 +6,7 @@ export function previousMisconductWizard (req) {
     '/report/previous-misconduct/any-previous': {
       '/report/previous-misconduct/check-answers': {
         data: 'report.previous-misconduct.any-previous',
-        value: 'No'
+        excludedValue: 'Yes'
       }
     },
     '/report/previous-misconduct/previous-misconduct-summary': {},
