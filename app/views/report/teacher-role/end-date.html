@@ -18,7 +18,7 @@
         date: {
           message: "End date should be a valid date"
         }
-      } if data.features.validation.on
+      }
     }) }}
 
     {{ govukRadios({
@@ -44,7 +44,7 @@
         presence: {
           message: "Tell us why they left this job"
         }
-      } if data.features.validation.on
+      }
     }) }}
   {% endset %}
 
@@ -77,6 +77,6 @@
       presence: {
         message: "Tell us if they are still employed"
       }
-    } if data.features.validation.on
+    }
   }) }}
 {% endblock %}
