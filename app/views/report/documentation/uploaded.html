@@ -8,13 +8,11 @@
 
   <p>Your files:</p>
 
-  <ul class="govuk-list">
+  <ul class="govuk-list govuk-!-margin-bottom-6">
     {% for id, file in d('report.documentation.uploaded-files') %}
       <li>
         <a href="#">{{ file.filename }}</a>
       </li>
     {% endfor %}
   </ul>
-
-  <p class="govuk-!-margin-bottom-6">We will ask you to categorise each file.</p>
 {% endblock %}
