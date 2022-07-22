@@ -1,0 +1,36 @@
+{% extends "layouts/report.html" %}
+{% set signedIn = false %}
+{% set title = "Your allegations of serious misconduct" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">{{ title }}</h1>
+
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-2">
+        Completed report, submitted 9 January 2022
+      </h2>
+      <p>Last update on 1 June 2022 at 1:01pm</p>
+
+      {{ govukButton({
+        text: 'View updates',
+        href: '/report/tasks'
+      }) }}
+
+      {% set html %}
+        <p>You can have multiple draft reports at the same time.</p>
+
+        {{ govukButton({
+          text: 'Start a new report',
+          href: '#',
+          classes: 'govuk-button--secondary'
+        }) }}
+      {% endset %}
+
+      {{ govukDetails({
+        summaryText: "I need to report someone else",
+        html: html
+      }) }}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "layouts/report.html" %}
+{% set signedIn = false %}
+{% set title = "Your allegations of serious misconduct" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">{{ title }}</h1>
+
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-2">
+        <a href="#">Draft report, started 22 July 2022</a>
+      </h2>
+      <p>Last saved on 24 July 2022 at 2pm</p>
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-2">
+        <a href="#">Draft report, started 10 May 2022</a>
+      </h2>
+      <p>Last saved on 1 June 2022 at 1:01pm</p>
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-2">
+        <a href="#">Completed report, submitted 9 January 2022</a>
+      </h2>
+      <p>Last update on 1 June 2022 at 1:01pm</p>
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      {% set html %}
+        <p>You can have multiple draft reports at the same time.</p>
+
+        {{ govukButton({
+          text: 'Start a new report',
+          href: '#',
+          classes: 'govuk-button--secondary'
+        }) }}
+      {% endset %}
+
+      {{ govukDetails({
+        summaryText: "I need to report someone else",
+        html: html,
+        classes: 'govuk-!-margin-top-8'
+      }) }}
+    </div>
+  </div>
+{% endblock %}
