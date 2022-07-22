@@ -3,6 +3,7 @@
 {% set line2 = d(addressPath + '.line-2') %}
 {% set town = d(addressPath + '.town') %}
 {% set postcode = d(addressPath + '.postcode') %}
+{% set country = d(addressPath + '.country') %}
 
 {% if name %}
   {{ name }}<br />
@@ -15,3 +16,6 @@
   {{ town }}<br />
 {% endif %}
 {{ postcode }}
+{% if country %}
+  <br />{{ country }}
+{% endif %}

@@ -44,6 +44,15 @@
       autocomplete: "postal-code"
     }) }}
 
+    {{ govukInput({
+      label: {
+        text: "Country (optional)"
+      },
+      classes: "govuk-!-width-two-thirds",
+      decorate: 'report.teacher-contact-details.address.country',
+      autocomplete: "country"
+    }) }}
+
     {% endcall %}
   {% endset %}
 
