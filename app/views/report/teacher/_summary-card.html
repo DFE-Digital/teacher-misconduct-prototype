@@ -43,6 +43,11 @@
       key: 'Teacher reference number (TRN)',
       value: 'Not known' if d('report.teacher-details.know-trn') == 'No' else d('report.teacher-details.trn'),
       href: '/report/teacher/trn'
+    },
+    {
+      key: 'Do they have QTS?',
+      data: 'report.teacher-details.qts',
+      href: '/report/teacher/qts'
     }
   ])
 }) }}
