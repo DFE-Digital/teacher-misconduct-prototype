@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { yourDetailsWizard } from '../wizards/report/your-details-wizard.js'
 import { yourOrganisationWizard } from '../wizards/report/your-organisation-wizard.js'
+import { alternativeContactDetailsWizard } from '../wizards/report/alternative-contact-details-wizard.js'
 import { teacherDetailsWizard } from '../wizards/report/teacher-details-wizard.js'
 import { teacherContactDetailsWizard } from '../wizards/report/teacher-contact-details-wizard.js'
 import { teacherRoleWizard } from '../wizards/report/teacher-role-wizard.js'
@@ -24,6 +25,14 @@ export const reportRoutes = router => {
     '/report/your-organisation/:view'
   ], (req, res, next) => {
     res.locals.paths = yourOrganisationWizard(req)
+    next()
+  })
+
+  router.all([
+    '/report/alternative-contact-details/',
+    '/report/alternative-contact-details/:view'
+  ], (req, res, next) => {
+    res.locals.paths = alternativeContactDetailsWizard(req)
     next()
   })
 
@@ -157,6 +166,7 @@ export const reportRoutes = router => {
     '/report/your-details/:view',
     '/report/your-organisation/:view',
     '/report/teacher-contact-details/:view',
+    '/report/alternative-contact-details/:view',
     '/report/teacher-role/:view',
     '/report/allegation/:view',
     '/report/previous-misconduct/:view',

@@ -1,0 +1,28 @@
+{% extends "layouts/report.html" %}
+{% set title = "Is there someone else we can contact about this allegation?" %}
+
+{% block form %}
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "Yes, I can give their contact details"
+      },
+      {
+        text: "No"
+      }
+    ],
+    decorate: 'report.teacher-details.know-nino',
+    validate: {
+      presence: {
+        message: "Tell us if you know the teacher’s National Insurance number"
+      }
+    } if data.features.validation.on
+  }) }}
+{% endblock %}
