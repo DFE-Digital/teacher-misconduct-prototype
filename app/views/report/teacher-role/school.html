@@ -22,7 +22,7 @@
         presence: {
           message: "Enter a school name"
         }
-      } if data.features.validation.on
+      }
     }) }}
 
     {% call govukFieldset({
@@ -93,6 +93,6 @@
       presence: {
         message: "Tell us if they " + ("worked" if hasLeftJob else "work") + " in a different organisation to you"
       }
-    } if data.features.validation.on
+    }
   }) }}
 {% endblock %}

@@ -18,7 +18,7 @@
         date: {
           message: "Date of birth should be a valid date"
         }
-      } if data.features.validation.on
+      }
     }) }}
   {% endset %}
 
@@ -68,6 +68,6 @@
       presence: {
         message: "Tell us if you know the teacher’s age or date of birth"
       }
-    } if data.features.validation.on
+    }
   }) }}
 {% endblock %}
