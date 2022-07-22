@@ -11,6 +11,11 @@ import { submitWizard } from '../wizards/report/submit-wizard.js'
 import { eligibilityWizard } from '../wizards/report/eligibility-wizard.js'
 
 export const reportRoutes = router => {
+  router.all('/report/*', (req, res, next) => {
+    res.locals.signedIn = true
+    next()
+  })
+
   router.all('/report/:section/*', (req, res, next) => {
     if (!['eligibility', 'submit'].includes(req.params.section)) {
       res.locals.buttonText = 'Save and continue'

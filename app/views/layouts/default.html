@@ -19,7 +19,13 @@
     productName: productName,
     serviceName: serviceName if not productName,
     serviceUrl: serviceUrl or "/start",
-    containerClasses: "govuk-width-container"
+    containerClasses: "govuk-width-container",
+    navigation: [
+      {
+        href: "#",
+        text: "Sign out"
+      }
+    ] if signedIn
   }) }}
 {% endblock %}
 
