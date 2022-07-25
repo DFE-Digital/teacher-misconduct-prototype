@@ -13,6 +13,7 @@ import { eligibilityWizard } from '../wizards/report/eligibility-wizard.js'
 export const reportRoutes = router => {
   router.all('/report/*', (req, res, next) => {
     res.locals.signedIn = true
+    res.locals.reportService = true
     next()
   })
 

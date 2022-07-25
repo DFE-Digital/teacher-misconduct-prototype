@@ -57,16 +57,31 @@
 {% endblock %}
 
 {% block footer %}
+  {% set footerHtml %}
+    {% if reportService %}
+      <div class="govuk-grid-row govuk-!-margin-bottom-8">
+        <div class="govuk-grid-column-two-thirds">
+          <h2 class="govuk-heading-m">Get help</h2>
+          <p>Call 020 7593 5393 or email:<br /><a href="#" class="govuk-footer__link">misconduct.teacher@education.gov.uk</a>
+          </p>
+        </div>
+      </div>
+    {% endif %}
+    <ul class="govuk-footer__inline-list">
+      <li class="govuk-footer__inline-list-item">
+        <a class="govuk-footer__link" href="/clear-session-data">
+          Clear session data
+        </a>
+      </li>
+      <li class="govuk-footer__inline-list-item">
+        <a class="govuk-footer__link" href="/feature-flags">
+          Feature flags
+        </a>
+      </li>
+    </ul>
+  {% endset %}
+
   {{ govukFooter({
-    meta: {
-      items: [{
-        text: "Clear session data",
-        href: "/clear-session-data"
-      } if useAutoStoreData, {
-        text: "Feature flags",
-        href: "/feature-flags"
-      }],
-      visuallyHiddenTitle: "Footer links"
-    }
+    meta: { html: footerHtml }
   }) }}
 {% endblock %}
