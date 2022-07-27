@@ -164,7 +164,7 @@ export const reportRoutes = router => {
     '/report/eligibility/:view',
     '/report/:view'
   ], (req, res, next) => {
-    res.locals.paths = eligibilityWizard(req)
+    res.locals.paths = eligibilityWizard(req, res)
     next()
   })
 
