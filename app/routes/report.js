@@ -14,6 +14,10 @@ export const reportRoutes = router => {
   router.all('/report/*', (req, res, next) => {
     res.locals.signedIn = true
     res.locals.reportService = true
+
+    res.locals.isPublic = _.get(req.session.data, _.toPath('report.type-of-report')) === 'public'
+    res.locals.isEmployer = !res.locals.isPublic
+
     next()
   })
 
