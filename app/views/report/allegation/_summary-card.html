@@ -3,6 +3,13 @@
   titleText: "What happened",
   rows: decorateRows([
     {
+      key: "How this complaint has been considered",
+      value: {
+        html: d('report.allegation.already-considered') | nl2br
+      },
+      href: "/report/allegation/already-considered"
+    } if isPublic,
+    {
       key: "Summary",
       value: {
         html: d('report.allegation.allegation-summary') | nl2br
