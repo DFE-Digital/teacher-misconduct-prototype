@@ -46,6 +46,19 @@
           html: other
         }
       }
+    ] if isEmployer else [
+      { text: "Complaint made to the school" },
+      { text: "Correspondence to or from school" },
+      { text: "School complaint policy" },
+      { text: "Complaint made to the police" },
+      { text: "Complaint made to the local authority or any other agency or body" },
+      { text: "Signed witness statements" },
+      {
+        text: "Other",
+        conditional: {
+          html: other
+        }
+      }
     ],
     decorate: 'report.documentation.uploaded-files.' + fileId + '.type'
   }) }}

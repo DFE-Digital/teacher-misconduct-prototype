@@ -16,7 +16,7 @@
       key: "Start date",
       value: d('report.teacher-role.start-date') | isoDateFromDateInput | govukDate,
       href: "/report/teacher-role/start-date"
-    },
+    } if isEmployer,
     {
       key: "End date",
       value: d('report.teacher-role.end-date') | isoDateFromDateInput | govukDate,
@@ -25,7 +25,7 @@
         data: 'report.teacher-role.still-employed',
         value: 'No'
       }
-    },
+    } if isEmployer,
     {
       key: "How did they leave this job?",
       data: 'report.teacher-role.how-end-job',
@@ -34,7 +34,7 @@
         data: 'report.teacher-role.still-employed',
         value: 'No'
       }
-    },
+    } if isEmployer,
     {
       key: "Are they still employed in this job?",
       data: "report.teacher-role.still-employed",
@@ -43,12 +43,17 @@
         data: 'report.teacher-role.still-employed',
         excludedValue: 'No'
       }
-    },
+    } if isEmployer,
     {
       key: "Job title",
       data: "report.teacher-role.job-title",
       href: "/report/teacher-role/job-title"
     },
+    {
+      key: "Do they still work in this role?",
+      data: "report.teacher-role.still-employed",
+      href: "/report/teacher-role/still-in-role"
+    } if isPublic,
     {
       key: "Organisation",
       value: d("report.your-organisation.name") or "The same organisation as me",
@@ -57,29 +62,21 @@
         data: "report.teacher-role.same-organisation",
         value: "same"
       }
-    },
+    } if isEmployer,
     {
       key: "School",
       value: {
         html: address
       },
-      href: "/report/teacher-role/school",
-      condition: {
-        data: "report.teacher-role.same-organisation",
-        value: "different"
-      }
-    },
+      href: "/report/teacher-role/school"
+    } if isPublic or d("report.teacher-role.same-organisation") == "different",
     {
       key: "Main duties",
       value: {
         html: d('report.teacher-role.duties') | nl2br
       },
-      href: "/report/teacher-role/duties",
-      condition: {
-        data: "report.teacher-details.how-tell-job",
-        value: "describe"
-      }
-    },
+      href: "/report/teacher-role/duties"
+    } if isPublic or d("report.teacher-role.how-tell-job") == "describe",
     {
       key: "Main duties",
       value: {
@@ -87,7 +84,7 @@
       },
       href: "/report/teacher-role/duties",
       condition: {
-        data: "report.teacher-details.how-tell-job",
+        data: "report.teacher-role.how-tell-job",
         value: "upload"
       }
     },
@@ -98,7 +95,7 @@
       },
       href: "/report/teacher-role/duties",
       condition: {
-        data: "report.teacher-details.how-tell-job",
+        data: "report.teacher-role.how-tell-job",
         value: "later"
       }
     },

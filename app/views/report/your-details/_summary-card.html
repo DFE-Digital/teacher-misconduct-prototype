@@ -12,14 +12,19 @@
       data: "report.email"
     },
     {
-      key: "Telephone number",
-      data: "report.your-details.telephone",
-      href: "/report/your-details/telephone"
-    },
-    {
       key: "Your job title",
       data: "report.your-details.job-title",
       href: "/report/your-details/job-title"
+    } if isEmployer,
+    {
+      key: "Relationship to person",
+      data: "report.your-details.relationship-to",
+      href: "/report/your-details/relationship-to"
+    } if isPublic,
+    {
+      key: "Telephone number",
+      data: "report.your-details.telephone",
+      href: "/report/your-details/telephone"
     }
   ])
 }) }}

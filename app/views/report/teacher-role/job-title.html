@@ -1,5 +1,5 @@
 {% extends "layouts/report.html" %}
-{% set title = "What was their job title?" if hasLeftJob else "What is their job title?" %}
+{% set title = "What was their job title?" if hasLeftJob else "What’s their job title?" %}
 
 {% block form %}
   {{ govukInput({
@@ -14,7 +14,7 @@
     decorate: 'report.teacher-role.job-title',
     validate: {
       presence: {
-        message: "Enter your job title"
+        message: "Enter their job title"
       }
     }
   }) }}

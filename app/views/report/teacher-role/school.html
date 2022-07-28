@@ -1,5 +1,6 @@
 {% extends "layouts/report.html" %}
-{% set title = ("Did they" if hasLeftJob else "Do they") + " work in the same organisation as you?" %}
+{% set whereDidTheyWorkTitle = "Where did they work?" if hasLeftJob else "Where do they work?" %}
+{% set title = whereDidTheyWorkTitle if isPublic else ("Did they" if hasLeftJob else "Do they") + " work in the same organisation as you?" %}
 
 {% if d('report.your-organisation.name') %}
   {% set organisationName = "(" + d('report.your-organisation.name') + ")" %}
@@ -9,14 +10,17 @@
 
 {% block form %}
   {% set where %}
-    <h2 class="govuk-heading-m">{{ "Where did they work?" if hasLeftJob else "Where do they work?" }}</h2>
+    {% if isPublic %}
+      <h1 class="govuk-heading-xl">{{ title }}</h1>
+    {% else %}
+      <h2 class="govuk-heading-m">{{ whereDidTheyWorkTitle }}</h2>
+    {% endif %}
 
     {{ govukInput({
       label: {
         text: "School name",
-        classes: "govuk-label--s"
+        classes: "govuk-label--m" if isPublic else "govuk-label--s"
       },
-      classes: "govuk-!-margin-bottom-6",
       decorate: 'report.teacher-role.school.address.name',
       validate: {
         presence: {
@@ -28,7 +32,7 @@
     {% call govukFieldset({
       legend: {
         text: "School address",
-        classes: "govuk-fieldset__legend--s"
+        classes: "govuk-fieldset__legend--m" if isPublic else "govuk-fieldset__legend--s"
       }
     }) %}
       {{ govukInput({
@@ -67,32 +71,36 @@
     {% endcall %}
   {% endset %}
 
-  {{ govukRadios({
-    fieldset: {
-      legend: {
-        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
-        isPageHeading: true,
-        text: title
-      }
-    },
-    items: [
-      {
-        text: "Yes, in the same organisation as me " + organisationName,
-        value: "same"
+  {% if isEmployer %}
+    {{ govukRadios({
+      fieldset: {
+        legend: {
+          classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+          isPageHeading: true,
+          text: title
+        }
       },
-      {
-        text: "No, in a different organisation",
-        value: "different",
-        conditional: {
-          html: where
+      items: [
+        {
+          text: "Yes, in the same organisation as me " + organisationName,
+          value: "same"
+        },
+        {
+          text: "No, in a different organisation",
+          value: "different",
+          conditional: {
+            html: where
+          }
+        }
+      ],
+      decorate: 'report.teacher-role.same-organisation',
+      validate: {
+        presence: {
+          message: "Tell us if they " + ("worked" if hasLeftJob else "work") + " in a different organisation to you"
         }
       }
-    ],
-    decorate: 'report.teacher-role.same-organisation',
-    validate: {
-      presence: {
-        message: "Tell us if they " + ("worked" if hasLeftJob else "work") + " in a different organisation to you"
-      }
-    }
-  }) }}
+    }) }}
+  {% else %}
+    {{ where | safe }}
+  {% endif %}
 {% endblock %}

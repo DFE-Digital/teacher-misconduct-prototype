@@ -9,9 +9,11 @@
     </div>
   </div>
 
-  <h2 class="govuk-heading-l">1. About you and your organisation</h2>
+  <h2 class="govuk-heading-l">1. About you</h2>
   {% include '../your-details/_summary-card.html' %}
-  {% include '../your-organisation/_summary-card.html' %}
+  {% if isEmployer %}
+    {% include '../your-organisation/_summary-card.html' %}
+  {% endif %}
 
   <h2 class="govuk-heading-l">2. About the person you are reporting</h2>
   {% include '../teacher/_summary-card.html' %}
@@ -20,6 +22,8 @@
 
   <h2 class="govuk-heading-l">3. The allegation</h2>
   {% include '../allegation/_summary-card.html' %}
-  {% include '../previous-misconduct/_summary-card.html' %}
+  {% if isEmployer %}
+    {% include '../previous-misconduct/_summary-card.html' %}
+  {% endif %}
   {% include '../documentation/_summary-card.html' %}
 {% endblock %}
