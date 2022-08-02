@@ -1,11 +1,16 @@
 import { wizard } from 'govuk-prototype-rig'
 
-export function eligibilityWizard (req) {
+export function eligibilityWizard (req, res) {
+  const { isPublic } = res.locals
+
   const journey = {
     '/report/start': {},
     '/report/email': {},
     '/report/email-code': {},
     '/report/who': {},
+    ...isPublic ? {
+      '/report/eligibility/public-other-options': {}
+    } : {},
     '/report/eligibility/jurisdiction': {
       '/report/eligibility/possible-jurisdiction': {
         data: 'report.eligibility.are-they-teacher',

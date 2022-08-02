@@ -29,32 +29,34 @@
     }) }}
   {% endset %}
 
-  {{ govukRadios({
-    fieldset: {
-      legend: {
-        classes: "govuk-fieldset__legend--m",
-        text: "Have they changed their name?"
-      }
-    },
-    items: [
-      {
-        text: "Yes",
-        conditional: {
-          html: previousNameHtml
+  {% if isEmployer %}
+    {{ govukRadios({
+      fieldset: {
+        legend: {
+          classes: "govuk-fieldset__legend--m",
+          text: "Have they changed their name?"
         }
       },
-      {
-        text: "No"
-      },
-      {
-        text: "I don’t know"
+      items: [
+        {
+          text: "Yes",
+          conditional: {
+            html: previousNameHtml
+          }
+        },
+        {
+          text: "No"
+        },
+        {
+          text: "I don’t know"
+        }
+      ],
+      decorate: 'report.teacher-details.have-previous-name',
+      validate: {
+        presence: {
+          message: "Tell us if you have a National Insurance number"
+        }
       }
-    ],
-    decorate: 'report.teacher-details.have-previous-name',
-    validate: {
-      presence: {
-        message: "Tell us if you have a National Insurance number"
-      }
-    }
-  }) }}
+    }) }}
+  {% endif %}
 {% endblock %}

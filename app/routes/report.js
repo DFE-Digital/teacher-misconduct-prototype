@@ -14,6 +14,10 @@ export const reportRoutes = router => {
   router.all('/report/*', (req, res, next) => {
     res.locals.signedIn = true
     res.locals.reportService = true
+
+    res.locals.isPublic = _.get(req.session.data, _.toPath('report.type-of-report')) === 'public'
+    res.locals.isEmployer = !res.locals.isPublic
+
     next()
   })
 
@@ -28,7 +32,7 @@ export const reportRoutes = router => {
     '/report/your-details/',
     '/report/your-details/:view'
   ], (req, res, next) => {
-    res.locals.paths = yourDetailsWizard(req)
+    res.locals.paths = yourDetailsWizard(req, res)
     next()
   })
 
@@ -44,7 +48,7 @@ export const reportRoutes = router => {
     '/report/teacher',
     '/report/teacher/:view'
   ], (req, res, next) => {
-    res.locals.paths = teacherDetailsWizard(req)
+    res.locals.paths = teacherDetailsWizard(req, res)
     next()
   })
 
@@ -52,7 +56,7 @@ export const reportRoutes = router => {
     '/report/teacher-contact-details/',
     '/report/teacher-contact-details/:view'
   ], (req, res, next) => {
-    res.locals.paths = teacherContactDetailsWizard(req)
+    res.locals.paths = teacherContactDetailsWizard(req, res)
     next()
   })
 
@@ -61,7 +65,7 @@ export const reportRoutes = router => {
     '/report/teacher-role/:view'
   ], (req, res, next) => {
     res.locals.hasLeftJob = _.get(req.session.data, _.toPath('report.teacher-role.still-employed')) === 'No'
-    res.locals.paths = teacherRoleWizard(req)
+    res.locals.paths = teacherRoleWizard(req, res)
     next()
   })
 
@@ -69,7 +73,7 @@ export const reportRoutes = router => {
     '/report/allegation/',
     '/report/allegation/:view'
   ], (req, res, next) => {
-    res.locals.paths = allegationWizard(req)
+    res.locals.paths = allegationWizard(req, res)
     next()
   })
 
@@ -77,17 +81,28 @@ export const reportRoutes = router => {
     '/report/previous-misconduct/',
     '/report/previous-misconduct/:view'
   ], (req, res, next) => {
-    res.locals.paths = previousMisconductWizard(req)
+    res.locals.paths = previousMisconductWizard(req, res)
     next()
   })
 
   router.post('/report/documentation/add/', (req, res, next) => {
-    req.session.data.report.documentation['uploaded-files'] = {
-      '001': { filename: 'main-investigation.pdf' },
-      '002': { filename: 'police-investigation.docx' },
-      '003': { filename: 'signed-witness-statements.pdf' },
-      '004': { filename: 'cctv-footage.mp4' }
+    const { isEmployer } = res.locals
+
+    if (isEmployer) {
+      req.session.data.report.documentation['uploaded-files'] = {
+        '001': { filename: 'main-investigation.pdf' },
+        '002': { filename: 'police-investigation.docx' },
+        '003': { filename: 'signed-witness-statements.pdf' },
+        '004': { filename: 'cctv-footage.mp4' }
+      }
+    } else {
+      req.session.data.report.documentation['uploaded-files'] = {
+        '001': { filename: 'school-complaint.pdf' },
+        '002': { filename: 'emails-from-school.docx' },
+        '003': { filename: 'local-authority-email.pdf' }
+      }
     }
+
     next()
   })
 
@@ -151,7 +166,7 @@ export const reportRoutes = router => {
     '/report/submit/',
     '/report/submit/:view'
   ], (req, res, next) => {
-    res.locals.paths = submitWizard(req)
+    res.locals.paths = submitWizard(req, res)
     next()
   })
 
@@ -160,7 +175,7 @@ export const reportRoutes = router => {
     '/report/eligibility/:view',
     '/report/:view'
   ], (req, res, next) => {
-    res.locals.paths = eligibilityWizard(req)
+    res.locals.paths = eligibilityWizard(req, res)
     next()
   })
 

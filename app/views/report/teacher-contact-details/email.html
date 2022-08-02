@@ -1,5 +1,5 @@
 {% extends "layouts/report.html" %}
-{% set title = "Do you know the personal email address of the person you are reporting?" %}
+{% set title = "Do you know the personal email address of the person you are reporting?" if isEmployer else "Do you know the email address of the person you are reporting?" %}
 
 {% block form %}
   {% set email %}

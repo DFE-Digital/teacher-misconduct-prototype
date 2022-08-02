@@ -1,11 +1,18 @@
 import { wizard } from 'govuk-prototype-rig'
 
-export function teacherRoleWizard (req) {
+export function teacherRoleWizard (req, res) {
+  const { isEmployer, isPublic } = res.locals
+
   const journey = {
     '/report/tasks': {},
-    '/report/teacher-role/start-date': {},
-    '/report/teacher-role/end-date': {},
+    ...isEmployer ? {
+      '/report/teacher-role/start-date': {},
+      '/report/teacher-role/end-date': {}
+    } : {},
     '/report/teacher-role/job-title': {},
+    ...isPublic ? {
+      '/report/teacher-role/still-in-role': {}
+    } : {},
     '/report/teacher-role/school': {},
     '/report/teacher-role/duties': {
       '/report/teacher-role/check-answers': {

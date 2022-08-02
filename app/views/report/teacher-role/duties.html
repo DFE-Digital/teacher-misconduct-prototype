@@ -1,13 +1,32 @@
 {% extends "layouts/report.html" %}
-{% set title = "How do you want to tell us about their main duties?" %}
+{% set title = "Describe their main duties" if isPublic else "How do you want to tell us about their main duties?" %}
 
 {% block form %}
   {% set duties %}
+    {% set hintHtml %}
+      <p>As far as you know, give details of the work carried out by the person you are reporting.</p>
+      <p>For example:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Teaching in class</li>
+        <li>Assisting teachers in class</li>
+        <li>Teaching physical education</li>
+        <li>Helping children with special or language educational needs</li>
+        <li>Working in a managerial or administrative role</li>
+        <li>Working with food preparation</li>
+        <li>Janitorial, maintenance or gardening</li>
+        <li>Other – please specify</li>
+      </ul>
+    {% endset %}
+
     {{ govukTextarea({
       label: {
         text: "Describe their main duties",
-        classes: "govuk-label--m"
+        classes: "govuk-label--xl" if isPublic else "govuk-label--m",
+        isPageHeading: isPublic
       },
+      hint: {
+        html: hintHtml
+      } if isPublic,
       decorate: 'report.teacher-role.duties',
       rows: 20,
       validate: {
@@ -28,39 +47,43 @@
     }) }}
   {% endset %}
 
-  {{ govukRadios({
-    fieldset: {
-      legend: {
-        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
-        isPageHeading: true,
-        text: title
-      }
-    },
-    items: [
-      {
-        text: "I’ll upload a job description",
-        value: "upload",
-        conditional: {
-          html: jobDescription
+  {% if isEmployer %}
+    {{ govukRadios({
+      fieldset: {
+        legend: {
+          classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+          isPageHeading: true,
+          text: title
         }
       },
-      {
-        text: "I’ll describe their main duties",
-        value: "describe",
-        conditional: {
-          html: duties
+      items: [
+        {
+          text: "I’ll upload a job description",
+          value: "upload",
+          conditional: {
+            html: jobDescription
+          }
+        },
+        {
+          text: "I’ll describe their main duties",
+          value: "describe",
+          conditional: {
+            html: duties
+          }
+        },
+        {
+          text: "I’ll do this later",
+          value: "later"
         }
-      },
-      {
-        text: "I’ll do this later",
-        value: "later"
+      ],
+      decorate: 'report.teacher-role.how-tell-job',
+      validate: {
+        presence: {
+          message: "Tell us about their main duties"
+        }
       }
-    ],
-    decorate: 'report.teacher-details.how-tell-job',
-    validate: {
-      presence: {
-        message: "Tell us about their main duties"
-      }
-    }
-  }) }}
+    }) }}
+  {% else %}
+    {{ duties | safe }}
+  {% endif %}
 {% endblock %}

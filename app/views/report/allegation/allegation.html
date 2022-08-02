@@ -7,7 +7,9 @@
   </h1>
 
   <p>Include dates and locations.</p>
-  <p>If you have this information in a document, you can upload it in the <a href="#">documentation section</a>.</p>
+  {% if isEmployer %}
+    <p>If you have this information in a document, you can upload it in the <a href="#">documentation section</a>.</p>
+  {% endif %}
 
   {{ govukTextarea({
     label: {
