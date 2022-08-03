@@ -5,17 +5,6 @@
   {% set duties %}
     {% set hintHtml %}
       <p>As far as you know, give details of the work carried out by the person you are reporting.</p>
-      <p>For example:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>Teaching in class</li>
-        <li>Assisting teachers in class</li>
-        <li>Teaching physical education</li>
-        <li>Helping children with special or language educational needs</li>
-        <li>Working in a managerial or administrative role</li>
-        <li>Working with food preparation</li>
-        <li>Janitorial, maintenance or gardening</li>
-        <li>Other – please specify</li>
-      </ul>
     {% endset %}
 
     {{ govukTextarea({
@@ -28,7 +17,7 @@
         html: hintHtml
       } if isPublic,
       decorate: 'report.teacher-role.duties',
-      rows: 20,
+      rows: 10 if isPublic else 20,
       validate: {
         presence: {
           message: "Tell us about their main duties"
