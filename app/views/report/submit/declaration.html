@@ -13,7 +13,9 @@
     <li>you want TRA to investigate this allegation. This could result in the person you’re reporting being banned from teaching</li>
     <li>the contents of this form are true to the best of your knowledge and belief</li>
     <li>you give consent for this form and any supporting documents to be shared with the person you’re reporting, and any employer (your personal details and contact details will not be shared)</li>
-    <li>you have permission from third parties for the documents to be shared</li>
+    {% if isEmployer %}
+      <li>you have permission from third parties for the documents to be shared</li>
+    {% endif %}
     <li>you understand that you might need to attend a hearing of a professional conduct panel to give evidence should this allegation reach that stage</li>
   </ul>
 

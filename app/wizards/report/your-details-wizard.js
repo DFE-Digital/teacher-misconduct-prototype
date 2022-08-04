@@ -5,6 +5,9 @@ export function yourDetailsWizard (req, res) {
 
   const journey = {
     '/report/tasks': {},
+    ...isPublic ? {
+      '/report/your-details/dont-worry': {}
+    } : {},
     '/report/your-details/name': {},
     ...isPublic ? {
       '/report/your-details/relationship-to': {}

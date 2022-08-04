@@ -1,8 +1,33 @@
 {% extends "layouts/report.html" %}
-{% set title = "Have you already" %}
+{% set title = "Have you already made a complaint to the school, school governors or your local council?" %}
 
 {% block form %}
-  <h1 class="govuk-heading-xl">{{ title }}</h1>
+  <!-- <h1 class="govuk-heading-l">{{ title }}</h1>
 
-  <p>Content goes here</p>
+  <p>You must complain to the school, school governors or your local council about teacher misconduct before you use this service.</p> -->
+
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--l",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "Yes, I’ve already made a complaint",
+        value: "Yes"
+      },
+      {
+        text: "No"
+      }
+    ],
+    decorate: 'report.eligibility.made-complaint',
+    validate: {
+      presence: {
+        message: "Tell us if you have already made a complaint"
+      }
+    }
+  }) }}
 {% endblock %}

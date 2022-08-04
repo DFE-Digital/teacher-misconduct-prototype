@@ -1,0 +1,17 @@
+{% extends "layouts/report.html" %}
+{% set buttonText = "Continue" %}
+{% set title = "Your personal details will not be shared with the person you are reporting" %}
+
+{% block form %}
+  <h1 class="govuk-heading-xl">{{ title | noOrphans | safe }}</h1>
+
+  <!-- <p>We will ask you for:</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>your name</li>
+    <li>your email address</li>
+    <li></li>
+  </ul>
+  <p class="govuk-!-margin-bottom-6">
+
+  </p> -->
+{% endblock %}

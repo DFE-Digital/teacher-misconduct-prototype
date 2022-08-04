@@ -9,7 +9,12 @@ export function eligibilityWizard (req, res) {
     '/report/email-code': {},
     '/report/who': {},
     ...isPublic ? {
-      '/report/eligibility/public-other-options': {}
+      '/report/eligibility/public-other-options': {
+        '/report/eligibility/no-complaint': {
+          data: 'report.eligibility.made-complaint',
+          value: 'No'
+        }
+      }
     } : {},
     '/report/eligibility/jurisdiction': {
       '/report/eligibility/possible-jurisdiction': {
