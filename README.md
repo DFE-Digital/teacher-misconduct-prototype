@@ -1,6 +1,17 @@
-# Teacher misconduct prototype
+# Teacher misconduct prototypes
+
+Prototypes for:
+
+- Report serious misconduct by a teacher
+- Panellists recording unavailability
 
 https://teacher-misconduct.herokuapp.com/
+
+The password is `tms`.
+
+Design history:
+
+https://tra-digital-design-history.herokuapp.com/teacher-misconduct/
 
 Built using the [GOV.UK Prototype Rig](https://govuk-prototype-rig.herokuapp.com).
 
