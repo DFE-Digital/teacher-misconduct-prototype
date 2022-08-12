@@ -41,6 +41,7 @@ export function eligibilityWizard (req, res) {
         value: 'No'
       }
     },
+    '/report/eligibility/you-should-know': {},
     '/report/eligibility/save-as-you-go': {},
     '/report/tasks': {},
     '/report/submit/review': {}
