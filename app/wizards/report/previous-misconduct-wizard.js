@@ -9,8 +9,8 @@ export function previousMisconductWizard (req) {
         excludedValue: 'Yes'
       }
     },
-    '/report/previous-misconduct/previous-misconduct-summary': {},
     '/report/previous-misconduct/previous-misconduct': {},
+    '/report/previous-misconduct/previous-misconduct-summary': {},
     '/report/previous-misconduct/check-answers': {
       '/report/tasks': true
     }

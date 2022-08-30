@@ -7,8 +7,8 @@ export function allegationWizard (req, res) {
     ...isPublic ? {
       '/report/allegation/already-considered': {}
     } : {},
-    '/report/allegation/allegation-summary': {},
     '/report/allegation/allegation': {},
+    '/report/allegation/allegation-summary': {},
     ...isEmployer ? {
       '/report/allegation/dbs': {}
     } : {},

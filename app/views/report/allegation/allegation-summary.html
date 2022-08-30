@@ -1,12 +1,12 @@
 {% extends "layouts/report.html" %}
-{% set title = "Tell us briefly what happened" %}
+{% set title = "Summarise what happened" %}
 
 {% block form %}
   <h1 class="govuk-heading-xl">
     {{ title }}
   </h1>
 
-  <p>We’ll ask for a detailed report next.</p>
+  <p>A good summary will help TRA to respond quickly.</p>
 
   <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="400">
     {{ govukTextarea({
@@ -18,7 +18,7 @@
       rows: 5,
       validate: {
         presence: {
-          message: "Tell us about the allegation"
+          message: "Give us a summary of the allegation"
         }
       },
       classes: "govuk-js-character-count"

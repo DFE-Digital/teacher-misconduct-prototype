@@ -8,22 +8,22 @@
       href: "/report/previous-misconduct/any-previous"
     },
     {
-      key: "Summary",
+      key: "Detailed report",
       value: {
-        html: d('report.previous-misconduct.previous-misconduct-summary') | nl2br
+        html: d('report.previous-misconduct.previous-misconduct') | nl2br
       },
-      href: "/report/previous-misconduct/previous-misconduct-summary",
+      href: "/report/previous-misconduct/previous-misconduct",
       condition: {
         data: "report.previous-misconduct.any-previous",
         value: "Yes"
       }
     },
     {
-      key: "Detailed report",
+      key: "Summary",
       value: {
-        html: d('report.previous-misconduct.previous-misconduct') | nl2br
+        html: d('report.previous-misconduct.previous-misconduct-summary') | nl2br
       },
-      href: "/report/previous-misconduct/previous-misconduct",
+      href: "/report/previous-misconduct/previous-misconduct-summary",
       condition: {
         data: "report.previous-misconduct.any-previous",
         value: "Yes"
