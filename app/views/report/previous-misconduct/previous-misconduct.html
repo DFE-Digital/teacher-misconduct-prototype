@@ -24,18 +24,63 @@
     <li>reference numbers from previous referrals</li>
   </ul>
 
-  <p>If you have this information in a document, you can upload it in the documentation section.</p>
+  {% set textarea %}
+    {{ govukTextarea({
+      label: {
+        text: "Details of previous allegations",
+        classes: "govuk-label--m govuk-!-margin-top-6"
+      },
+      decorate: 'report.previous-misconduct.previous-misconduct',
+      rows: 20,
+      validate: {
+        presence: {
+          message: "Tell us about the previous misconduct"
+        }
+      }
+    }) }}
+  {% endset %}
 
-  {{ govukTextarea({
-    label: {
-      text: "Details of previous allegations",
-      classes: "govuk-label--m govuk-!-margin-top-6"
+  {% set fileUpload %}
+    {{ govukFileUpload({
+      label: {
+        text: "Upload details of previous allegations",
+        classes: "govuk-label--s"
+      },
+      decorate: 'report.previous-misconduct.previous-misconduct-file'
+    }) }}
+  {% endset %}
+
+  {{ govukRadios({
+    formGroup: {
+      classes: "govuk-!-margin-top-6"
     },
-    hint: {
-      text: ''
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--m",
+        text: "How do you want to tell us about previous allegations?"
+      }
     },
-    decorate: 'report.previous-misconduct.previous-misconduct',
-    rows: 20,
+    items: [
+      {
+        text: "I’ll upload the previous misconduct details",
+        value: "upload",
+        conditional: {
+          html: fileUpload
+        }
+      },
+      {
+        text: "I’ll give details of the previous misconduct",
+        value: "describe",
+        conditional: {
+          html: textarea
+        }
+      },
+      {
+        text: "I’ll do this later",
+        value: "later"
+      }
+    ],
+    decorate: 'report.previous-misconduct.how-tell',
     validate: {
       presence: {
         message: "Tell us about the previous misconduct"
