@@ -14,8 +14,30 @@
       },
       href: "/report/previous-misconduct/previous-misconduct",
       condition: {
-        data: "report.previous-misconduct.any-previous",
-        value: "Yes"
+        data: "report.previous-misconduct.how-tell",
+        value: "describe"
+      }
+    },
+    {
+      key: "Detailed report",
+      value: {
+        html: '<a href="#">previous-misconduct.pdf</a>'
+      },
+      href: "/report/previous-misconduct/previous-misconduct",
+      condition: {
+        data: "report.previous-misconduct.how-tell",
+        value: "upload"
+      }
+    },
+    {
+      key: "Detailed report",
+      value: {
+        html: '<span class="govuk-tag govuk-tag--grey">Incomplete</span>'
+      },
+      href: "/report/previous-misconduct/previous-misconduct",
+      condition: {
+        data: "report.previous-misconduct.how-tell",
+        value: "later"
       }
     },
     {
