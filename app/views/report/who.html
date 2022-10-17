@@ -1,5 +1,5 @@
 {% extends "layouts/report.html" %}
-{% set title = "Are you reporting as an employer or member of the public?" %}
+{% set title = "Are you referring as an employer or member of the public?" %}
 
 {% block form %}
   {{ govukRadios({
@@ -12,19 +12,14 @@
     },
     items: [
       {
-        text: "I’m reporting as an employer",
+        text: "I’m referring as an employer",
         value: "employer"
       },
       {
-        text: "I’m reporting as a member of the public",
+        text: "I’m referring as a member of the public",
         value: "public"
       }
     ],
-    decorate: 'report.type-of-report',
-    validate: {
-      presence: {
-        message: "Tell us if you know the teacher’s National Insurance number"
-      }
-    }
+    decorate: 'report.type-of-report'
   }) }}
 {% endblock %}
