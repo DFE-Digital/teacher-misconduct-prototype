@@ -1,6 +1,6 @@
 {% extends "layouts/report.html" %}
 {% set title = "Your allegation of serious misconduct" %}
-{% set buttonText = "Review and send report" %}
+{% set buttonText = "Review and send" %}
 {% block pageNavigation %}{% endblock %}
 
 {% block form %}
@@ -23,7 +23,7 @@
         tag: taskTag('report.your-details')
       }]
     }, {
-      titleText: "About the person you are reporting",
+      titleText: "About the person you are referring",
       items: [{
         text: "Personal details",
         href: taskHref('report.teacher-details', '/report/teacher/name', '/report/teacher/check-answers'),
@@ -67,11 +67,11 @@
 {% block afterForm %}
   {% set html %}
     <p>
-      You can delete your draft report:<br />
-      <a href="/report/delete">Delete your report</a>
+      You can delete your draft:<br />
+      <a href="/report/delete">Delete your draft referral</a>
     </p>
     <p>
-      Draft reports are automatically deleted after 6 months of no activity. We’ll send you an email before deleting it.
+      Drafts are automatically deleted after 6 months of no activity. We’ll send you an email before deleting it.
     </p>
   {% endset %}
 

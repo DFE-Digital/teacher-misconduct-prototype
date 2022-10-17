@@ -1,6 +1,6 @@
 {% extends "layouts/report.html" %}
-{% set title = "Before you send your report" %}
-{% set buttonText = "Send report" %}
+{% set title = "Before you send your referral" %}
+{% set buttonText = "Send referral" %}
 
 {% block beforeForm %}
   <h1 class="govuk-heading-xl">
@@ -10,16 +10,16 @@
   <p>You need to confirm that:</p>
 
   <ul class="govuk-list govuk-list--bullet">
-    <li>you want TRA to investigate this allegation. This could result in the person you’re reporting being banned from teaching</li>
+    <li>you want TRA to investigate this allegation. This could result in the person you’re referring being banned from teaching</li>
     <li>the contents of this form are true to the best of your knowledge and belief</li>
-    <li>you give consent for this form and any supporting documents to be shared with the person you’re reporting, and any employer (your contact details will not be shared)</li>
+    <li>you give consent for this form and any supporting documents to be shared with the person you’re referring, and any employer (your contact details will not be shared)</li>
     {% if isEmployer %}
       <li>you have permission from third parties for the documents to be shared</li>
     {% endif %}
     <li>you understand that you might need to attend a hearing of a professional conduct panel to give evidence should this allegation reach that stage</li>
   </ul>
 
-  <p>Your submitted report will be kept for 50 years.</p>
+  <p>Your submitted referral will be kept for 50 years.</p>
 
   {{ govukCheckboxes({
     formGroup: {

@@ -1,7 +1,7 @@
 {% extends "layouts/default.html" %}
 {% set signedIn = false %}
 {% set serviceUrl = '/report/start' %}
-{% set serviceName = 'Report serious misconduct by a teacher' %}
+{% set serviceName = 'Refer serious misconduct by a teacher' %}
 
 {% block content %}
   <div class="govuk-grid-row">
@@ -21,15 +21,15 @@
 
       <p>Cases of less serious misconduct, and all cases of incompetence, should be dealt with by employers.</p>
 
-      <h2 class="govuk-heading-m">What happens when you submit a report</h2>
+      <h2 class="govuk-heading-m">What happens when you make a referral</h2>
 
       <p>
-        See the <a href="/report/step-by-step">step-by-step guide</a> to find out what happens once you submit a report.
+        See the <a href="/report/step-by-step">step-by-step guide</a> to find out what happens once you make a referral.
       </p>
 
-      <h2 class="govuk-heading-m">How long it will take to prepare your report</h2>
+      <h2 class="govuk-heading-m">How long it will take to prepare your referral</h2>
 
-      <p>You should allow an hour or more to complete your report. The time it will take depends on the case. It will be faster if you’ve prepared the evidence.</p>
+      <p>You should allow an hour or more to complete your referral. The time it will take depends on the case. It will be faster if you’ve prepared the evidence.</p>
 
       {{ govukButton({
         classes: "govuk-!-margin-top-4 govuk-!-margin-bottom-4",
@@ -38,11 +38,11 @@
         isStartButton: true
       }) }}
 
-      <p class="govuk-!-margin-bottom-6">Or <a href="{{ paths.next }}">return to a report you’ve already started</a></p>
+      <p class="govuk-!-margin-bottom-6">Or <a href="{{ paths.next }}">return to a referral you’ve already started</a></p>
 
       <h2 class="govuk-heading-m">When to use a different form</h2>
 
-      <p>If you want to report multiple teachers at once, you need to <a href="#">complete a different form</a>.</p>
+      <p>If you want to refer multiple teachers at once, you need to <a href="#">complete a different form</a>.</p>
     </div>
 
     <div class="govuk-grid-column-one-third">

@@ -1,5 +1,5 @@
 {% extends "layouts/report.html" %}
-{% set title = "What’s your relationship to the person you are reporting?" %}
+{% set title = "What’s your relationship to the person you are referring?" %}
 
 {% block form %}
   {{ govukInput({
@@ -14,7 +14,7 @@
     decorate: 'report.your-details.relationship-to',
     validate: {
       presence: {
-        message: "Enter your relationship with the person you are reporting"
+        message: "Enter your relationship with the person you are referring"
       }
     }
   }) }}

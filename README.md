@@ -2,7 +2,7 @@
 
 Prototypes for:
 
-- Report serious misconduct by a teacher
+- Refer serious misconduct by a teacher
 - Panellists recording unavailability
 
 https://teacher-misconduct.herokuapp.com/
