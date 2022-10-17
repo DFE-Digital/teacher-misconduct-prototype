@@ -1,5 +1,5 @@
 {% extends "layouts/report.html" %}
-{% set title = "Are you sure you want to delete your draft report?" %}
+{% set title = "Are you sure you want to delete your draft?" %}
 {% block pageNavigation %}
   {{ govukBackLink({
     href: '/report/tasks'
@@ -12,7 +12,7 @@
     <h1 class="govuk-heading-xl">{{ title }}</h1>
 
     {{ govukButton({
-      text: "Yes I’m sure – delete my report",
+      text: "Yes I’m sure – delete it",
       href: "/report/deleted",
       classes: "govuk-button--warning"
     }) }}
