@@ -1,0 +1,34 @@
+{% extends "layouts/report.html" %}
+{% set title = "You need to complete a referral form" %}
+
+{% block form %}
+  <h1 class="govuk-heading-xl">{{ title | noOrphans | safe }}</h1>
+
+  {% if isPublic %}
+    <p>Based on what you've told us, you need to fill out the teacher misconduct referral form for use by members of the public</p>
+  {% else %}
+    <p>Based on what you've told us, you need to fill out the teacher misconduct referral form for use by employees</p>
+  {% endif %}
+
+  <h2 class="govuk-heading-l">What you need to do next</h2>
+
+  <p>Download the referral form:</p>
+
+  {% if isPublic %}
+    <p><a href="">Teacher misconduct referral form for use by members of the public (.docx)</a></p>
+  {% else %}
+    <p><a href="">Teacher misconduct referral form for use by employees (.docx)</a></p>
+  {% endif %}
+
+  <p>Fill out the form, and email it to:</p>
+  <p><a href="">misconduct.teacher@education.gov.uk</a></p>
+
+  <h2 class="govuk-heading-l">Contacting TRA about this report</h2>
+
+  <p>Call 020 7593 5393 or email:</p>
+  <p><a href="">misconduct.teacher@education.gov.uk</a></p>
+
+  <p>Monday to Friday, 9am to 5pm (expect public holidays)</p>
+
+  <p class="govuk-!-margin-bottom-6"></p>
+{% endblock %}

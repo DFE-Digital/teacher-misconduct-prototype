@@ -1,0 +1,25 @@
+{% extends "layouts/report.html" %}
+{% set title = "Are you referring as an employer or member of the public?" %}
+
+{% block form %}
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "I’m referring as an employer",
+        value: "employer"
+      },
+      {
+        text: "I’m referring as a member of the public",
+        value: "public"
+      }
+    ],
+    decorate: 'report.type-of-report'
+  }) }}
+{% endblock %}
