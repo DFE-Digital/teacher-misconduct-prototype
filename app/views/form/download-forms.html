@@ -1,34 +1,30 @@
 {% extends "layouts/report.html" %}
-{% set title = "You need to complete a referral form" %}
+{% set title = "You can also refer serious misconduct offline" %}
 
 {% block form %}
   <h1 class="govuk-heading-xl">{{ title | noOrphans | safe }}</h1>
 
   {% if isPublic %}
-    <p>Based on what you've told us, you need to fill out the teacher misconduct referral form for use by members of the public</p>
+    <p>You can <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1105693/Teacher_misconduct_referral_form_for_members_of_the_public.docx">download and print the teacher misconduct form for use by members of the public (opens in a new tab)</a>.</p>
   {% else %}
-    <p>Based on what you've told us, you need to fill out the teacher misconduct referral form for use by employees</p>
+    <p>You can <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1105692/Teacher_Misconduct_Referral_Form_for__Employers__8_.docx">download and print the teacher misconduct form for use by employers (opens in a new tab)</a>.</p>
   {% endif %}
 
-  <h2 class="govuk-heading-l">What you need to do next</h2>
+  <p>You should use the guidance within the form to help you fill it out.</p>
 
-  <p>Download the referral form:</p>
+  <h3 class="govuk-heading-m">What happens next</h3>
 
-  {% if isPublic %}
-    <p><a href="">Teacher misconduct referral form for use by members of the public (.docx)</a></p>
-  {% else %}
-    <p><a href="">Teacher misconduct referral form for use by employees (.docx)</a></p>
-  {% endif %}
+  <p>If you need more information about making a referral, you can contact TRA.</p> 
 
-  <p>Fill out the form, and email it to:</p>
+  <h4 class="govuk-heading-s">Telephone</h4>
+
+  <p>Call 020 7593 5393<br>Monday to Friday, 9am to 5pm (except Mondays and Fridays)</p>
+
+  <p><a href="https://www.gov.uk/call-charges">Find out about call charges</a>.</p>
+
+  <h4 class="govuk-heading-s">Email</h4>
+
   <p><a href="">misconduct.teacher@education.gov.uk</a></p>
+  <p>We aim to respond within 3 working days.</p>
 
-  <h2 class="govuk-heading-l">Contacting TRA about this report</h2>
-
-  <p>Call 020 7593 5393 or email:</p>
-  <p><a href="">misconduct.teacher@education.gov.uk</a></p>
-
-  <p>Monday to Friday, 9am to 5pm (expect public holidays)</p>
-
-  <p class="govuk-!-margin-bottom-6"></p>
 {% endblock %}
