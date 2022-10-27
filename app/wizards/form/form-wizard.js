@@ -4,7 +4,9 @@ export function formWizard (req, res) {
   const { isPublic } = res.locals
 
   const journey = {
-    '/form/start': {},
+    '/form/start': {
+      '/form/what-happens': {}
+    },
     '/form/who': {},
     ...isPublic ? {
       '/form/public-other-options': {
