@@ -1,0 +1,44 @@
+{% extends "layouts/report.html" %}
+{% set title = "You can also refer serious misconduct offline" %}
+
+{% block form %}
+  <h1 class="govuk-heading-xl">{{ title | noOrphans | safe }}</h1>
+
+  {% if isPublic %}
+    <p>You can <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1105693/Teacher_misconduct_referral_form_for_members_of_the_public.docx">download and print the teacher misconduct form for use by members of the public (opens in a new tab)</a>.</p>
+  {% else %}
+    <p>You can <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1105692/Teacher_Misconduct_Referral_Form_for__Employers__8_.docx">download and print the teacher misconduct form for use by employers (opens in a new tab)</a>.</p>
+  {% endif %}
+
+  <p>You should use the guidance within the form to help you fill it out.</p>
+
+  <h3 class="govuk-heading-m">What happens next</h3>
+
+  <p>Once you’ve completed the form, you should email it to:</br>
+  <a href="#">misconduct.teacher@education.gov.uk</a>.</p>
+
+  <p>Or send it by registered post to:</p>
+
+  <p>Teaching Misconduct<br>
+  Ground Floor, South</br>
+  Cheylesmore House</br>
+  5 Quinton Road</br>
+  Coventry</br>
+  CV1 2WT.</p>
+
+  <h3 class="govuk-heading-m">Get help with your referral</h3>
+
+  <p>If you need more information about making a referral, you can contact TRA.</p> 
+
+  <h4 class="govuk-heading-s">Telephone</h4>
+
+  <p>Call 020 7593 5393<br>Monday to Friday, 9am to 5pm (except Mondays and Fridays)</p>
+
+  <p><a href="https://www.gov.uk/call-charges">Find out about call charges</a>.</p>
+
+  <h4 class="govuk-heading-s">Email</h4>
+
+  <p><a href="">misconduct.teacher@education.gov.uk</a></p>
+  <p>We aim to respond within 3 working days.</p>
+
+{% endblock %}

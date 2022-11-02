@@ -1,0 +1,31 @@
+{% extends "layouts/report.html" %}
+{% set title = "Is the allegation about a teacher?" %}
+
+{% block form %}
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "Yes"
+      },
+      {
+        text: "No"
+      },
+      {
+        text: "I’m not sure"
+      }
+    ],
+    decorate: 'report.eligibility.are-they-teacher',
+    validate: {
+      presence: {
+        message: "Tell us if the allegation is about a teacher in England"
+      }
+    }
+  }) }}
+{% endblock %}

@@ -191,7 +191,7 @@ export const reportRoutes = router => {
     '/report/documentation/:view',
     '/report/documentation/type/:id',
     '/report/submit/:view',
-    '/report/teacher/:view'
+    '/report/teacher/:view',
   ], (req, res) => {
     res.redirect(res.locals.paths.next)
   })
