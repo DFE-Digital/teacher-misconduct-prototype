@@ -1,6 +1,6 @@
 {% extends "layouts/report.html" %}
 {% set areTheyTeacher = data.report.eligibility['are-they-teacher'] == 'Yes' %}
-{% set title = "Were they teaching in England at the time the alleged misconduct took place?" if areTheyTeacher else "Were they carrying out teaching work in England at the time the alleged misconduct took place?" %}
+{% set title = "Were they employed in England at the time the alleged misconduct took place?" if areTheyTeacher else "Were they carrying out teaching work in England at the time the alleged misconduct took place?" %}
 
 {% block form %}
   {{ govukRadios({
