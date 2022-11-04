@@ -1,8 +1,28 @@
 {% extends "layouts/report.html" %}
-{% set title = "You can also refer serious misconduct offline" %}
+{% set title = "You need to download the referral form [to update]" %}
 
 {% block form %}
   <h1 class="govuk-heading-xl">{{ title | noOrphans | safe }}</h1>
+
+  {% set examples %}
+  <p>There’s a legal process for referring serious misconduct by a teacher in England.</p>
+  <p>You’ll need to follow these steps:</p>
+  <ul class="govuk-list govuk-list--number">
+    <li>Report your concerns locally
+    <li>Check if TRA will deal with the allegation
+    <li>Report the teacher to TRA using this service (online or using the paper form)
+    <li>Wait to hear back from TRA
+    <li>If TRA decide to investigate, they’ll send a copy of the allegations to the teacher
+    <li>TRA will decide whether there is a case to answer 
+    <li>A professional conduct panel meeting or hearing takes place
+    <li>TRA confirm the outcome of the meeting or hearing
+  </ul>
+  {% endset %}
+
+  {{ govukDetails({
+    summaryText: "What happens when you refer a teacher",
+    html: examples
+  }) }}
 
   {% if isPublic %}
     <p>You can <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1105693/Teacher_misconduct_referral_form_for_members_of_the_public.docx">download and print the teacher misconduct form for use by members of the public (opens in a new tab)</a>.</p>
@@ -26,19 +46,17 @@
   Coventry</br>
   CV1 2WT.</p>
 
+  
+
   <h3 class="govuk-heading-m">Get help with your referral</h3>
 
   <p>If you need more information about making a referral, you can contact TRA.</p> 
+  <p>Email: <a href="">misconduct.teacher@education.gov.uk</a><br>We aim to respond within 3 working days.</p>
 
-  <h4 class="govuk-heading-s">Telephone</h4>
-
-  <p>Call 020 7593 5393<br>Monday to Friday, 9am to 5pm (except Mondays and Fridays)</p>
+  <p>Phone: 020 7593 5393<br>Monday to Friday, 9am to 5pm (except Mondays and Fridays)</p>
 
   <p><a href="https://www.gov.uk/call-charges">Find out about call charges</a>.</p>
 
-  <h4 class="govuk-heading-s">Email</h4>
-
-  <p><a href="">misconduct.teacher@education.gov.uk</a></p>
-  <p>We aim to respond within 3 working days.</p>
+  <mark>remove the button</mark>
 
 {% endblock %}
