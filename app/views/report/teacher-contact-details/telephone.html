@@ -1,11 +1,11 @@
 {% extends "layouts/report.html" %}
-{% set title = "Do you have a telephone number for them?" %}
+{% set title = "Do you know their main contact number?" %}
 
 {% block form %}
   {% set homeNumber %}
     {{ govukInput({
       label: {
-        text: "Home telephone number",
+        text: "Main contact number",
         classes: "govuk-label--s"
       },
       classes: 'govuk-input--width-20',
@@ -13,67 +13,30 @@
     }) }}
   {% endset %}
 
-  {% set mobileNumber %}
-    {{ govukInput({
-      label: {
-        text: "Mobile telephone number",
-        classes: "govuk-label--s"
-      },
-      classes: 'govuk-input--width-20',
-      decorate: 'report.teacher-contact-details.mobile-number'
-    }) }}
-  {% endset %}
-
-  {% set workNumber %}
-    {{ govukInput({
-      label: {
-        text: "Work telephone number",
-        classes: "govuk-label--s"
-      },
-      classes: 'govuk-input--width-20',
-      decorate: 'report.teacher-contact-details.work-number'
-    }) }}
-  {% endset %}
-
-  {{ govukCheckboxes({
+  {{ govukRadios({
     fieldset: {
       legend: {
-        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        classes: "govuk-fieldset__legend--l govuk-!-margin-bottom-6",
         isPageHeading: true,
         text: title
       }
     },
-    hint: {
-      text: 'Tell us the numbers that you know'
-    },
     items: [
       {
-        text: "Home",
+        text: "Yes",
         conditional: {
           html: homeNumber
         }
       },
       {
-        text: "Mobile",
-        conditional: {
-          html: mobileNumber
-        }
-      },
-      {
-        text: "Work",
-        conditional: {
-          html: workNumber
-        }
-      },
-      {
-        divider: "or"
-      },
-      {
-        value: "none",
-        text: "I don’t know their telephone number",
-        behaviour: "exclusive"
+        text: "No"
       }
     ],
-    decorate: 'report.teacher-contact-details.telephone'
+    decorate: 'report.teacher-contact-details.telephone',
+    validate: {
+      presence: {
+        message: "Tell us if you know the teacher’s main contact number"
+      }
+    }
   }) }}
 {% endblock %}
