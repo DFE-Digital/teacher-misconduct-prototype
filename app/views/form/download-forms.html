@@ -1,5 +1,6 @@
 {% extends "layouts/report.html" %}
 {% set title = "You need to complete a teacher misconduct form" %}
+{% set buttonHidden = "true" %}
 
 {% block form %}
   <h1 class="govuk-heading-xl">{{ title | noOrphans | safe }}</h1>
@@ -56,7 +57,5 @@
   <p>Phone: 020 7593 5393<br>Monday to Friday, 9am to 5pm (except Mondays and Fridays)</p>
 
   <p><a href="https://www.gov.uk/call-charges">Find out about call charges</a>.</p>
-
-  <mark>remove the button</mark>
 
 {% endblock %}
