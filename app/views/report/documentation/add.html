@@ -18,6 +18,9 @@
       text: "Upload files",
       classes: "govuk-label--m"
     },
+    hint: {
+      html: "<p>You should make sure the file names describe the content, for example ‘signed witness statement</p><p>You can upload all file types. Each file must not exceed 25mb.</p>"
+    },
     attributes: {
       multiple: true
     },
@@ -28,6 +31,6 @@
   <p>You can upload multiple files at once.</p>
 
   <h2 class="govuk-heading-s">Do not upload explicit content</h2>
-  <p class="govuk-!-margin-bottom-6">Do not upload explicit files if they are part of the evidence you’ve collected. If your allegation mentions explicit files, TRA will ask for them when they are needed.</p>
+  <p class="govuk-!-margin-bottom-6">Do not upload explicit files, for example indecent images. If your allegation mentions explicit files, we’ll ask for them when they’re needed.</p>
 
 {% endblock %}

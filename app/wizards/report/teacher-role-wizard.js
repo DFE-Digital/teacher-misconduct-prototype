@@ -6,7 +6,6 @@ export function teacherRoleWizard (req, res) {
   const journey = {
     '/report/tasks': {},
     ...isEmployer ? {
-      '/report/teacher-role/start-date': {},
       '/report/teacher-role/end-date': {}
     } : {},
     '/report/teacher-role/job-title': {},

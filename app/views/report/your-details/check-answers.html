@@ -1,18 +1,10 @@
 {% extends "layouts/report.html" %}
-{% set title = "Your details" %}
+{% set title = "Check and confirm your answers" %}
 {% set gridClass = "govuk-grid-column-full" %}
 {% block pageNavigation %}
-  {{ govukBreadcrumbs({
-  items: [
-    {
-      text: "Your allegation of serious misconduct",
-      href: "/report/tasks"
-    },
-    {
-      text: title
-    }
-  ]
-  }) }}
+  {{ govukBackLink({
+    href: paths.back
+  }) if paths.back }}
 {% endblock %}
 
 {% block beforeForm %}

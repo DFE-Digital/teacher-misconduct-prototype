@@ -1,20 +1,13 @@
 {% extends "layouts/report.html" %}
-{% set title = "Evidence and supporting information" %}
+{% set title = "Check and confirm your answers" %}
 {% set anyFiles = d('report.documentation.uploaded-files') | length > 0 %}
 {% set gridClass = "govuk-grid-column-full" %}
 {% block pageNavigation %}
-  {{ govukBreadcrumbs({
-  items: [
-    {
-      text: "Your allegation of serious misconduct",
-      href: "/report/tasks"
-    },
-    {
-      text: title
-    }
-  ]
-  }) }}
+  {{ govukBackLink({
+    href: paths.back
+  }) if paths.back }}
 {% endblock %}
+
 
 {% set examples %}
   {% include "../shared/_examples.html" %}
