@@ -19,7 +19,7 @@
     {{ govukInput({
       label: {
         text: "School name",
-        classes: "govuk-label--m" if isPublic else "govuk-label--s"
+        classes: "govuk-label--s" if isPublic else "govuk-label--s"
       },
       decorate: 'report.teacher-role.school.address.name',
       validate: {
@@ -32,7 +32,7 @@
     {% call govukFieldset({
       legend: {
         text: "School address",
-        classes: "govuk-fieldset__legend--m" if isPublic else "govuk-fieldset__legend--s"
+        classes: "govuk-fieldset__legend--m govuk-!-padding-top-6" if isPublic else "govuk-fieldset__legend--s govuk-!-padding-top-6"
       }
     }) %}
       {{ govukInput({

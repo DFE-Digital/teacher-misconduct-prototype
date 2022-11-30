@@ -6,7 +6,7 @@
     {{ govukDateInput({
       fieldset: {
         legend: {
-          classes: "govuk-fieldset__legend--m",
+          classes: "govuk-fieldset__legend--s",
           text: "When did they leave this job?"
         }
       },
@@ -24,7 +24,7 @@
     {{ govukRadios({
       fieldset: {
         legend: {
-          classes: "govuk-fieldset__legend--m",
+          classes: "govuk-fieldset__legend--s",
           text: "How did they leave this job?"
         }
       },
@@ -37,6 +37,9 @@
         },
         {
           text: "Retired"
+        },
+        {
+          text: "I don't know"
         }
       ],
       decorate: 'report.teacher-role.how-end-job',

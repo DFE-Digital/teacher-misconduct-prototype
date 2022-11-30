@@ -15,7 +15,7 @@
 
         {{ govukButton({
           html: buttonText if buttonText else 'Continue'
-        }) }}
+        }) if not buttonHidden }}
       </form>
 
       {% block afterForm %}{% endblock %}

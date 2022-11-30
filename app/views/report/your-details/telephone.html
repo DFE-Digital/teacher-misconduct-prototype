@@ -1,5 +1,5 @@
 {% extends "layouts/report.html" %}
-{% set title = "What is your telephone number?" %}
+{% set title = "What is your main contact number?" %}
 
 {% block form %}
   {{ govukInput({
@@ -15,7 +15,7 @@
     decorate: 'report.your-details.telephone',
     validate: {
       presence: {
-        message: "Enter your telephone number"
+        message: "Enter your main contact number"
       }
     }
   }) }}

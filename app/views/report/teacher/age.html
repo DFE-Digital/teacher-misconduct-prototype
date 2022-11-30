@@ -1,7 +1,16 @@
 {% extends "layouts/report.html" %}
-{% set title = "Do you know their age or date of birth?" %}
+{% set title = "Do you know their date of birth?" %}
 
 {% block form %}
+
+  {% set previousNameHtml %}
+    {{ govukInput({
+      label: {
+        text: "Previous name"
+      },
+      decorate: 'report.teacher-details.previous-name'
+    }) }}
+  {% endset %}
   {% set dob %}
     {{ govukDateInput({
       fieldset: {
@@ -45,21 +54,14 @@
     },
     items: [
       {
-        text: "I know their date of birth",
+        text: "Yes",
         value: "knows-dob",
         conditional: {
           html: dob
         }
       },
       {
-        text: "I know their approximate age",
-        value: "knows-age",
-        conditional: {
-          html: age
-        }
-      },
-      {
-        text: "No, I don’t know their age or date of birth",
+        text: "No",
         value: "knows-neither"
       }
     ],

@@ -7,19 +7,21 @@
     {{ title }}
   </h1>
 
-  <p>You need to confirm that:</p>
+  <p>You must confirm that:</p>
 
   <ul class="govuk-list govuk-list--bullet">
-    <li>you want TRA to investigate this allegation. This could result in the person you’re referring being banned from teaching</li>
-    <li>the contents of this form are true to the best of your knowledge and belief</li>
-    <li>you give consent for this form and any supporting documents to be shared with the person you’re referring, and any employer (your contact details will not be shared)</li>
+    <li>you want TRA to investigate this allegation, which could result in the person you’re referring being stopped from teaching</li>
+    <li>all your answers are true to the best of your knowledge and belief</li>
+    <li>you give consent for this referral and any supporting documents to be shared with the person you’re referring and any employer (only your name will be shared with them)</li>
     {% if isEmployer %}
-      <li>you have permission from third parties for the documents to be shared</li>
+      <li>you have permission from the relevant third parties for any supporting documents to be shared, for example the police or DBS</li>
     {% endif %}
     <li>you understand that you might need to attend a hearing of a professional conduct panel to give evidence should this allegation reach that stage</li>
   </ul>
 
-  <p>Your submitted referral will be kept for 50 years.</p>
+  <p>Once submitted, your referral will be kept on file for 50 years.</p>
+
+  <p>This declaration is required by law and won’t affect any existing GDPR or other workplace regulations.</p>
 
   {{ govukCheckboxes({
     formGroup: {
