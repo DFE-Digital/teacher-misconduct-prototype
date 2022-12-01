@@ -1,4 +1,14 @@
 import { wizard } from 'govuk-prototype-rig'
+import _ from 'lodash'
+
+function uploadedFilePaths (req) {
+  const data = req.session.data
+  const files = _.get(data, _.toPath('report.adam.uploaded-files')) || {}
+  const paths = Object.keys(files).map(fileId => {
+    return { [`/report/adam/type/${fileId}`]: {} }
+  })
+  return Object.assign({}, ...paths)
+}
 
 export function eligibilityWizard (req, res) {
   const { isPublic } = res.locals
@@ -42,9 +52,24 @@ export function eligibilityWizard (req, res) {
       }
     },
     '/report/eligibility/you-should-know': {},
-    '/report/eligibility/save-as-you-go': {},
-    '/report/tasks': {},
-    '/report/submit/review': {}
+    ...isPublic ? {
+      '/report/adam/test': {
+      },
+      '/report/adam/anything-to-upload': {
+        '/report/adam/wheevers': {
+          data: 'report.adam.anything-to-upload',
+          value: 'No'
+        }
+      },
+      '/report/adam/add': {},
+      '/report/adam/uploaded': {},
+      ...uploadedFilePaths(req),
+      '/report/adam/check-answers': {}
+    } : {
+      '/report/eligibility/save-as-you-go': {},
+      '/report/tasks': {},
+      '/report/submit/review': {}
+    }
   }
 
   return wizard(journey, req)

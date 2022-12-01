@@ -1,0 +1,25 @@
+{% extends "layouts/report.html" %}
+{% set title = "Are you Adam?" %}
+
+{% block form %}
+  {{ govukRadios({
+    fieldset: {
+      legend: {
+        classes: "govuk-fieldset__legend--xl govuk-!-margin-bottom-6",
+        isPageHeading: true,
+        text: title
+      }
+    },
+    items: [
+      {
+        text: "Yes",
+        value: "Yes"
+      },
+      {
+        text: "No",
+        value: "No"
+      }
+    ],
+    decorate: 'report.adam.test'
+  }) }}
+{% endblock %}

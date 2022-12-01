@@ -122,6 +122,13 @@ export const reportRoutes = router => {
     res.render('report/documentation/type.html')
   })
 
+  router.get('/report/adam/type/:id', (req, res) => {
+    const file = req.session.data.report.adam['uploaded-files'][req.params.id]
+    res.locals.file = file
+    res.locals.fileId = req.params.id
+    res.render('report/adam/type.html')
+  })
+
   router.all([
     '/report/documentation/check-answers',
     '/report/submit/review'
@@ -170,18 +177,44 @@ export const reportRoutes = router => {
     next()
   })
 
+  router.post('/report/adam/add/', (req, res, next) => {
+    const { isEmployer } = res.locals
+
+    if (isEmployer) {
+      req.session.data.report.adam['uploaded-files'] = {
+        '001': { filename: 'main-investigation.pdf' },
+        '002': { filename: 'police-investigation.docx' },
+        '003': { filename: 'signed-witness-statements.pdf' },
+        '004': { filename: 'cctv-footage.mp4' }
+      }
+    } else {
+      req.session.data.report.adam['uploaded-files'] = {
+        '001': { filename: 'school-complaint.pdf' },
+        '002': { filename: 'emails-from-school.docx' },
+        '003': { filename: 'local-authority-email.pdf' }
+      }
+    }
+
+    next()
+  })
+
   router.all([
     '/report',
     '/report/eligibility/:view',
+    '/report/adam/:view',
     '/report/:view'
   ], (req, res, next) => {
     res.locals.paths = eligibilityWizard(req, res)
     next()
   })
 
+
+
+
   router.post([
     '/report/:view',
     '/report/eligibility/:view',
+    '/report/adam/:view',
     '/report/your-details/:view',
     '/report/your-organisation/:view',
     '/report/teacher-contact-details/:view',
