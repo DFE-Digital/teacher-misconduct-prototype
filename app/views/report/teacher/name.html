@@ -4,7 +4,10 @@
 {% block form %}
   <h1 class="govuk-heading-xl">{{ title }}</h1>
   <h2 class="govuk-heading-m">Why do we ask for personal information?</h2>
-  <p class="govuk-!-padding-bottom-6">We’ll use the details you provide to help us identify the correct person. This information is required by law. It will help us decide whether we need to investigate the case further, or if we need more information first.</p>
+  <p>We’ll use the details you provide to help us identify the correct person. This information is required by law. It will help us decide whether we need to investigate the case further, or if we need more information first.</p>
+  {% if isPublic %}
+    <p>You should include initials if you don't know their full name</p>
+  {% endif %}
 
   {{ govukInput({
     label: {

@@ -5,8 +5,8 @@ export function teacherDetailsWizard (req, res) {
   const journey = {
     '/report/tasks': {},
     '/report/teacher/name': {},
-    '/report/teacher/age': {},
     ...isEmployer ? {
+      '/report/teacher/age': {},
       '/report/teacher/nino': {},
       '/report/teacher/trn': {},
       '/report/teacher/qts': {}

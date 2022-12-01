@@ -10,7 +10,6 @@ export function previousMisconductWizard (req) {
       }
     },
     '/report/previous-misconduct/previous-misconduct': {},
-    '/report/previous-misconduct/previous-misconduct-summary': {},
     '/report/previous-misconduct/check-answers': {
       '/report/tasks': true
     }

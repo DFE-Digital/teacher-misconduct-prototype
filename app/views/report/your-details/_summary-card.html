@@ -4,7 +4,7 @@
   rows: decorateRows([
     {
       key: "Your name",
-      data: "report.your-details.name",
+      data: d('report.your-details.first-name') + ' ' + d('report.your-details.last-name'),
       href: "/report/your-details/name"
     },
     {
@@ -16,11 +16,6 @@
       data: "report.your-details.job-title",
       href: "/report/your-details/job-title"
     } if isEmployer,
-    {
-      key: "Relationship to person",
-      data: "report.your-details.relationship-to",
-      href: "/report/your-details/relationship-to"
-    } if isPublic,
     {
       key: "Main contact number",
       data: "report.your-details.telephone",

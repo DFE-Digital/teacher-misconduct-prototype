@@ -24,7 +24,7 @@
         data: 'report.teacher-details.know-age',
         excludedValue: 'knows-age'
       }
-    },
+    } if isEmployer,
     {
       key: 'Approximate age',
       data: 'report.teacher-details.age',
@@ -33,7 +33,7 @@
         data: 'report.teacher-details.know-age',
         value: 'knows-age'
       }
-    },
+    } if isEmployer,
     {
       key: 'National Insurance number',
       value: 'Not known' if d('report.teacher-details.know-nino') == 'No' else d('report.teacher-details.nino'),

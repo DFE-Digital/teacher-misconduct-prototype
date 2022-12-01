@@ -2,12 +2,22 @@
 {% set title = "What is your name?" %}
 
 {% block form %}
+  <h1 class="govuk-heading-xl">{{ title }}</h1>
   {{ govukInput({
     label: {
-      text: title,
-      isPageHeading: true,
-      classes: "govuk-label--xl"
+      text: "First name",
+      classes: "govuk-label--s"
     },
-    decorate: 'report.your-details.name'
+    decorate: 'report.your-details.first-name'
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Last name",
+      classes: "govuk-label--s"
+    },
+    decorate: 'report.your-details.last-name'
   }) }}
 {% endblock %}
+
+

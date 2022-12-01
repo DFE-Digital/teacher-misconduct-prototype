@@ -10,9 +10,6 @@ export function teacherRoleWizard (req, res) {
       '/report/teacher-role/end-date': {}
     } : {},
     '/report/teacher-role/job-title': {},
-    ...isPublic ? {
-      '/report/teacher-role/still-in-role': {}
-    } : {},
     '/report/teacher-role/school': {},
     '/report/teacher-role/duties': {
       '/report/teacher-role/check-answers': {

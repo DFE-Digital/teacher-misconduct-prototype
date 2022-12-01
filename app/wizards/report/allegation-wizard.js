@@ -5,11 +5,11 @@ export function allegationWizard (req, res) {
   const journey = {
     '/report/tasks': {},
     ...isPublic ? {
+      '/report/allegation/allegation': {},
       '/report/allegation/already-considered': {}
     } : {},
-    '/report/allegation/allegation': {},
-    '/report/allegation/allegation-summary': {},
     ...isEmployer ? {
+      '/report/allegation/allegation': {},
       '/report/allegation/dbs': {}
     } : {},
     '/report/allegation/check-answers': {
