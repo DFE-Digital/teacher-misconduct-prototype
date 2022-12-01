@@ -1,8 +1,8 @@
 import _ from 'lodash'
-import { publicWizard } from '../wizards/public/public-wizard.js'
+import { publicWizard } from '../wizards/general-public/general-public-wizard.js'
 
 export const publicRoutes = router => {
-  router.all('/public/*', (req, res, next) => {
+  router.all('/general-public/*', (req, res, next) => {
     res.locals.signedIn = true
     res.locals.reportService = true
 
@@ -13,15 +13,15 @@ export const publicRoutes = router => {
   })
 
   router.all([
-    '/public/',
-    '/public/:view'
+    '/general-public/',
+    '/general-public/:view'
   ], (req, res, next) => {
     res.locals.paths = publicWizard(req, res)
     next()
   })
 
   router.post([
-    '/public/:view'
+    '/general-public/:view'
   ], (req, res) => {
     res.redirect(res.locals.paths.next)
   })

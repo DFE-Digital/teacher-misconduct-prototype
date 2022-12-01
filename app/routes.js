@@ -1,7 +1,7 @@
 import express from 'express'
 import { reportRoutes } from './routes/report.js'
 import { formRoutes } from './routes/form.js'
-import { publicRoutes } from './routes/public.js'
+import { publicRoutes } from './routes/general-public.js'
 import { calendarRoutes } from './routes/calendar.js'
 
 const router = express.Router()
